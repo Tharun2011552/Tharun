@@ -1,412 +1,314 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#2b123b">
-
-<title>For None ❤️ — From Unknown</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Georgia, "Times New Roman", serif;
-  color: #fff0f7;
-  text-align: center;
-  background:
-    radial-gradient(ellipse at top, #77305f, transparent 65%),
-    linear-gradient(160deg, #160e28, #42173f, #1b102d);
-}
-
-main {
-  max-width: 520px;
-  margin: auto;
-  padding: 25px 17px 45px;
-}
-
-.eyebrow {
-  font: 11px Arial, sans-serif;
-  letter-spacing: 4px;
-  color: #f8bcd9;
-}
-
-h1 {
-  color: #ffd4e8;
-  font-size: clamp(32px, 8vw, 45px);
-  line-height: 1.2;
-  margin: 18px 0 12px;
-}
-
-h2 {
-  color: #ffd0e7;
-  font-size: 24px;
-}
-
-p {
-  line-height: 1.8;
-}
-
-.cover {
-  padding: 28px 8px;
-}
-
-.album {
-  width: 215px;
-  height: 215px;
-  max-width: 65vw;
-  max-height: 65vw;
-  margin: 30px auto;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  border: 2px solid #ffd4e8;
-  background:
-    radial-gradient(circle, #ffc7e4 0%, #d765a8 32%,
-    #783168 65%, #291333 72%);
-  box-shadow: 0 0 35px #fa7bbd66,
-              0 0 90px #d75baf33;
-}
-
-.album span {
-  font-size: 76px;
-  animation: heartbeat 1.5s infinite;
-}
-
-.subtitle {
-  color: #f2d4e8;
-  font: 15px/1.9 Arial, sans-serif;
-}
-
-.card {
-  background: #ffffff0d;
-  border: 1px solid #ffffff26;
-  border-radius: 24px;
-  padding: 24px 17px;
-  margin: 20px 0;
-  box-shadow: 0 12px 35px #10081755;
-}
-
-button {
-  border: 1px solid #ffe2f0;
-  border-radius: 30px;
-  padding: 14px 21px;
-  margin: 7px 4px;
-  color: #40152f;
-  background: linear-gradient(135deg, #ffe0ef, #f3a5cf);
-  font: bold 14px Arial, sans-serif;
-  cursor: pointer;
-}
-
-button:active {
-  transform: scale(.97);
-}
-
-.lyrics {
-  color: #fff1f8;
-  font-family: "Noto Sans Kannada", "Tunga",
-               "Arial", sans-serif;
-  font-size: 17px;
-  line-height: 2.25;
-  white-space: pre-line;
-}
-
-.chorus {
-  color: #ffc5e1;
-  font-weight: bold;
-}
-
-.english {
-  font: 15px/1.9 Arial, sans-serif;
-  color: #f6dceb;
-}
-
-.hidden {
-  display: none;
-}
-
-#status {
-  font: 12px/1.7 Arial, sans-serif;
-  color: #ffc6e2;
-}
-
-footer {
-  font: 12px/2 Arial, sans-serif;
-  color: #dcb9d4;
-  margin-top: 30px;
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.12); }
-}
-</style>
-</head>
-
-<body>
-<main>
-
-<section class="cover">
-  <div class="eyebrow">A LOVE SONG FROM MY HEART</div>
-
-  <div class="album">
-    <span>❤️</span>
-  </div>
-
-  <h1>For My None</h1>
-
-  <p class="subtitle">
-    A little piece of my heart,<br>
-    turned into a song just for you.
-  </p>
-
-  <p class="english">
-    Written with all my love,<br>
-    <strong>Unknown ❤️</strong>
-  </p>
-
-  <button onclick="startMusic()">▶ Play Our Song</button>
-  <button onclick="stopMusic()">Ⅱ Pause Music</button>
-
-  <p id="status">Put on your headphones and listen with your heart. 🎧</p>
-</section>
-
-<section class="card">
-  <h2>Our Little Love Song 💌</h2>
-
-  <p class="english">
-    None, these words are for you.<br>
-    Imagine me singing every line to you.
-  </p>
-
-  <div class="lyrics">
-
-ನಿನ್ನ ಕಣ್ಣಲಿ ನನ್ನ ಕನಸಿದೆ,
-ನಿನ್ನ ನಗುವಲಿ ನನ್ನ ಸ್ವರ್ಗವಿದೆ,
-ನಿನ್ನ ಹೆಸರನು ತುಟಿಯಲಿ ಇಟ್ಟು,
-ಪ್ರತಿ ಉಸಿರಲಿ ನಿನ್ನ ಪ್ರೀತಿಯಿದೆ.
-
-ಚಂದಿರನ ಕೇಳಿದೆ ನಿನ್ನ ರೂಪವ,
-ನಕ್ಷತ್ರ ಕೇಳಿದೆ ನಿನ್ನ ಹೊಳಪವ,
-ನಿನ್ನ ಮುಂದೆ ಅವೆಲ್ಲ ಸೋತು ಹೋದವು,
-ನಿನ್ನ ಕಣ್ಣಲ್ಲೇ ನನ್ನ ಲೋಕ ಕಂಡವು.
-
-<div class="chorus">
-None... ನನ್ನ ಪ್ರೀತಿಯ None...
-ನೀನೇ ನನ್ನ ಹೃದಯದ ರಾಗವೇ,
-Unknown ನ ಪ್ರತಿ ಉಸಿರಿನೊಳಗೆ,
-ನೀನೇ ಪ್ರೀತಿಯ ಮಧುರ ಭಾವವೇ.
-
-None... ನನ್ನ ಜೀವದ None...
-ನೀನೇ ನನ್ನ ಕನಸಿನ ಚಂದಿರವೇ,
-ನೂರು ಜನ್ಮಗಳು ಸಿಕ್ಕರೂ ನನಗೆ,
-ಪ್ರತಿ ಜನ್ಮದಲ್ಲೂ ನೀನೇ ಬೇಕೆ.
-</div>
-
-ನಿನ್ನ ಕೈಯಲ್ಲಿ ನನ್ನ ಕೈಯಿಟ್ಟು,
-ಜಗವ ಮರೆತು ನಡೆಯಬೇಕು,
-ನಿನ್ನ ಹೆಗಲ ಮೇಲೆ ತಲೆಯನಿಟ್ಟು,
-ಮೌನದಲ್ಲೂ ಪ್ರೀತಿಸಬೇಕು.
-
-ಮಳೆಯ ಹನಿಯಲಿ ನಿನ್ನ ನೆನಪಿದೆ,
-ತಂಗಾಳಿಯಲಿ ನಿನ್ನ ಉಸಿರಿದೆ,
-ನೀ ದೂರವಿದ್ದರೂ ನನ್ನ ಮನದಲಿ,
-ನಿನ್ನದೇ ಹೆಜ್ಜೆಯ ಸದ್ದಿದೆ.
-
-<div class="chorus">
-ನಿನ್ನ ನಗುವಿಗೆ ಬೆಳಕಾಗುವೆ,
-ನಿನ್ನ ಕಣ್ಣೀರ ಒರೆಸುವೆ,
-ಬಾಳಿನ ದಾರಿಯಲಿ ಜೊತೆಗಿದ್ದು,
-ನಿನ್ನ ಪ್ರೀತಿಯಲಿ ಬದುಕುವೆ.
-
-None... ನನ್ನ ಪ್ರೀತಿಯ None...
-ನೀನೇ ನನ್ನ ಹೃದಯದ ರಾಗವೇ,
-ನನ್ನ ಬದುಕಿನ ಕೊನೆಯ ಕ್ಷಣದವರೆಗೂ,
-ನಿನ್ನ ಪ್ರೀತಿಯೇ ನನ್ನ ಉಸಿರಾಗಿರಲಿ.
-</div>
-
-ನನ್ನ ಕನಸಿಗೆ ಬಣ್ಣ ನೀನೇ,
-ನನ್ನ ಕವಿತೆಗೆ ಪದವೂ ನೀನೇ,
-ಜಗವೆಲ್ಲ ನನ್ನ ವಿರುದ್ಧ ನಿಂತರೂ,
-ನಿನ್ನ ಕೈ ಬಿಡದ ಪ್ರೀತಿ ನಾನೇ.
-
-ನಿನ್ನ ಕಣ್ಣಲ್ಲಿ ವಯಸ್ಸು ಕರಗಲಿ,
-ನಮ್ಮ ಪ್ರೀತಿಯ ಕಥೆ ಮುಂದುವರಿಯಲಿ,
-ಕಾಲವೆಲ್ಲ ನಮ್ಮನ್ನ ಪರೀಕ್ಷಿಸಿದರೂ,
-ನಿನ್ನ ಮೇಲಿನ ಪ್ರೀತಿ ಬದಲಾಗದಿರಲಿ.
-
-<div class="chorus">
-None... ಓ ನನ್ನ None...
-ನನ್ನ ಹೃದಯದ ಅರಮನೆಯ ರಾಣಿಯೇ,
-Unknown ನ ಈ ಪುಟ್ಟ ಜಗದೊಳಗೆ,
-ಎಂದೆಂದಿಗೂ ನೀನೇ ಮಹಾರಾಣಿಯೇ.
-
-ನೀನೇ ಮೊದಲ ಪ್ರೀತಿ, ನೀನೇ ಕೊನೆಯ ಆಸೆ,
-ನೀನೇ ನನ್ನ ಮನದ ಮಧುರ ಉಸಿರೇ,
-ಈ ಹಾಡು ಮುಗಿದರೂ ಪ್ರೀತಿ ಮುಗಿಯದು,
-ನನ್ನ ಹೃದಯ ನಿನ್ನ ಹೆಸರ ಮರೆಯದು. ❤️
-</div>
-
-  </div>
-</section>
-
-<section class="card">
-  <h2>A Message From Me To You ❤️</h2>
-
-  <p class="english">
-    My dearest None,
-
-    If I could turn my feelings into music,
-    this is what I would sing to you.
-
-    You are not just someone I love.
-    You are the person who makes ordinary
-    moments feel extraordinary.
-
-    I wish I could hold your hand while
-    this song plays and tell you every
-    word while looking into your eyes.
-
-    I cannot promise that every day will
-    be perfect, but I hope to keep giving
-    you reasons to smile, feel appreciated,
-    and know how deeply you matter to me.
-
-    Every lyric is a little reminder that
-    somewhere, Unknown is thinking of you
-    and smiling because you are in his life.
-
-    This song is my little gift to you.
-    Keep it, replay it, and whenever you
-    miss me, let it remind you of us.
-
-    All my love, always,
-
-    <strong>Yours, Unknown 💗</strong>
-  </p>
-
-  <button onclick="reveal()">Open One Last Secret 💌</button>
-
-  <p id="secret" class="english hidden">
-    None, if I had to choose all over again,
-    in every story and every lifetime,
-    I would still hope to find you. ❤️
-
-    You are my favourite thought,
-    my sweetest feeling,
-    and the girl for whom this song exists.
-
-    I love you, None. — Unknown 💋
-  </p>
-</section>
-
-<footer>
-  Made with love by Unknown.<br>
-  A song written for one special girl: None. ❤️
-</footer>
-
-</main>
-
-<script>
-let audioContext;
-let masterGain;
-let melodyTimer = null;
-let noteIndex = 0;
-
-const notes = [
-  261.63, 329.63, 392.00, 329.63,
-  293.66, 349.23, 440.00, 349.23,
-  261.63, 329.63, 392.00, 440.00,
-  392.00, 349.23, 329.63, 261.63
-];
-
-function playNote(freq, duration) {
-  if (!audioContext || !masterGain) return;
-
-  const osc = audioContext.createOscillator();
-  const gain = audioContext.createGain();
-
-  osc.type = "sine";
-  osc.frequency.value = freq;
-
-  const now = audioContext.currentTime;
-
-  gain.gain.setValueAtTime(0.0001, now);
-  gain.gain.exponentialRampToValueAtTime(0.07, now + 0.08);
-  gain.gain.exponentialRampToValueAtTime(
-    0.0001, now + duration
-  );
-
-  osc.connect(gain);
-  gain.connect(masterGain);
-
-  osc.start(now);
-  osc.stop(now + duration + 0.1);
-}
-
-async function startMusic() {
-  try {
-    if (!audioContext) {
-      audioContext = new (
-        window.AudioContext || window.webkitAudioContext
-      )();
-
-      masterGain = audioContext.createGain();
-      masterGain.gain.value = 0.7;
-      masterGain.connect(audioContext.destination);
-    }
-
-    await audioContext.resume();
-
-    if (melodyTimer) return;
-
-    document.getElementById("status").textContent =
-      "Playing a little melody for None... ❤️";
-
-    melodyTimer = setInterval(() => {
-      playNote(notes[noteIndex], 0.65);
-
-      if (noteIndex % 4 === 0) {
-        playNote(notes[noteIndex] / 2, 0.9);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2b123b" />
+
+    <title>For anonymous ❤️ — From Tharun</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
       }
 
-      noteIndex = (noteIndex + 1) % notes.length;
-    }, 700);
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Georgia, "Times New Roman", serif;
+        color: #fff0f7;
+        text-align: center;
+        background:
+          radial-gradient(ellipse at top, #77305f, transparent 65%),
+          linear-gradient(160deg, #160e28, #42173f, #1b102d);
+      }
 
-  } catch (e) {
-    document.getElementById("status").textContent =
-      "Tap Play again to start the music.";
-  }
-}
+      main {
+        max-width: 520px;
+        margin: auto;
+        padding: 25px 17px 45px;
+      }
 
-function stopMusic() {
-  if (melodyTimer) {
-    clearInterval(melodyTimer);
-    melodyTimer = null;
-  }
+      .eyebrow {
+        font:
+          11px Arial,
+          sans-serif;
+        letter-spacing: 4px;
+        color: #f8bcd9;
+      }
 
-  if (audioContext && audioContext.state === "running") {
-    audioContext.suspend();
-  }
+      h1 {
+        color: #ffd4e8;
+        font-size: clamp(32px, 8vw, 45px);
+        line-height: 1.2;
+        margin: 18px 0 12px;
+      }
 
-  document.getElementById("status").textContent =
-    "Music paused. Your song will be waiting here. 💗";
-}
+      h2 {
+        color: #ffd0e7;
+        font-size: 24px;
+      }
 
-function reveal() {
-  const secret = document.getElementById("secret");
-  secret.classList.remove("hidden");
-  secret.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
-}
-</script>
+      p {
+        line-height: 1.8;
+      }
 
-</body>
+      .cover {
+        padding: 28px 8px;
+      }
+
+      .album {
+        width: 215px;
+        height: 215px;
+        max-width: 65vw;
+        max-height: 65vw;
+        margin: 30px auto;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        border: 2px solid #ffd4e8;
+        background: radial-gradient(
+          circle,
+          #ffc7e4 0%,
+          #d765a8 32%,
+          #783168 65%,
+          #291333 72%
+        );
+        box-shadow:
+          0 0 35px #fa7bbd66,
+          0 0 90px #d75baf33;
+      }
+
+      .album span {
+        font-size: 76px;
+        animation: heartbeat 1.5s infinite;
+      }
+
+      .subtitle {
+        color: #f2d4e8;
+        font:
+          15px/1.9 Arial,
+          sans-serif;
+      }
+
+      .card {
+        background: #ffffff0d;
+        border: 1px solid #ffffff26;
+        border-radius: 24px;
+        padding: 24px 17px;
+        margin: 20px 0;
+        box-shadow: 0 12px 35px #10081755;
+      }
+
+      button {
+        border: 1px solid #ffe2f0;
+        border-radius: 30px;
+        padding: 14px 21px;
+        margin: 7px 4px;
+        color: #40152f;
+        background: linear-gradient(135deg, #ffe0ef, #f3a5cf);
+        font:
+          bold 14px Arial,
+          sans-serif;
+        cursor: pointer;
+      }
+
+      button:active {
+        transform: scale(0.97);
+      }
+
+      .lyrics {
+        color: #fff1f8;
+        font-family: "Noto Sans Kannada", "Tunga", "Arial", sans-serif;
+        font-size: 17px;
+        line-height: 2.25;
+        white-space: pre-line;
+      }
+
+      .chorus {
+        color: #ffc5e1;
+        font-weight: bold;
+      }
+
+      .english {
+        font:
+          15px/1.9 Arial,
+          sans-serif;
+        color: #f6dceb;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      #status {
+        font:
+          12px/1.7 Arial,
+          sans-serif;
+        color: #ffc6e2;
+      }
+
+      footer {
+        font:
+          12px/2 Arial,
+          sans-serif;
+        color: #dcb9d4;
+        margin-top: 30px;
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.12);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <section class="cover">
+        <div class="eyebrow">A LOVE SONG FROM MY HEART</div>
+
+        <div class="album">
+          <span>❤️</span>
+        </div>
+
+        <h1>For My anonymous</h1>
+
+        <p class="subtitle">
+          A little piece of my heart,<br />
+          turned into a song just for you.
+        </p>
+
+        <p class="english">
+          Written with all my love,<br />
+          <strong>Tharun ❤️</strong>
+        </p>
+
+        <button onclick="startMusic()">▶ Play Our Song</button>
+        <button onclick="stopMusic()">Ⅱ Pause Music</button>
+
+        <p id="status">Put on your headphones and listen with your heart. 🎧</p>
+      </section>
+
+      <section class="card">
+        <h2>Our Little Love Song 💌</h2>
+
+        <p class="english">
+          None, these words are for you.<br />
+          Imagine me singing every line to you.
+        </p>
+
+        <div class="lyrics">
+          ನಿನ್ನ ಕಣ್ಣಲಿ ನನ್ನ ಕನಸಿದೆ, ನಿನ್ನ ನಗುವಲಿ ನನ್ನ ಸ್ವರ್ಗವಿದೆ, ನಿನ್ನ ಹೆಸರನು
+          ತುಟಿಯಲಿ ಇಟ್ಟು, ಪ್ರತಿ ಉಸಿರಲಿ ನಿನ್ನ ಪ್ರೀತಿಯಿದೆ. ಚಂದಿರನ ಕೇಳಿದೆ ನಿನ್ನ
+          ರೂಪವ, ನಕ್ಷತ್ರ ಕೇಳಿದೆ ನಿನ್ನ ಹೊಳಪವ, ನಿನ್ನ ಮುಂದೆ ಅವೆಲ್ಲ ಸೋತು ಹೋದವು, ನಿನ್ನ
+          ಕಣ್ಣಲ್ಲೇ ನನ್ನ ಲೋಕ ಕಂಡವು.
+
+          <div class="chorus">
+            None... ನನ್ನ ಪ್ರೀತಿಯ None... ನೀನೇ ನನ್ನ ಹೃದಯದ ರಾಗವೇ, ಥಾರುಣನ ಪ್ರತಿ
+            ಉಸಿರಿನೊಳಗೆ, ನೀನೇ ಪ್ರೀತಿಯ ಮಧುರ ಭಾವವೇ. None... ನನ್ನ ಜೀವದ None... ನೀನೇ
+            ನನ್ನ ಕನಸಿನ ಚಂದಿರವೇ, ನೂರು ಜನ್ಮಗಳು ಸಿಕ್ಕರೂ ನನಗೆ, ಪ್ರತಿ ಜನ್ಮದಲ್ಲೂ ನೀನೇ
+            ಬೇಕೆ.
+          </div>
+
+          ನಿನ್ನ ಕೈಯಲ್ಲಿ ನನ್ನ ಕೈಯಿಟ್ಟು, ಜಗವ ಮರೆತು ನಡೆಯಬೇಕು, ನಿನ್ನ ಹೆಗಲ ಮೇಲೆ
+          ತಲೆಯನಿಟ್ಟು, ಮೌನದಲ್ಲೂ ಪ್ರೀತಿಸಬೇಕು. ಮಳೆಯ ಹನಿಯಲಿ ನಿನ್ನ ನೆನಪಿದೆ, ತಂಗಾಳಿಯಲಿ
+          ನಿನ್ನ ಉಸಿರಿದೆ, ನೀ ದೂರವಿದ್ದರೂ ನನ್ನ ಮನದಲಿ, ನಿನ್ನದೇ ಹೆಜ್ಜೆಯ ಸದ್ದಿದೆ.
+
+          <div class="chorus">
+            ನಿನ್ನ ನಗುವಿಗೆ ಬೆಳಕಾಗುವೆ, ನಿನ್ನ ಕಣ್ಣೀರ ಒರೆಸುವೆ, ಬಾಳಿನ ದಾರಿಯಲಿ
+            ಜೊತೆಗಿದ್ದು, ನಿನ್ನ ಪ್ರೀತಿಯಲಿ ಬದುಕುವೆ. None... ನನ್ನ ಪ್ರೀತಿಯ None...
+            ನೀನೇ ನನ್ನ ಹೃದಯದ ರಾಗವೇ, ನನ್ನ ಬದುಕಿನ ಕೊನೆಯ ಕ್ಷಣದವರೆಗೂ, ನಿನ್ನ ಪ್ರೀತಿಯೇ
+            ನನ್ನ ಉಸಿರಾಗಿರಲಿ.
+          </div>
+
+          ನನ್ನ ಕನಸಿಗೆ ಬಣ್ಣ ನೀನೇ, ನನ್ನ ಕವಿತೆಗೆ ಪದವೂ ನೀನೇ, ಜಗವೆಲ್ಲ ನನ್ನ ವಿರುದ್ಧ
+          ನಿಂತರೂ, ನಿನ್ನ ಕೈ ಬಿಡದ ಪ್ರೀತಿ ನಾನೇ. ನಿನ್ನ ಕಣ್ಣಲ್ಲಿ ವಯಸ್ಸು ಕರಗಲಿ, ನಮ್ಮ
+          ಪ್ರೀತಿಯ ಕಥೆ ಮುಂದುವರಿಯಲಿ, ಕಾಲವೆಲ್ಲ ನಮ್ಮನ್ನ ಪರೀಕ್ಷಿಸಿದರೂ, ನಿನ್ನ ಮೇಲಿನ
+          ಪ್ರೀತಿ ಬದಲಾಗದಿರಲಿ.
+
+          <div class="chorus">
+            None... ಓ ನನ್ನ None... ನನ್ನ ಹೃದಯದ ಅರಮನೆಯ ರಾಣಿಯೇ, ಥಾರುಣನ ಈ ಪುಟ್ಟ
+            ಜಗದೊಳಗೆ, ಎಂದೆಂದಿಗೂ ನೀನೇ ಮಹಾರಾಣಿಯೇ. ನೀನೇ ಮೊದಲ ಪ್ರೀತಿ, ನೀನೇ ಕೊನೆಯ ಆಸೆ,
+            ನೀನೇ ನನ್ನ ಮನದ ಮಧುರ ಉಸಿರೇ, ಈ ಹಾಡು ಮುಗಿದರೂ ಪ್ರೀತಿ ಮುಗಿಯದು, ನನ್ನ ಹೃದಯ
+            ನಿನ್ನ ಹೆಸರ ಮರೆಯದು. ❤️
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>A Message From Me To You ❤️</h2>
+
+        <p class="english">
+          My dearest None, If I could turn my feelings into music, this is what
+          I would sing to you. You are not just someone I love. You are the
+          person who makes ordinary moments feel extraordinary. I wish I could
+          hold your hand while this song plays and tell you every word while
+          looking into your eyes. I cannot promise that every day will be
+          perfect, but I hope to keep giving you reasons to smile, feel
+          appreciated, and know how deeply you matter to me. Every lyric is a
+          little reminder that somewhere, Tharun is thinking of you and smiling
+          because you are in his life. This song is my little gift to you. Keep
+          it, replay it, and whenever you miss me, let it remind you of us. All
+          my love, always,
+
+          <strong>Yours, Tharun 💗</strong>
+        </p>
+
+        <button onclick="reveal()">Open One Last Secret 💌</button>
+
+        <p id="secret" class="english hidden">
+          None, if I had to choose all over again, in every story and every
+          lifetime, I would still hope to find you. ❤️ You are my favourite
+          thought, my sweetest feeling, and the girl for whom this song exists.
+          I love you, None. — Tharun 💋
+        </p>
+      </section>
+
+      <footer>
+        Made with love by Tharun.<br />
+        A song written for one special girl: None. ❤️
+      </footer>
+    </main>
+
+    <!-- Song file: keep music.mp3 in the same folder as this HTML file -->
+    <audio id="song" src="Music.mp3" preload="auto" loop></audio>
+
+    <script>
+      const song = document.getElementById("song");
+
+      async function startMusic() {
+        try {
+          await song.play();
+
+          document.getElementById("status").textContent =
+            "Playing our song for None... ❤️";
+        } catch (e) {
+          document.getElementById("status").textContent =
+            "Couldn't play the song. Make sure music.mp3 is in the same folder, then tap Play again.";
+        }
+      }
+
+      function stopMusic() {
+        song.pause();
+
+        document.getElementById("status").textContent =
+          "Music paused. Your song will be waiting here. 💗";
+      }
+
+      function reveal() {
+        const secret = document.getElementById("secret");
+        secret.classList.remove("hidden");
+        secret.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    </script>
+  </body>
 </html>
-
