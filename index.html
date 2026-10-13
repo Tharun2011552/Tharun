@@ -1,304 +1,469 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#2b123b" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#3b102d">
 
-  <title>For None ❤️ — From Unknown</title>
+<title>Our Love Story ❤️</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Georgia, "Times New Roman", serif;
-      color: #fff0f7;
-      text-align: center;
-      background:
-        radial-gradient(ellipse at top, #77305f, transparent 65%),
-        linear-gradient(160deg, #160e28, #42173f, #1b102d);
-    }
+body {
+  font-family: Georgia, serif;
+  background: linear-gradient(160deg, #170c20, #501633, #220c2d);
+  color: #fff0f5;
+  text-align: center;
+  overflow-x: hidden;
+}
 
-    main {
-      max-width: 520px;
-      margin: auto;
-      padding: 25px 17px 45px;
-    }
+section {
+  padding: 65px 20px;
+}
 
-    .eyebrow {
-      font: 11px Arial, sans-serif;
-      letter-spacing: 4px;
-      color: #f8bcd9;
-    }
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 35%, #a52b6380, transparent 55%),
+    linear-gradient(160deg, #170c20, #501633, #220c2d);
+}
 
-    h1 {
-      color: #ffd4e8;
-      font-size: clamp(32px, 8vw, 45px);
-      line-height: 1.2;
-      margin: 18px 0 12px;
-    }
+.tag {
+  font: 11px Arial, sans-serif;
+  letter-spacing: 5px;
+  color: #ffb7d4;
+  margin-bottom: 25px;
+}
 
-    h2 {
-      color: #ffd0e7;
-      font-size: 24px;
-    }
+h1 {
+  font-size: clamp(40px, 10vw, 65px);
+  color: #ffd4e5;
+  text-shadow: 0 0 25px #ff76b5;
+  line-height: 1.2;
+}
 
-    p {
-      line-height: 1.8;
-    }
+.hero p {
+  max-width: 450px;
+  margin: 20px auto;
+  line-height: 1.9;
+  color: #f8d9e7;
+}
 
-    .cover {
-      padding: 28px 8px;
-    }
+.heart {
+  font-size: 85px;
+  margin: 20px;
+  animation: pulse 1.4s infinite;
+  filter: drop-shadow(0 0 20px #ff5b9b);
+}
 
-    .album {
-      width: 215px;
-      height: 215px;
-      max-width: 65vw;
-      max-height: 65vw;
-      margin: 30px auto;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      border: 2px solid #ffd4e8;
-      background: radial-gradient(
-        circle,
-        #ffc7e4 0%,
-        #d765a8 32%,
-        #783168 65%,
-        #291333 72%
-      );
-      box-shadow:
-        0 0 35px #fa7bbd66,
-        0 0 90px #d75baf33;
-    }
+.btn {
+  display: inline-block;
+  padding: 14px 25px;
+  margin: 9px 5px;
+  border: 1px solid #ffe0ec;
+  border-radius: 40px;
+  background: linear-gradient(135deg, #ffdae9, #f58bb9);
+  color: #48142f;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: .3s;
+}
 
-    .album span {
-      font-size: 76px;
-      animation: heartbeat 1.5s infinite;
-    }
+.btn:active {
+  transform: scale(.95);
+}
 
-    .subtitle {
-      color: #f2d4e8;
-      font: 15px/1.9 Arial, sans-serif;
-    }
+.card {
+  max-width: 560px;
+  margin: 20px auto;
+  padding: 30px 22px;
+  background: #ffffff0c;
+  border: 1px solid #ffc8df35;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px #00000030;
+}
 
-    .card {
-      background: #ffffff0d;
-      border: 1px solid #ffffff26;
-      border-radius: 24px;
-      padding: 24px 17px;
-      margin: 20px 0;
-      box-shadow: 0 12px 35px #10081755;
-    }
+h2 {
+  color: #ffbad5;
+  font-size: 27px;
+  margin-bottom: 20px;
+}
 
-    button {
-      border: 1px solid #ffe2f0;
-      border-radius: 30px;
-      padding: 14px 21px;
-      margin: 7px 4px;
-      color: #40152f;
-      background: linear-gradient(135deg, #ffe0ef, #f3a5cf);
-      font: bold 14px Arial, sans-serif;
-      cursor: pointer;
-    }
+.card p {
+  font: 15px/2 Arial, sans-serif;
+  color: #f9dce8;
+}
 
-    button:active {
-      transform: scale(0.97);
-    }
+.divider {
+  color: #ffb8d5;
+  font-size: 25px;
+  margin: 20px;
+}
 
-    .lyrics {
-      color: #fff1f8;
-      font-family: "Noto Sans Kannada", "Tunga", Arial, sans-serif;
-      font-size: 17px;
-      line-height: 2.25;
-      white-space: pre-line;
-    }
+.promise {
+  margin: 18px 0;
+  padding: 15px;
+  background: #ffbad50c;
+  border-radius: 15px;
+  line-height: 1.8;
+}
 
-    .chorus {
-      color: #ffc5e1;
-      font-weight: bold;
-    }
+.counter {
+  font-size: 25px;
+  color: #ffd1e4;
+  margin: 20px 0;
+  line-height: 1.8;
+}
 
-    .english {
-      font: 15px/1.9 Arial, sans-serif;
-      color: #f6dceb;
-    }
+.counter span {
+  color: #ff94c1;
+  font-weight: bold;
+}
 
-    .hidden {
-      display: none;
-    }
+#letter {
+  display: none;
+  text-align: left;
+  padding: 24px;
+  margin-top: 20px;
+  background: #fff0f514;
+  border-radius: 18px;
+  line-height: 2;
+  color: #ffe1ed;
+  animation: appear .8s ease;
+}
 
-    #status {
-      font: 12px/1.7 Arial, sans-serif;
-      color: #ffc6e2;
-    }
+#answer {
+  min-height: 35px;
+  color: #ffc3dd;
+  margin-top: 20px;
+  font: bold 18px Arial, sans-serif;
+}
 
-    footer {
-      font: 12px/2 Arial, sans-serif;
-      color: #dcb9d4;
-      margin-top: 30px;
-    }
+footer {
+  padding: 35px 15px;
+  color: #d9aec5;
+  font: 12px/2 Arial, sans-serif;
+}
 
-    @keyframes heartbeat {
-      0%, 100% {
-        transform: scale(1);
-      }
+.floating-heart {
+  position: fixed;
+  bottom: -40px;
+  z-index: 5;
+  pointer-events: none;
+  animation: floatUp linear forwards;
+}
 
-      50% {
-        transform: scale(1.12);
-      }
-    }
-  </style>
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: .9;
+  }
+  to {
+    transform: translateY(-115vh) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
 </head>
 
 <body>
-  <main>
-    <section class="cover">
-      <div class="eyebrow">A LOVE SONG FROM MY HEART</div>
 
-      <div class="album">
-        <span>❤️</span>
-      </div>
+<section class="hero">
+  <div class="tag">A STORY WRITTEN BY TWO HEARTS</div>
 
-      <h1>For My None</h1>
+  <div class="heart">❤️</div>
 
-      <p class="subtitle">
-        A little piece of my heart,<br />
-        turned into a song just for you.
-      </p>
+  <h1>Our Love Story</h1>
 
-      <p class="english">
-        Written with all my love,<br />
-        <strong>Unknown ❤️</strong>
-      </p>
+  <p>
+    In a world full of people,<br>
+    some hearts find a reason to beat differently.<br>
+    This little world is dedicated to you, None. 💗
+  </p>
 
-      <button onclick="startMusic()">▶ Play Our Song</button>
-      <button onclick="stopMusic()">Ⅱ Pause Music</button>
+  <button class="btn" onclick="goToStory()">
+    Discover Our Story ✨
+  </button>
 
-      <p id="status">
-        Put on your headphones and listen with your heart. 🎧
-      </p>
-    </section>
+  <div style="margin-top:35px;color:#ffc6df">
+    Forever begins with a feeling. ♡
+  </div>
+</section>
 
-    <section class="card">
-      <h2>Our Little Love Song 💌</h2>
+<section id="story">
+  <div class="card">
+    <h2>How Special You Are 🌹</h2>
 
-      <p class="english">
-        None, these words are for you.<br />
-        Imagine me singing every line to you.
-      </p>
+    <p>
+      Dear None,<br><br>
+      You are the kind of person who makes an ordinary day feel magical.
+      Your smile can brighten a quiet moment, and the thought of you can
+      make a difficult day feel a little easier.<br><br>
 
-      <div class="lyrics">
-ನಿನ್ನ ಕಣ್ಣಲಿ ನನ್ನ ಕನಸಿದೆ, ನಿನ್ನ ನಗುವಲಿ ನನ್ನ ಸ್ವರ್ಗವಿದೆ, ನಿನ್ನ ಹೆಸರನು
-ತುಟಿಯಲಿ ಇಟ್ಟು, ಪ್ರತಿ ಉಸಿರಲಿ ನಿನ್ನ ಪ್ರೀತಿಯಿದೆ. ಚಂದಿರನ ಕೇಳಿದೆ ನಿನ್ನ
-ರೂಪವ, ನಕ್ಷತ್ರ ಕೇಳಿದೆ ನಿನ್ನ ಹೊಳಪವ, ನಿನ್ನ ಮುಂದೆ ಅವೆಲ್ಲ ಸೋತು ಹೋದವು, ನಿನ್ನ
-ಕಣ್ಣಲ್ಲೇ ನನ್ನ ಲೋಕ ಕಂಡವು.
+      If love were a language, my heart would speak your name in every
+      sentence. If love were a journey, you would be the destination
+      I would always choose.
+    </p>
 
-        <div class="chorus">
-None... ನನ್ನ ಪ್ರೀತಿಯ None... ನೀನೇ ನನ್ನ ಹೃದಯದ ರಾಗವೇ, Unknownನ ಪ್ರತಿ
-ಉಸಿರಿನೊಳಗೆ, ನೀನೇ ಪ್ರೀತಿಯ ಮಧುರ ಭಾವವೇ. None... ನನ್ನ ಜೀವದ None... ನೀನೇ
-ನನ್ನ ಕನಸಿನ ಚಂದಿರವೇ, ನೂರು ಜನ್ಮಗಳು ಸಿಕ್ಕರೂ ನನಗೆ, ಪ್ರತಿ ಜನ್ಮದಲ್ಲೂ ನೀನೇ
-ಬೇಕೆ.
-        </div>
+    <div class="divider">♡ ∞ ♡</div>
 
-ನಿನ್ನ ಕೈಯಲ್ಲಿ ನನ್ನ ಕೈಯಿಟ್ಟು, ಜಗವ ಮರೆತು ನಡೆಯಬೇಕು, ನಿನ್ನ ಹೆಗಲ ಮೇಲೆ
-ತಲೆಯನಿಟ್ಟು, ಮೌನದಲ್ಲೂ ಪ್ರೀತಿಸಬೇಕು. ಮಳೆಯ ಹನಿಯಲಿ ನಿನ್ನ ನೆನಪಿದೆ, ತಂಗಾಳಿಯಲಿ
-ನಿನ್ನ ಉಸಿರಿದೆ, ನೀ ದೂರವಿದ್ದರೂ ನನ್ನ ಮನದಲಿ, ನಿನ್ನದೇ ಹೆಜ್ಜೆಯ ಸದ್ದಿದೆ.
+    <div class="promise">
+      🌷 I promise to respect your feelings.
+    </div>
 
-        <div class="chorus">
-ನಿನ್ನ ನಗುವಿಗೆ ಬೆಳಕಾಗುವೆ, ನಿನ್ನ ಕಣ್ಣೀರ ಒರೆಸುವೆ, ಬಾಳಿನ ದಾರಿಯಲಿ
-ಜೊತೆಗಿದ್ದು, ನಿನ್ನ ಪ್ರೀತಿಯಲಿ ಬದುಕುವೆ. None... ನನ್ನ ಪ್ರೀತಿಯ None...
-ನೀನೇ ನನ್ನ ಹೃದಯದ ರಾಗವೇ, ನನ್ನ ಬದುಕಿನ ಕೊನೆಯ ಕ್ಷಣದವರೆಗೂ, ನಿನ್ನ ಪ್ರೀತಿಯೇ
-ನನ್ನ ಉಸಿರಾಗಿರಲಿ.
-        </div>
+    <div class="promise">
+      💌 I promise to appreciate the little things about you.
+    </div>
 
-ನನ್ನ ಕನಸಿಗೆ ಬಣ್ಣ ನೀನೇ, ನನ್ನ ಕವಿತೆಗೆ ಪದವೂ ನೀನೇ, ಜಗವೆಲ್ಲ ನನ್ನ ವಿರುದ್ಧ
-ನಿಂತರೂ, ನಿನ್ನ ಕೈ ಬಿಡದ ಪ್ರೀತಿ ನಾನೇ. ನಿನ್ನ ಕಣ್ಣಲ್ಲಿ ವಯಸ್ಸು ಕರಗಲಿ, ನಮ್ಮ
-ಪ್ರೀತಿಯ ಕಥೆ ಮುಂದುವರಿಯಲಿ, ಕಾಲವೆಲ್ಲ ನಮ್ಮನ್ನ ಪರೀಕ್ಷಿಸಿದರೂ, ನಿನ್ನ ಮೇಲಿನ
-ಪ್ರೀತಿ ಬದಲಾಗದಿರಲಿ.
+    <div class="promise">
+      🌙 I hope to make beautiful memories with you.
+    </div>
 
-        <div class="chorus">
-None... ಓ ನನ್ನ None... ನನ್ನ ಹೃದಯದ ಅರಮನೆಯ ರಾಣಿಯೇ, Unknownನ ಈ ಪುಟ್ಟ
-ಜಗದೊಳಗೆ, ಎಂದೆಂದಿಗೂ ನೀನೇ ಮಹಾರಾಣಿಯೇ. ನೀನೇ ಮೊದಲ ಪ್ರೀತಿ, ನೀನೇ ಕೊನೆಯ ಆಸೆ,
-ನೀನೇ ನನ್ನ ಮನದ ಮಧುರ ಉಸಿರೇ, ಈ ಹಾಡು ಮುಗಿದರೂ ಪ್ರೀತಿ ಮುಗಿಯದು, ನನ್ನ ಹೃದಯ
-ನಿನ್ನ ಹೆಸರ ಮರೆಯದು. ❤️
-        </div>
-      </div>
-    </section>
+    <div class="promise">
+      ❤️ And I hope we always remember why this love began.
+    </div>
+  </div>
+</section>
 
-    <section class="card">
-      <h2>A Message From Me To You ❤️</h2>
+<section>
+  <div class="card">
+    <h2>Our Little Love Clock ⏳</h2>
 
-      <p class="english">
-        My dearest None, if I could turn my feelings into music, this is what
-        I would sing to you. You are not just someone I love. You are the
-        person who makes ordinary moments feel extraordinary. I wish I could
-        hold your hand while this song plays and tell you every word while
-        looking into your eyes. I cannot promise that every day will be
-        perfect, but I hope to keep giving you reasons to smile, feel
-        appreciated, and know how deeply you matter to me. Every lyric is a
-        little reminder that somewhere, Unknown is thinking of you and smiling
-        because you are in their life. This song is my little gift to you.
-        Keep it, replay it, and whenever you miss me, let it remind you of us.
-        All my love, always,
+    <p>
+      Every beautiful story has a beginning.<br>
+      Choose a special date to see how much time has passed.
+    </p>
 
-        <strong>Yours, Unknown 💗</strong>
-      </p>
+    <div style="margin:25px 0">
+      <input
+        type="date"
+        id="loveDate"
+        aria-label="Choose your special date"
+        style="
+          padding:13px;
+          border-radius:12px;
+          border:1px solid #ffc3dc;
+          background:#fff0f5;
+          color:#45132e;
+          max-width:100%;
+        "
+      >
+    </div>
 
-      <button onclick="reveal()">Open One Last Secret 💌</button>
+    <button class="btn" onclick="calculateLove()">
+      Calculate Our Time 💞
+    </button>
 
-      <p id="secret" class="english hidden">
-        None, if I had to choose all over again, in every story and every
-        lifetime, I would still hope to find you. ❤️ You are my favourite
-        thought, my sweetest feeling, and the girl for whom this song exists.
-        I love you, None. — Unknown 💋
-      </p>
-    </section>
+    <div class="counter" id="counter">
+      Your special memories start here. ❤️
+    </div>
+  </div>
+</section>
 
-    <footer>
-      Made with love by Unknown.<br />
-      A song written for one special girl: None. ❤️
-    </footer>
-  </main>
+<section>
+  <div class="card">
+    <h2>A Letter From The Heart 💌</h2>
 
-  <!-- Keep Music.mp3 in the same folder as this HTML file -->
-  <audio id="song" src="Music.mp3" preload="auto" loop></audio>
+    <p>
+      There are feelings that are difficult to explain in words.
+      Sometimes a simple smile says more than a thousand sentences.
+      Sometimes one person becomes a beautiful part of your thoughts
+      without even trying.
+      <br><br>
+      This little letter is a reminder that you deserve kindness,
+      happiness, respect, and a love that makes you feel valued.
+    </p>
 
-  <script>
-    const song = document.getElementById("song");
+    <button class="btn" onclick="openLetter()">
+      Open Your Secret Letter 💗
+    </button>
 
-    async function startMusic() {
-      try {
-        await song.play();
+    <div id="letter">
+      <h2 style="text-align:center">To My Dearest None ❤️</h2>
 
-        document.getElementById("status").textContent =
-          "Playing our song for None... ❤️";
-      } catch (e) {
-        document.getElementById("status").textContent =
-          "Couldn't play the song. Make sure Music.mp3 is in the same folder, then tap Play again.";
-      }
-    }
+      If I could give you one thing in this world, I would give you the
+      ability to see yourself through my eyes. Then you would understand
+      how special you are.
 
-    function stopMusic() {
-      song.pause();
+      <br><br>
 
-      document.getElementById("status").textContent =
-        "Music paused. Your song will be waiting here. 💗";
-    }
+      I may not have the perfect words for every feeling, but this
+      little website carries one simple message: you matter, your smile
+      matters, and the memories we create can be precious.
 
-    function reveal() {
-      const secret = document.getElementById("secret");
-      secret.classList.remove("hidden");
-      secret.scrollIntoView({
+      <br><br>
+
+      May your days be filled with reasons to smile, your dreams find
+      their wings, and your heart always feel appreciated.
+
+      <br><br>
+
+      With love and warm wishes,<br>
+      <strong>Yours, Unknown 💖</strong>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>One Little Question 💕</h2>
+
+    <p>
+      If you could keep one beautiful thing forever,<br>
+      what would you choose?
+    </p>
+
+    <button class="btn" onclick="chooseAnswer('A smile 😊')">
+      A Smile 😊
+    </button>
+
+    <button class="btn" onclick="chooseAnswer('A beautiful memory 🌹')">
+      A Memory 🌹
+    </button>
+
+    <button class="btn" onclick="chooseAnswer('A loving heart ❤️')">
+      A Loving Heart ❤️
+    </button>
+
+    <div id="answer"></div>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h2>Until The Stars Fade 🌙</h2>
+
+    <p>
+      The moon may change its shape,<br>
+      the seasons may come and go,<br>
+      but beautiful memories can stay in our hearts<br>
+      long after a moment has passed.
+      <br><br>
+      None, may life give you endless reasons to smile.<br>
+      You deserve all the beautiful things this world can offer. ❤️
+    </p>
+
+    <div class="heart">💖</div>
+
+    <p>Made with love, just for you.</p>
+    <p><strong>— Unknown 💌</strong></p>
+  </div>
+</section>
+
+<footer>
+  A little corner of the internet,<br>
+  made to celebrate love, memories, and happiness. ❤️
+</footer>
+
+<script>
+function goToStory() {
+  document.getElementById("story").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function openLetter() {
+  const letter = document.getElementById("letter");
+
+  if (letter.style.display === "block") {
+    letter.style.display = "none";
+  } else {
+    letter.style.display = "block";
+
+    setTimeout(() => {
+      letter.scrollIntoView({
         behavior: "smooth",
         block: "center"
       });
-    }
-  </script>
+    }, 100);
+  }
+}
+
+function calculateLove() {
+  const input = document.getElementById("loveDate").value;
+  const output = document.getElementById("counter");
+
+  if (!input) {
+    output.textContent = "Please choose your special date first. 💗";
+    return;
+  }
+
+  const start = new Date(input + "T00:00:00");
+  const now = new Date();
+
+  if (Number.isNaN(start.getTime()) || start > now) {
+    output.textContent = "Please choose a valid date that is not in the future. ❤️";
+    return;
+  }
+
+  const difference = now.getTime() - start.getTime();
+  const days = Math.floor(difference / 86400000);
+  const years = Math.floor(days / 365.2425);
+  const months = Math.floor(days / 30.436875);
+
+  output.innerHTML =
+    "Since your special day 💞<br>" +
+    "<span>" + days + "</span> days of memories<br>" +
+    "<span>" + months + "</span> months in total<br>" +
+    "<span>" + years + "</span> years together ❤️";
+}
+
+function chooseAnswer(answer) {
+  document.getElementById("answer").textContent =
+    "Beautiful choice: " + answer + " You deserve happiness! ❤️";
+}
+
+// Floating hearts
+const heartSymbols = ["❤️", "💗", "💕", "💖", "💘"];
+
+function createHeart() {
+  const heart = document.createElement("div");
+
+  heart.className = "floating-heart";
+  heart.textContent =
+    heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (14 + Math.random() * 20) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 10000);
+}
+
+setInterval(createHeart, 700);
+</script>
+
 </body>
 </html>
