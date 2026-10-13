@@ -1,469 +1,469 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#3b102d">
 
-<title>Our Love Story ❤️</title>
+<title>ಶ್ರಾವ್ಯ ❤️ ಥರುಣ್ | ನಮ್ಮ ಪ್ರೇಮಕಥೆ</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap');
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: Georgia, serif;
-  background: linear-gradient(160deg, #170c20, #501633, #220c2d);
-  color: #fff0f5;
-  text-align: center;
-  overflow-x: hidden;
+    font-family: 'Noto Sans Kannada', sans-serif;
+    background: linear-gradient(135deg, #210b2c, #5c164e, #a83279);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+    text-align: center;
 }
 
-section {
-  padding: 65px 20px;
+.container {
+    width: 92%;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 30px 0 50px;
+    position: relative;
+    z-index: 2;
 }
 
 .hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 35%, #a52b6380, transparent 55%),
-    linear-gradient(160deg, #170c20, #501633, #220c2d);
-}
-
-.tag {
-  font: 11px Arial, sans-serif;
-  letter-spacing: 5px;
-  color: #ffb7d4;
-  margin-bottom: 25px;
-}
-
-h1 {
-  font-size: clamp(40px, 10vw, 65px);
-  color: #ffd4e5;
-  text-shadow: 0 0 25px #ff76b5;
-  line-height: 1.2;
-}
-
-.hero p {
-  max-width: 450px;
-  margin: 20px auto;
-  line-height: 1.9;
-  color: #f8d9e7;
+    padding: 35px 15px;
 }
 
 .heart {
-  font-size: 85px;
-  margin: 20px;
-  animation: pulse 1.4s infinite;
-  filter: drop-shadow(0 0 20px #ff5b9b);
+    font-size: 65px;
+    animation: heartbeat 1.2s infinite;
+    display: inline-block;
 }
 
-.btn {
-  display: inline-block;
-  padding: 14px 25px;
-  margin: 9px 5px;
-  border: 1px solid #ffe0ec;
-  border-radius: 40px;
-  background: linear-gradient(135deg, #ffdae9, #f58bb9);
-  color: #48142f;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  transition: .3s;
+h1 {
+    font-size: clamp(27px, 7vw, 42px);
+    margin: 15px 0;
+    color: #ffd4eb;
+    text-shadow: 0 0 18px #ff4fa3;
 }
 
-.btn:active {
-  transform: scale(.95);
+.subtitle {
+    font-size: 17px;
+    line-height: 1.9;
+    color: #ffe7f3;
 }
 
 .card {
-  max-width: 560px;
-  margin: 20px auto;
-  padding: 30px 22px;
-  background: #ffffff0c;
-  border: 1px solid #ffc8df35;
-  border-radius: 25px;
-  box-shadow: 0 10px 35px #00000030;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 22px;
+    padding: 24px 18px;
+    margin: 22px 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(8px);
 }
 
 h2 {
-  color: #ffbad5;
-  font-size: 27px;
-  margin-bottom: 20px;
+    color: #ffc5e2;
+    font-size: 23px;
+    margin-bottom: 15px;
 }
 
-.card p {
-  font: 15px/2 Arial, sans-serif;
-  color: #f9dce8;
+p {
+    line-height: 1.9;
+    font-size: 16px;
 }
 
-.divider {
-  color: #ffb8d5;
-  font-size: 25px;
-  margin: 20px;
+button {
+    font-family: inherit;
+    background: linear-gradient(135deg, #ff4f9a, #ff78bd);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 20px;
+    margin: 8px 5px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 79, 154, 0.25);
+    transition: transform 0.2s;
 }
 
-.promise {
-  margin: 18px 0;
-  padding: 15px;
-  background: #ffbad50c;
-  border-radius: 15px;
-  line-height: 1.8;
+button:active {
+    transform: scale(0.95);
+}
+
+input[type="date"] {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #5c164e;
+    background: #fff0f7;
 }
 
 .counter {
-  font-size: 25px;
-  color: #ffd1e4;
-  margin: 20px 0;
-  line-height: 1.8;
+    font-size: 31px;
+    font-weight: bold;
+    color: #ffd1e8;
+    margin: 15px 0;
 }
 
-.counter span {
-  color: #ff94c1;
-  font-weight: bold;
+.small {
+    font-size: 13px;
+    color: #f9d6e9;
+    margin-top: 10px;
 }
 
-#letter {
-  display: none;
-  text-align: left;
-  padding: 24px;
-  margin-top: 20px;
-  background: #fff0f514;
-  border-radius: 18px;
-  line-height: 2;
-  color: #ffe1ed;
-  animation: appear .8s ease;
+.hidden {
+    display: none;
 }
 
-#answer {
-  min-height: 35px;
-  color: #ffc3dd;
-  margin-top: 20px;
-  font: bold 18px Arial, sans-serif;
+.letter {
+    background: rgba(255, 220, 238, 0.12);
+    padding: 18px;
+    border-radius: 15px;
+    margin-top: 18px;
+    text-align: left;
+    line-height: 2;
+    white-space: pre-line;
+    border-left: 3px solid #ff8bc5;
+}
+
+.answer {
+    color: #ffe0f0;
+    font-size: 17px;
+    margin-top: 15px;
+    min-height: 35px;
+    line-height: 1.9;
 }
 
 footer {
-  padding: 35px 15px;
-  color: #d9aec5;
-  font: 12px/2 Arial, sans-serif;
+    padding: 25px 10px;
+    color: #ffd1e8;
+    font-size: 14px;
+    line-height: 2;
 }
+
+/* ತೇಲುವ ಹೃದಯಗಳು */
 
 .floating-heart {
-  position: fixed;
-  bottom: -40px;
-  z-index: 5;
-  pointer-events: none;
-  animation: floatUp linear forwards;
+    position: fixed;
+    bottom: -40px;
+    color: rgba(255, 190, 225, 0.7);
+    pointer-events: none;
+    animation: floatUp linear forwards;
+    z-index: 1;
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(0) rotate(0deg);
-    opacity: .9;
-  }
-  to {
-    transform: translateY(-115vh) rotate(35deg);
-    opacity: 0;
-  }
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<section class="hero">
-  <div class="tag">A STORY WRITTEN BY TWO HEARTS</div>
+<div class="container">
 
-  <div class="heart">❤️</div>
+    <!-- ಆರಂಭದ ಭಾಗ -->
 
-  <h1>Our Love Story</h1>
+    <section class="hero">
+        <div class="heart">❤️</div>
 
-  <p>
-    In a world full of people,<br>
-    some hearts find a reason to beat differently.<br>
-    This little world is dedicated to you, None. 💗
-  </p>
+        <h1>ಶ್ರಾವ್ಯ ❤️ ಥರುಣ್</h1>
 
-  <button class="btn" onclick="goToStory()">
-    Discover Our Story ✨
-  </button>
+        <p class="subtitle">
+            ನನ್ನ ಪ್ರೀತಿಯ ಶ್ರಾವ್ಯಗೆ... 💖<br>
+            ಈ ಪುಟ್ಟ ವೆಬ್‌ಸೈಟ್ ನಿನಗಾಗಿ ಮಾತ್ರ!<br>
+            ನನ್ನ ಮನಸ್ಸಿನಲ್ಲಿರುವ ಪ್ರೀತಿಯನ್ನು ನಿನಗೆ ಹೇಳಲು...
+        </p>
+    </section>
 
-  <div style="margin-top:35px;color:#ffc6df">
-    Forever begins with a feeling. ♡
-  </div>
-</section>
 
-<section id="story">
-  <div class="card">
-    <h2>How Special You Are 🌹</h2>
+    <!-- ಪ್ರೀತಿಯ ಸಂದೇಶ -->
 
-    <p>
-      Dear None,<br><br>
-      You are the kind of person who makes an ordinary day feel magical.
-      Your smile can brighten a quiet moment, and the thought of you can
-      make a difficult day feel a little easier.<br><br>
+    <section class="card">
+        <h2>💗 ನನ್ನ ಹೃದಯದ ಮಾತು</h2>
 
-      If love were a language, my heart would speak your name in every
-      sentence. If love were a journey, you would be the destination
-      I would always choose.
-    </p>
+        <p>
+            ಶ್ರಾವ್ಯ, ನೀನು ನನ್ನ ಜೀವನದಲ್ಲಿ ಬಂದ ಮೇಲೆ
+            ಎಲ್ಲವೂ ಇನ್ನಷ್ಟು ಸುಂದರವಾಗಿದೆ. 🥰<br><br>
 
-    <div class="divider">♡ ∞ ♡</div>
+            ನಿನ್ನ ನಗು ನನ್ನ ಸಂತೋಷ,
+            ನಿನ್ನ ಮಾತು ನನ್ನ ನೆಮ್ಮದಿ,
+            ನಿನ್ನ ನೆನಪು ನನ್ನ ದಿನದ ಸಿಹಿಯಾದ ಕ್ಷಣ. 💕<br><br>
 
-    <div class="promise">
-      🌷 I promise to respect your feelings.
-    </div>
+            ಪ್ರತಿದಿನವೂ ನಿನ್ನನ್ನು ಇನ್ನಷ್ಟು ಪ್ರೀತಿಸಬೇಕು,
+            ನಿನ್ನ ಮುಖದಲ್ಲಿ ನಗು ಮೂಡಿಸಬೇಕು,
+            ನಿನ್ನ ಜೊತೆ ಸುಂದರವಾದ ನೆನಪುಗಳನ್ನು
+            ಸೃಷ್ಟಿಸಬೇಕು ಅನ್ನೋದೇ ನನ್ನ ಆಸೆ. 🌹<br><br>
 
-    <div class="promise">
-      💌 I promise to appreciate the little things about you.
-    </div>
+            <strong>ನೀನು ನನಗೆ ತುಂಬಾ ವಿಶೇಷ, ಶ್ರಾವ್ಯ! ❤️</strong>
+        </p>
+    </section>
 
-    <div class="promise">
-      🌙 I hope to make beautiful memories with you.
-    </div>
 
-    <div class="promise">
-      ❤️ And I hope we always remember why this love began.
-    </div>
-  </div>
-</section>
+    <!-- ಪ್ರೀತಿಯ ದಿನಗಳ ಕೌಂಟರ್ -->
 
-<section>
-  <div class="card">
-    <h2>Our Little Love Clock ⏳</h2>
+    <section class="card">
+        <h2>📅 ನಮ್ಮ ನೆನಪುಗಳ ದಿನಗಳು</h2>
 
-    <p>
-      Every beautiful story has a beginning.<br>
-      Choose a special date to see how much time has passed.
-    </p>
+        <p>
+            ನಮ್ಮ ವಿಶೇಷ ದಿನವನ್ನು ಆಯ್ಕೆ ಮಾಡು.
+            ಅಂದಿನಿಂದ ಇಂದಿನವರೆಗೆ ಎಷ್ಟು ದಿನಗಳಾಗಿವೆ ಎಂದು ನೋಡೋಣ. 💞
+        </p>
 
-    <div style="margin:25px 0">
-      <input
-        type="date"
-        id="loveDate"
-        aria-label="Choose your special date"
-        style="
-          padding:13px;
-          border-radius:12px;
-          border:1px solid #ffc3dc;
-          background:#fff0f5;
-          color:#45132e;
-          max-width:100%;
-        "
-      >
-    </div>
+        <input type="date" id="specialDate">
 
-    <button class="btn" onclick="calculateLove()">
-      Calculate Our Time 💞
-    </button>
+        <br>
 
-    <div class="counter" id="counter">
-      Your special memories start here. ❤️
-    </div>
-  </div>
-</section>
+        <button onclick="calculateDays()">
+            ದಿನಗಳನ್ನು ನೋಡೋಣ ❤️
+        </button>
 
-<section>
-  <div class="card">
-    <h2>A Letter From The Heart 💌</h2>
+        <div class="counter" id="dayCount">💖</div>
 
-    <p>
-      There are feelings that are difficult to explain in words.
-      Sometimes a simple smile says more than a thousand sentences.
-      Sometimes one person becomes a beautiful part of your thoughts
-      without even trying.
-      <br><br>
-      This little letter is a reminder that you deserve kindness,
-      happiness, respect, and a love that makes you feel valued.
-    </p>
+        <p id="dayMessage">
+            ನಮ್ಮ ವಿಶೇಷ ದಿನ ಇಲ್ಲಿಂದ ಆರಂಭವಾಗಲಿ...
+        </p>
 
-    <button class="btn" onclick="openLetter()">
-      Open Your Secret Letter 💗
-    </button>
+        <p class="small">
+            ನಿಜವಾದ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡಿದರೆ ಲೆಕ್ಕ ಸರಿಯಾಗಿ ಬರುತ್ತದೆ.
+        </p>
+    </section>
 
-    <div id="letter">
-      <h2 style="text-align:center">To My Dearest None ❤️</h2>
 
-      If I could give you one thing in this world, I would give you the
-      ability to see yourself through my eyes. Then you would understand
-      how special you are.
+    <!-- ರಹಸ್ಯ ಪ್ರೇಮಪತ್ರ -->
 
-      <br><br>
+    <section class="card">
+        <h2>💌 ಶ್ರಾವ್ಯಗಾಗಿ ಒಂದು ರಹಸ್ಯ ಪತ್ರ</h2>
 
-      I may not have the perfect words for every feeling, but this
-      little website carries one simple message: you matter, your smile
-      matters, and the memories we create can be precious.
+        <p>
+            ಈ ಪತ್ರದಲ್ಲಿ ನಿನಗಾಗಿ ಒಂದು ಪುಟ್ಟ ಪ್ರೀತಿಯ ಸಂದೇಶವಿದೆ. 🥹
+        </p>
 
-      <br><br>
+        <button onclick="openLetter()">
+            ನನ್ನ ಪತ್ರವನ್ನು ತೆರೆ 💌
+        </button>
 
-      May your days be filled with reasons to smile, your dreams find
-      their wings, and your heart always feel appreciated.
+        <div id="loveLetter" class="letter hidden">
+ನನ್ನ ಪ್ರೀತಿಯ ಶ್ರಾವ್ಯ ❤️,
 
-      <br><br>
+ಕೆಲವು ಭಾವನೆಗಳನ್ನು ಪದಗಳಲ್ಲಿ ಹೇಳುವುದು ಕಷ್ಟ.
+ನಿನ್ನ ಬಗ್ಗೆ ನನಗಿರುವ ಪ್ರೀತಿಯೂ ಹಾಗೆಯೇ.
 
-      With love and warm wishes,<br>
-      <strong>Yours, Unknown 💖</strong>
-    </div>
-  </div>
-</section>
+ನಿನ್ನ ನಗು ನನ್ನ ದಿನವನ್ನು ಸುಂದರವಾಗಿಸುತ್ತದೆ.
+ನಿನ್ನ ಮಾತು ನನ್ನ ಮನಸ್ಸಿಗೆ ಸಂತೋಷ ಕೊಡುತ್ತದೆ.
+ನಿನ್ನ ನೆನಪು ಬಂದಾಗ ನನ್ನ ಮುಖದಲ್ಲಿ
+ತಿಳಿಯದೆಯೇ ಒಂದು ನಗು ಮೂಡುತ್ತದೆ. 🥰
 
-<section>
-  <div class="card">
-    <h2>One Little Question 💕</h2>
+ನಮ್ಮ ನಡುವೆ ಯಾವ ಪರಿಸ್ಥಿತಿ ಬಂದರೂ,
+ನಿನ್ನನ್ನು ಗೌರವಿಸಿ, ಅರ್ಥಮಾಡಿಕೊಂಡು,
+ನಿನ್ನ ಸಂತೋಷಕ್ಕೆ ಬೆಲೆ ಕೊಡುವ ವ್ಯಕ್ತಿಯಾಗಿರಬೇಕು
+ಎಂಬುದು ನನ್ನ ಆಸೆ.
 
-    <p>
-      If you could keep one beautiful thing forever,<br>
-      what would you choose?
-    </p>
+ನನ್ನ ಜೀವನದ ಸುಂದರವಾದ ನೆನಪುಗಳಲ್ಲಿ
+ನೀನು ಯಾವಾಗಲೂ ವಿಶೇಷವಾಗಿರುತ್ತೀಯ.
 
-    <button class="btn" onclick="chooseAnswer('A smile 😊')">
-      A Smile 😊
-    </button>
+ಪ್ರೀತಿಯಿಂದ,
+ನಿನ್ನ ಥರುಣ್ ❤️
+        </div>
+    </section>
 
-    <button class="btn" onclick="chooseAnswer('A beautiful memory 🌹')">
-      A Memory 🌹
-    </button>
 
-    <button class="btn" onclick="chooseAnswer('A loving heart ❤️')">
-      A Loving Heart ❤️
-    </button>
+    <!-- ಪ್ರೀತಿಯ ಪ್ರಶ್ನೆಗಳು -->
 
-    <div id="answer"></div>
-  </div>
-</section>
+    <section class="card">
+        <h2>🥰 ಶ್ರಾವ್ಯ, ನಿನಗಾಗಿ ಕೆಲವು ಪ್ರಶ್ನೆಗಳು</h2>
 
-<section>
-  <div class="card">
-    <h2>Until The Stars Fade 🌙</h2>
+        <p>
+            ಈ ವೆಬ್‌ಸೈಟ್ ನಿನಗೆ ಇಷ್ಟವಾಯಿತಾ? 💖
+        </p>
 
-    <p>
-      The moon may change its shape,<br>
-      the seasons may come and go,<br>
-      but beautiful memories can stay in our hearts<br>
-      long after a moment has passed.
-      <br><br>
-      None, may life give you endless reasons to smile.<br>
-      You deserve all the beautiful things this world can offer. ❤️
-    </p>
+        <button onclick="chooseAnswer('ತುಂಬಾ ಇಷ್ಟವಾಯಿತು ❤️')">
+            ತುಂಬಾ ಇಷ್ಟವಾಯಿತು ❤️
+        </button>
 
-    <div class="heart">💖</div>
+        <button onclick="chooseAnswer('ನಿನ್ನ ಪ್ರಯತ್ನ ನನಗೆ ಸಂತೋಷ ಕೊಟ್ಟಿತು 🥹')">
+            ತುಂಬಾ ಮುದ್ದಾಗಿದೆ 🥹
+        </button>
 
-    <p>Made with love, just for you.</p>
-    <p><strong>— Unknown 💌</strong></p>
-  </div>
-</section>
+        <button onclick="chooseAnswer('ನಿನ್ನ ನಗು ಯಾವಾಗಲೂ ಹೀಗೆಯೇ ಇರಲಿ 💕')">
+            ಮತ್ತೆ ಮಾಡು 💕
+        </button>
 
-<footer>
-  A little corner of the internet,<br>
-  made to celebrate love, memories, and happiness. ❤️
-</footer>
+        <div class="answer" id="answer"></div>
+
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 25px 0;">
+
+        <p>
+            ಥರುಣ್ ನಿನ್ನನ್ನು ಎಷ್ಟು ಪ್ರೀತಿಸುತ್ತಾನೆ ಗೊತ್ತಾ? 😘
+        </p>
+
+        <button onclick="showLove()">
+            ಹೇಳು ನೋಡೋಣ ❤️
+        </button>
+
+        <div class="answer" id="loveAnswer"></div>
+    </section>
+
+
+    <!-- ಕೊನೆಯ ಸಂದೇಶ -->
+
+    <section class="card">
+        <div style="font-size: 45px;">💖🌹💖</div>
+
+        <h2>ನಿನಗಾಗಿ ಸದಾ ಪ್ರೀತಿ</h2>
+
+        <p>
+            ಶ್ರಾವ್ಯ, ನಿನ್ನ ಮುಖದ ನಗು ಎಂದಿಗೂ ಮಾಸದಿರಲಿ.
+            ನಿನ್ನ ಕನಸುಗಳು ನನಸಾಗಲಿ.
+            ನಿನ್ನ ಜೀವನ ಸಂತೋಷದಿಂದ ತುಂಬಿರಲಿ. 💗<br><br>
+
+            <strong>
+                ಇಂತಿ ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುವ<br>
+                ಥರುಣ್ ❤️
+            </strong>
+        </p>
+    </section>
+
+
+    <footer>
+        ❤️ ಶ್ರಾವ್ಯ ಮತ್ತು ಥರುಣ್ ❤️<br>
+        ಪ್ರೀತಿಯಿಂದ ನಿರ್ಮಿಸಿದ ಒಂದು ಪುಟ್ಟ ಜಗತ್ತು 💕
+    </footer>
+
+</div>
+
 
 <script>
-function goToStory() {
-  document.getElementById("story").scrollIntoView({
-    behavior: "smooth"
-  });
+
+// ಆಯ್ದ ದಿನಾಂಕದಿಂದ ದಿನಗಳನ್ನು ಲೆಕ್ಕ ಹಾಕುವುದು
+
+function calculateDays() {
+    const dateInput = document.getElementById("specialDate");
+    const dayCount = document.getElementById("dayCount");
+    const dayMessage = document.getElementById("dayMessage");
+
+    if (!dateInput.value) {
+        dayCount.textContent = "❤️";
+        dayMessage.textContent = "ಮೊದಲು ಒಂದು ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡು! 💕";
+        return;
+    }
+
+    const selectedDate = new Date(dateInput.value + "T00:00:00");
+    const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate > today) {
+        dayCount.textContent = "💗";
+        dayMessage.textContent =
+            "இந்த தேதி ಇನ್ನೂ ಬಂದಿಲ್ಲ! ಹಿಂದಿನ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡು. ❤️";
+        return;
+    }
+
+    const difference = today.getTime() - selectedDate.getTime();
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+    dayCount.textContent = days + " ದಿನಗಳು ❤️";
+
+    if (days === 0) {
+        dayMessage.textContent =
+            "ಇಂದೇ ನಮ್ಮ ವಿಶೇಷ ದಿನವಾಗಿರಲಿ! 💖";
+    } else {
+        dayMessage.textContent =
+            "ಈ ದಿನಗಳಿಂದ ಎಷ್ಟೇ ಸಮಯ ಕಳೆದರೂ, ಪ್ರತಿಯೊಂದು ನೆನಪೂ ವಿಶೇಷ! 🥰";
+    }
 }
+
+
+// ರಹಸ್ಯ ಪತ್ರ ತೆಗೆಯುವುದು
 
 function openLetter() {
-  const letter = document.getElementById("letter");
+    const letter = document.getElementById("loveLetter");
 
-  if (letter.style.display === "block") {
-    letter.style.display = "none";
-  } else {
-    letter.style.display = "block";
+    letter.classList.toggle("hidden");
 
-    setTimeout(() => {
-      letter.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    }, 100);
-  }
+    if (!letter.classList.contains("hidden")) {
+        letter.scrollIntoView({
+            behavior: "smooth",
+            block: "nearest"
+        });
+    }
 }
 
-function calculateLove() {
-  const input = document.getElementById("loveDate").value;
-  const output = document.getElementById("counter");
 
-  if (!input) {
-    output.textContent = "Please choose your special date first. 💗";
-    return;
-  }
-
-  const start = new Date(input + "T00:00:00");
-  const now = new Date();
-
-  if (Number.isNaN(start.getTime()) || start > now) {
-    output.textContent = "Please choose a valid date that is not in the future. ❤️";
-    return;
-  }
-
-  const difference = now.getTime() - start.getTime();
-  const days = Math.floor(difference / 86400000);
-  const years = Math.floor(days / 365.2425);
-  const months = Math.floor(days / 30.436875);
-
-  output.innerHTML =
-    "Since your special day 💞<br>" +
-    "<span>" + days + "</span> days of memories<br>" +
-    "<span>" + months + "</span> months in total<br>" +
-    "<span>" + years + "</span> years together ❤️";
-}
+// ಪ್ರಶ್ನೆಗೆ ಉತ್ತರ
 
 function chooseAnswer(answer) {
-  document.getElementById("answer").textContent =
-    "Beautiful choice: " + answer + " You deserve happiness! ❤️";
+    document.getElementById("answer").textContent =
+        answer + " 😊❤️";
 }
 
-// Floating hearts
-const heartSymbols = ["❤️", "💗", "💕", "💖", "💘"];
+
+// ಪ್ರೀತಿಯ ಸಂದೇಶ
+
+function showLove() {
+    document.getElementById("loveAnswer").textContent =
+        "ಅದನ್ನು ಅಳೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ ಶ್ರಾವ್ಯ! ❤️ " +
+        "ನಿನ್ನ ನಗು ಮತ್ತು ಸಂತೋಷ ನನಗೆ ತುಂಬಾ ಮುಖ್ಯ. " +
+        "ನೀನು ಯಾವಾಗಲೂ ಸಂತೋಷವಾಗಿರಲಿ! 💖";
+}
+
+
+// ತೇಲುವ ಹೃದಯಗಳ ಅನಿಮೇಷನ್
 
 function createHeart() {
-  const heart = document.createElement("div");
+    const heart = document.createElement("div");
 
-  heart.className = "floating-heart";
-  heart.textContent =
-    heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+    heart.className = "floating-heart";
+    heart.textContent = ["❤️", "💕", "💗", "💖", "💘"][
+        Math.floor(Math.random() * 5)
+    ];
 
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (14 + Math.random() * 20) + "px";
-  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 22) + "px";
 
-  document.body.appendChild(heart);
+    const duration = 5 + Math.random() * 5;
 
-  setTimeout(() => {
-    heart.remove();
-  }, 10000);
+    heart.style.animationDuration = duration + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(function() {
+        heart.remove();
+    }, duration * 1000);
 }
 
-setInterval(createHeart, 700);
+setInterval(createHeart, 600);
+
 </script>
 
 </body>
 </html>
+
