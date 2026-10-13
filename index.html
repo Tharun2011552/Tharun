@@ -1,15 +1,13 @@
-
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101426">
 
-<title>ಶ್ರಾವ್ಯ ❤️ ಥರುಣ್ | ನಮ್ಮ ಪ್ರೇಮಕಥೆ</title>
+<title>Web Calculator</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
@@ -17,453 +15,250 @@
 }
 
 body {
-    font-family: 'Noto Sans Kannada', sans-serif;
-    background: linear-gradient(135deg, #210b2c, #5c164e, #a83279);
-    color: white;
     min-height: 100vh;
-    overflow-x: hidden;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #101426, #252c50);
+    font-family: Arial, sans-serif;
+    padding: 20px;
 }
 
-.container {
-    width: 92%;
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 30px 0 50px;
-    position: relative;
-    z-index: 2;
-}
-
-.hero {
-    padding: 35px 15px;
-}
-
-.heart {
-    font-size: 65px;
-    animation: heartbeat 1.2s infinite;
-    display: inline-block;
-}
-
-h1 {
-    font-size: clamp(27px, 7vw, 42px);
-    margin: 15px 0;
-    color: #ffd4eb;
-    text-shadow: 0 0 18px #ff4fa3;
-}
-
-.subtitle {
-    font-size: 17px;
-    line-height: 1.9;
-    color: #ffe7f3;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.10);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 22px;
-    padding: 24px 18px;
-    margin: 22px 0;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-    backdrop-filter: blur(8px);
+.calculator {
+    width: 100%;
+    max-width: 360px;
+    padding: 25px;
+    border-radius: 25px;
+    background: #171c32;
+    box-shadow: 0 15px 40px #0008;
 }
 
 h2 {
-    color: #ffc5e2;
-    font-size: 23px;
-    margin-bottom: 15px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
 }
 
-p {
-    line-height: 1.9;
-    font-size: 16px;
+.display {
+    width: 100%;
+    min-height: 95px;
+    background: #0d1121;
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    text-align: right;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#history {
+    color: #8992b7;
+    font-size: 15px;
+    min-height: 20px;
+}
+
+#result {
+    font-size: 34px;
+    margin-top: 8px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
 button {
-    font-family: inherit;
-    background: linear-gradient(135deg, #ff4f9a, #ff78bd);
-    color: white;
+    height: 60px;
     border: none;
-    border-radius: 30px;
-    padding: 12px 20px;
-    margin: 8px 5px;
-    font-size: 15px;
-    font-weight: 600;
+    border-radius: 15px;
+    background: #272e4a;
+    color: white;
+    font-size: 21px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(255, 79, 154, 0.25);
-    transition: transform 0.2s;
+    transition: 0.15s;
+    touch-action: manipulation;
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: scale(0.94);
+    filter: brightness(1.3);
 }
 
-input[type="date"] {
-    width: 100%;
-    max-width: 280px;
-    padding: 12px;
-    margin: 15px 0;
-    border: none;
-    border-radius: 12px;
-    font-family: inherit;
-    font-size: 15px;
-    color: #5c164e;
-    background: #fff0f7;
+.operator {
+    background: #39456d;
+    color: #9db5ff;
 }
 
-.counter {
-    font-size: 31px;
-    font-weight: bold;
-    color: #ffd1e8;
-    margin: 15px 0;
+.clear {
+    background: #ff526b;
+    color: white;
 }
 
-.small {
-    font-size: 13px;
-    color: #f9d6e9;
-    margin-top: 10px;
+.equal {
+    background: #637bff;
+    color: white;
+    grid-row: span 2;
+    height: auto;
 }
 
-.hidden {
-    display: none;
-}
-
-.letter {
-    background: rgba(255, 220, 238, 0.12);
-    padding: 18px;
-    border-radius: 15px;
-    margin-top: 18px;
-    text-align: left;
-    line-height: 2;
-    white-space: pre-line;
-    border-left: 3px solid #ff8bc5;
-}
-
-.answer {
-    color: #ffe0f0;
-    font-size: 17px;
-    margin-top: 15px;
-    min-height: 35px;
-    line-height: 1.9;
+.zero {
+    grid-column: span 2;
 }
 
 footer {
-    padding: 25px 10px;
-    color: #ffd1e8;
-    font-size: 14px;
-    line-height: 2;
-}
-
-/* ತೇಲುವ ಹೃದಯಗಳು */
-
-.floating-heart {
-    position: fixed;
-    bottom: -40px;
-    color: rgba(255, 190, 225, 0.7);
-    pointer-events: none;
-    animation: floatUp linear forwards;
-    z-index: 1;
-}
-
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.18); }
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-    15% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-    }
+    color: #8992b7;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="calculator">
 
-    <!-- ಆರಂಭದ ಭಾಗ -->
+    <h2>CALCULATOR</h2>
 
-    <section class="hero">
-        <div class="heart">❤️</div>
+    <div class="display">
+        <div id="history"></div>
+        <div id="result">0</div>
+    </div>
 
-        <h1>ಶ್ರಾವ್ಯ ❤️ ಥರುಣ್</h1>
+    <div class="buttons">
+        <button class="clear" onclick="clearAll()">AC</button>
+        <button class="operator" onclick="deleteLast()">DEL</button>
+        <button class="operator" onclick="add('%')">%</button>
+        <button class="operator" onclick="add('/')">÷</button>
 
-        <p class="subtitle">
-            ನನ್ನ ಪ್ರೀತಿಯ ಶ್ರಾವ್ಯಗೆ... 💖<br>
-            ಈ ಪುಟ್ಟ ವೆಬ್‌ಸೈಟ್ ನಿನಗಾಗಿ ಮಾತ್ರ!<br>
-            ನನ್ನ ಮನಸ್ಸಿನಲ್ಲಿರುವ ಪ್ರೀತಿಯನ್ನು ನಿನಗೆ ಹೇಳಲು...
-        </p>
-    </section>
+        <button onclick="add('7')">7</button>
+        <button onclick="add('8')">8</button>
+        <button onclick="add('9')">9</button>
+        <button class="operator" onclick="add('*')">×</button>
 
+        <button onclick="add('4')">4</button>
+        <button onclick="add('5')">5</button>
+        <button onclick="add('6')">6</button>
+        <button class="operator" onclick="add('-')">−</button>
 
-    <!-- ಪ್ರೀತಿಯ ಸಂದೇಶ -->
+        <button onclick="add('1')">1</button>
+        <button onclick="add('2')">2</button>
+        <button onclick="add('3')">3</button>
+        <button class="operator" onclick="add('+')">+</button>
 
-    <section class="card">
-        <h2>💗 ನನ್ನ ಹೃದಯದ ಮಾತು</h2>
+        <button class="zero" onclick="add('0')">0</button>
+        <button onclick="add('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+    </div>
 
-        <p>
-            ಶ್ರಾವ್ಯ, ನೀನು ನನ್ನ ಜೀವನದಲ್ಲಿ ಬಂದ ಮೇಲೆ
-            ಎಲ್ಲವೂ ಇನ್ನಷ್ಟು ಸುಂದರವಾಗಿದೆ. 🥰<br><br>
-
-            ನಿನ್ನ ನಗು ನನ್ನ ಸಂತೋಷ,
-            ನಿನ್ನ ಮಾತು ನನ್ನ ನೆಮ್ಮದಿ,
-            ನಿನ್ನ ನೆನಪು ನನ್ನ ದಿನದ ಸಿಹಿಯಾದ ಕ್ಷಣ. 💕<br><br>
-
-            ಪ್ರತಿದಿನವೂ ನಿನ್ನನ್ನು ಇನ್ನಷ್ಟು ಪ್ರೀತಿಸಬೇಕು,
-            ನಿನ್ನ ಮುಖದಲ್ಲಿ ನಗು ಮೂಡಿಸಬೇಕು,
-            ನಿನ್ನ ಜೊತೆ ಸುಂದರವಾದ ನೆನಪುಗಳನ್ನು
-            ಸೃಷ್ಟಿಸಬೇಕು ಅನ್ನೋದೇ ನನ್ನ ಆಸೆ. 🌹<br><br>
-
-            <strong>ನೀನು ನನಗೆ ತುಂಬಾ ವಿಶೇಷ, ಶ್ರಾವ್ಯ! ❤️</strong>
-        </p>
-    </section>
-
-
-    <!-- ಪ್ರೀತಿಯ ದಿನಗಳ ಕೌಂಟರ್ -->
-
-    <section class="card">
-        <h2>📅 ನಮ್ಮ ನೆನಪುಗಳ ದಿನಗಳು</h2>
-
-        <p>
-            ನಮ್ಮ ವಿಶೇಷ ದಿನವನ್ನು ಆಯ್ಕೆ ಮಾಡು.
-            ಅಂದಿನಿಂದ ಇಂದಿನವರೆಗೆ ಎಷ್ಟು ದಿನಗಳಾಗಿವೆ ಎಂದು ನೋಡೋಣ. 💞
-        </p>
-
-        <input type="date" id="specialDate">
-
-        <br>
-
-        <button onclick="calculateDays()">
-            ದಿನಗಳನ್ನು ನೋಡೋಣ ❤️
-        </button>
-
-        <div class="counter" id="dayCount">💖</div>
-
-        <p id="dayMessage">
-            ನಮ್ಮ ವಿಶೇಷ ದಿನ ಇಲ್ಲಿಂದ ಆರಂಭವಾಗಲಿ...
-        </p>
-
-        <p class="small">
-            ನಿಜವಾದ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡಿದರೆ ಲೆಕ್ಕ ಸರಿಯಾಗಿ ಬರುತ್ತದೆ.
-        </p>
-    </section>
-
-
-    <!-- ರಹಸ್ಯ ಪ್ರೇಮಪತ್ರ -->
-
-    <section class="card">
-        <h2>💌 ಶ್ರಾವ್ಯಗಾಗಿ ಒಂದು ರಹಸ್ಯ ಪತ್ರ</h2>
-
-        <p>
-            ಈ ಪತ್ರದಲ್ಲಿ ನಿನಗಾಗಿ ಒಂದು ಪುಟ್ಟ ಪ್ರೀತಿಯ ಸಂದೇಶವಿದೆ. 🥹
-        </p>
-
-        <button onclick="openLetter()">
-            ನನ್ನ ಪತ್ರವನ್ನು ತೆರೆ 💌
-        </button>
-
-        <div id="loveLetter" class="letter hidden">
-ನನ್ನ ಪ್ರೀತಿಯ ಶ್ರಾವ್ಯ ❤️,
-
-ಕೆಲವು ಭಾವನೆಗಳನ್ನು ಪದಗಳಲ್ಲಿ ಹೇಳುವುದು ಕಷ್ಟ.
-ನಿನ್ನ ಬಗ್ಗೆ ನನಗಿರುವ ಪ್ರೀತಿಯೂ ಹಾಗೆಯೇ.
-
-ನಿನ್ನ ನಗು ನನ್ನ ದಿನವನ್ನು ಸುಂದರವಾಗಿಸುತ್ತದೆ.
-ನಿನ್ನ ಮಾತು ನನ್ನ ಮನಸ್ಸಿಗೆ ಸಂತೋಷ ಕೊಡುತ್ತದೆ.
-ನಿನ್ನ ನೆನಪು ಬಂದಾಗ ನನ್ನ ಮುಖದಲ್ಲಿ
-ತಿಳಿಯದೆಯೇ ಒಂದು ನಗು ಮೂಡುತ್ತದೆ. 🥰
-
-ನಮ್ಮ ನಡುವೆ ಯಾವ ಪರಿಸ್ಥಿತಿ ಬಂದರೂ,
-ನಿನ್ನನ್ನು ಗೌರವಿಸಿ, ಅರ್ಥಮಾಡಿಕೊಂಡು,
-ನಿನ್ನ ಸಂತೋಷಕ್ಕೆ ಬೆಲೆ ಕೊಡುವ ವ್ಯಕ್ತಿಯಾಗಿರಬೇಕು
-ಎಂಬುದು ನನ್ನ ಆಸೆ.
-
-ನನ್ನ ಜೀವನದ ಸುಂದರವಾದ ನೆನಪುಗಳಲ್ಲಿ
-ನೀನು ಯಾವಾಗಲೂ ವಿಶೇಷವಾಗಿರುತ್ತೀಯ.
-
-ಪ್ರೀತಿಯಿಂದ,
-ನಿನ್ನ ಥರುಣ್ ❤️
-        </div>
-    </section>
-
-
-    <!-- ಪ್ರೀತಿಯ ಪ್ರಶ್ನೆಗಳು -->
-
-    <section class="card">
-        <h2>🥰 ಶ್ರಾವ್ಯ, ನಿನಗಾಗಿ ಕೆಲವು ಪ್ರಶ್ನೆಗಳು</h2>
-
-        <p>
-            ಈ ವೆಬ್‌ಸೈಟ್ ನಿನಗೆ ಇಷ್ಟವಾಯಿತಾ? 💖
-        </p>
-
-        <button onclick="chooseAnswer('ತುಂಬಾ ಇಷ್ಟವಾಯಿತು ❤️')">
-            ತುಂಬಾ ಇಷ್ಟವಾಯಿತು ❤️
-        </button>
-
-        <button onclick="chooseAnswer('ನಿನ್ನ ಪ್ರಯತ್ನ ನನಗೆ ಸಂತೋಷ ಕೊಟ್ಟಿತು 🥹')">
-            ತುಂಬಾ ಮುದ್ದಾಗಿದೆ 🥹
-        </button>
-
-        <button onclick="chooseAnswer('ನಿನ್ನ ನಗು ಯಾವಾಗಲೂ ಹೀಗೆಯೇ ಇರಲಿ 💕')">
-            ಮತ್ತೆ ಮಾಡು 💕
-        </button>
-
-        <div class="answer" id="answer"></div>
-
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 25px 0;">
-
-        <p>
-            ಥರುಣ್ ನಿನ್ನನ್ನು ಎಷ್ಟು ಪ್ರೀತಿಸುತ್ತಾನೆ ಗೊತ್ತಾ? 😘
-        </p>
-
-        <button onclick="showLove()">
-            ಹೇಳು ನೋಡೋಣ ❤️
-        </button>
-
-        <div class="answer" id="loveAnswer"></div>
-    </section>
-
-
-    <!-- ಕೊನೆಯ ಸಂದೇಶ -->
-
-    <section class="card">
-        <div style="font-size: 45px;">💖🌹💖</div>
-
-        <h2>ನಿನಗಾಗಿ ಸದಾ ಪ್ರೀತಿ</h2>
-
-        <p>
-            ಶ್ರಾವ್ಯ, ನಿನ್ನ ಮುಖದ ನಗು ಎಂದಿಗೂ ಮಾಸದಿರಲಿ.
-            ನಿನ್ನ ಕನಸುಗಳು ನನಸಾಗಲಿ.
-            ನಿನ್ನ ಜೀವನ ಸಂತೋಷದಿಂದ ತುಂಬಿರಲಿ. 💗<br><br>
-
-            <strong>
-                ಇಂತಿ ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುವ<br>
-                ಥರುಣ್ ❤️
-            </strong>
-        </p>
-    </section>
-
-
-    <footer>
-        ❤️ ಶ್ರಾವ್ಯ ಮತ್ತು ಥರುಣ್ ❤️<br>
-        ಪ್ರೀತಿಯಿಂದ ನಿರ್ಮಿಸಿದ ಒಂದು ಪುಟ್ಟ ಜಗತ್ತು 💕
-    </footer>
+    <footer>Simple • Fast • Easy to Use</footer>
 
 </div>
 
-
 <script>
+let expression = "";
+let justCalculated = false;
 
-// ಆಯ್ದ ದಿನಾಂಕದಿಂದ ದಿನಗಳನ್ನು ಲೆಕ್ಕ ಹಾಕುವುದು
+const result = document.getElementById("result");
+const history = document.getElementById("history");
 
-function calculateDays() {
-    const dateInput = document.getElementById("specialDate");
-    const dayCount = document.getElementById("dayCount");
-    const dayMessage = document.getElementById("dayMessage");
+function add(value) {
+    const operators = ["+", "-", "*", "/", "%"];
 
-    if (!dateInput.value) {
-        dayCount.textContent = "❤️";
-        dayMessage.textContent = "ಮೊದಲು ಒಂದು ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡು! 💕";
-        return;
+    if (justCalculated) {
+        if (operators.includes(value)) {
+            // Continue calculating from the previous result.
+        } else {
+            expression = "";
+            history.textContent = "";
+        }
+        justCalculated = false;
     }
 
-    const selectedDate = new Date(dateInput.value + "T00:00:00");
-    const today = new Date();
+    if (expression.length >= 100) return;
 
-    today.setHours(0, 0, 0, 0);
+    expression += value;
+    result.textContent = expression
+        .replace(/\*/g, "×")
+        .replace(/\//g, "÷");
 
-    if (selectedDate > today) {
-        dayCount.textContent = "💗";
-        dayMessage.textContent =
-            "இந்த தேதி ಇನ್ನೂ ಬಂದಿಲ್ಲ! ಹಿಂದಿನ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡು. ❤️";
-        return;
-    }
-
-    const difference = today.getTime() - selectedDate.getTime();
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-
-    dayCount.textContent = days + " ದಿನಗಳು ❤️";
-
-    if (days === 0) {
-        dayMessage.textContent =
-            "ಇಂದೇ ನಮ್ಮ ವಿಶೇಷ ದಿನವಾಗಿರಲಿ! 💖";
-    } else {
-        dayMessage.textContent =
-            "ಈ ದಿನಗಳಿಂದ ಎಷ್ಟೇ ಸಮಯ ಕಳೆದರೂ, ಪ್ರತಿಯೊಂದು ನೆನಪೂ ವಿಶೇಷ! 🥰";
+    if (expression === "") {
+        result.textContent = "0";
     }
 }
 
+function clearAll() {
+    expression = "";
+    result.textContent = "0";
+    history.textContent = "";
+    justCalculated = false;
+}
 
-// ರಹಸ್ಯ ಪತ್ರ ತೆಗೆಯುವುದು
+function deleteLast() {
+    expression = expression.slice(0, -1);
+    result.textContent = expression
+        ? expression.replace(/\*/g, "×").replace(/\//g, "÷")
+        : "0";
+    justCalculated = false;
+}
 
-function openLetter() {
-    const letter = document.getElementById("loveLetter");
+function calculate() {
+    if (!expression) return;
 
-    letter.classList.toggle("hidden");
+    try {
+        // Accept only calculator characters.
+        if (!/^[0-9+\-*/%.()\s]+$/.test(expression)) {
+            throw new Error("Invalid expression");
+        }
 
-    if (!letter.classList.contains("hidden")) {
-        letter.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-        });
+        const original = expression;
+        const answer = Function(
+            '"use strict"; return (' + expression + ')'
+        )();
+
+        if (typeof answer !== "number" || !Number.isFinite(answer)) {
+            throw new Error("Invalid result");
+        }
+
+        history.textContent = original
+            .replace(/\*/g, "×")
+            .replace(/\//g, "÷") + " =";
+
+        expression = String(
+            Number(answer.toPrecision(12))
+        );
+
+        result.textContent = expression;
+        justCalculated = true;
+
+    } catch (error) {
+        result.textContent = "Error";
+        expression = "";
+        justCalculated = false;
     }
 }
 
+// Keyboard support for computers
+document.addEventListener("keydown", function(event) {
+    const key = event.key;
 
-// ಪ್ರಶ್ನೆಗೆ ಉತ್ತರ
-
-function chooseAnswer(answer) {
-    document.getElementById("answer").textContent =
-        answer + " 😊❤️";
-}
-
-
-// ಪ್ರೀತಿಯ ಸಂದೇಶ
-
-function showLove() {
-    document.getElementById("loveAnswer").textContent =
-        "ಅದನ್ನು ಅಳೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ ಶ್ರಾವ್ಯ! ❤️ " +
-        "ನಿನ್ನ ನಗು ಮತ್ತು ಸಂತೋಷ ನನಗೆ ತುಂಬಾ ಮುಖ್ಯ. " +
-        "ನೀನು ಯಾವಾಗಲೂ ಸಂತೋಷವಾಗಿರಲಿ! 💖";
-}
-
-
-// ತೇಲುವ ಹೃದಯಗಳ ಅನಿಮೇಷನ್
-
-function createHeart() {
-    const heart = document.createElement("div");
-
-    heart.className = "floating-heart";
-    heart.textContent = ["❤️", "💕", "💗", "💖", "💘"][
-        Math.floor(Math.random() * 5)
-    ];
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (15 + Math.random() * 22) + "px";
-
-    const duration = 5 + Math.random() * 5;
-
-    heart.style.animationDuration = duration + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(function() {
-        heart.remove();
-    }, duration * 1000);
-}
-
-setInterval(createHeart, 600);
-
+    if (/^[0-9.+\-*/%()]$/.test(key)) {
+        add(key);
+    } else if (key === "Enter" || key === "=") {
+        calculate();
+    } else if (key === "Backspace") {
+        deleteLast();
+    } else if (key === "Escape") {
+        clearAll();
+    }
+});
 </script>
 
 </body>
 </html>
-
