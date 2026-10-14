@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101426">
-<title>Scientific Calculator</title>
+<meta name="theme-color" content="#101522">
+<title>Nova AI - Your AI Assistant</title>
 
 <style>
 * {
@@ -13,591 +13,592 @@
     padding: 0;
 }
 
+:root {
+    --bg: #101522;
+    --panel: #171e2e;
+    --panel2: #202a3d;
+    --text: #f4f7ff;
+    --muted: #97a4bd;
+    --accent: #8175ff;
+    --border: #30394c;
+}
+
+body.light {
+    --bg: #f3f5fb;
+    --panel: #ffffff;
+    --panel2: #eef0fa;
+    --text: #20253a;
+    --muted: #707991;
+    --border: #dfe3ef;
+}
+
 body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0b1020, #202b50);
-    font-family: Arial, sans-serif;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
+    height: 100dvh;
+    min-height: 500px;
+    overflow: hidden;
+    font-family: system-ui, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
 }
 
-.calculator {
-    width: 100%;
-    max-width: 440px;
-    padding: 20px;
-    background: #151c30;
-    border: 1px solid #303b5d;
-    border-radius: 25px;
-    box-shadow: 0 20px 60px #0007;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
-}
-
-.header h2 {
-    font-size: 20px;
-    letter-spacing: 1px;
-}
-
-.mode {
-    border: none;
-    border-radius: 10px;
-    padding: 10px 14px;
-    background: #35446b;
-    color: #a9c0ff;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.display {
-    background: #090e1c;
-    border-radius: 17px;
-    padding: 18px 14px;
-    min-height: 115px;
-    margin-bottom: 15px;
+.app {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
+    max-width: 1000px;
+    margin: auto;
+    background: var(--bg);
 }
 
-#history {
-    color: #8794b9;
-    text-align: right;
-    font-size: 13px;
-    min-height: 20px;
-    overflow-wrap: anywhere;
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
 }
 
-#expression {
-    width: 100%;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #a8b8e8;
-    font-size: 19px;
-    text-align: right;
-    padding: 8px 0;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
 }
 
-#result {
-    text-align: right;
-    font-size: clamp(25px, 7vw, 35px);
-    font-weight: bold;
-    overflow-wrap: anywhere;
-    color: #ffffff;
-}
-
-.section-label {
-    font-size: 11px;
-    color: #8996b8;
-    letter-spacing: 2px;
-    margin: 17px 0 9px;
-}
-
-.buttons {
+.logo {
+    width: 43px;
+    height: 43px;
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    place-items: center;
+    border-radius: 14px;
+    font-size: 23px;
+    background: linear-gradient(135deg, #8175ff, #41c9e8);
+    color: white;
+}
+
+.brand h1 {
+    font-size: 19px;
+}
+
+.brand p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.header-actions {
+    display: flex;
     gap: 8px;
 }
 
-button.key {
-    border: none;
+.icon-btn {
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
     border-radius: 12px;
-    height: 49px;
-    background: #27314c;
-    color: white;
-    font-size: 16px;
     cursor: pointer;
-    transition: transform .1s, filter .1s;
-    touch-action: manipulation;
+    font-size: 18px;
 }
 
-button.key:active {
-    transform: scale(.94);
-    filter: brightness(1.3);
+main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 22px 15px;
+    scroll-behavior: smooth;
 }
 
-button.function {
-    background: #263b58;
-    color: #8fcaff;
+.welcome {
+    text-align: center;
+    margin: 45px auto 28px;
+    max-width: 500px;
+}
+
+.welcome-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.welcome h2 {
+    font-size: clamp(25px, 5vw, 34px);
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #a39aff, #48d2ed);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.welcome p {
+    color: var(--muted);
+    line-height: 1.7;
     font-size: 14px;
 }
 
-button.operator {
-    background: #39446b;
-    color: #b5c6ff;
-    font-size: 20px;
+.suggestions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    max-width: 600px;
+    margin: 25px auto;
 }
 
-button.danger {
-    background: #a83450;
+.suggestion {
+    padding: 15px 12px;
+    text-align: left;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--panel);
+    color: var(--text);
+    cursor: pointer;
+    line-height: 1.5;
+    font-size: 13px;
+}
+
+.suggestion:hover {
+    border-color: var(--accent);
+}
+
+.suggestion strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+#messages {
+    max-width: 760px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    animation: appear .2s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: var(--panel2);
+    font-size: 17px;
+}
+
+.message.user .avatar {
+    background: #5149a9;
     color: white;
 }
 
-button.equal {
-    background: linear-gradient(135deg, #597bff, #8058ed);
-    color: white;
-    font-size: 23px;
-    font-weight: bold;
+.content {
+    min-width: 0;
+    flex: 1;
 }
 
-button.constant {
-    color: #e0b5ff;
-    background: #3b2c55;
-}
-
-.footer {
-    color: #7d8aaa;
-    font-size: 11px;
-    text-align: center;
-    margin-top: 18px;
-}
-
-#message {
-    min-height: 16px;
-    color: #ff9eac;
+.name {
     font-size: 12px;
-    text-align: center;
+    color: var(--muted);
+    margin: 2px 0 7px;
+}
+
+.bubble {
+    line-height: 1.75;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.message.user .bubble {
+    background: var(--panel2);
+    padding: 11px 14px;
+    border-radius: 4px 15px 15px 15px;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.message-actions {
+    display: flex;
+    gap: 12px;
     margin-top: 8px;
 }
 
-@media (max-width: 360px) {
-    .calculator { padding: 13px; }
-    .buttons { gap: 6px; }
-    button.key { height: 44px; font-size: 14px; }
-    button.function { font-size: 12px; }
+.message-actions button {
+    color: var(--muted);
+    border: none;
+    background: transparent;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 3px;
+}
+
+.typing {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.typing span {
+    display: inline-block;
+    animation: blink 1s infinite;
+}
+
+.typing span:nth-child(2) { animation-delay: .2s; }
+.typing span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes blink {
+    0%, 60%, 100% { opacity: .25; }
+    30% { opacity: 1; }
+}
+
+footer {
+    padding: 12px 15px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.composer {
+    max-width: 760px;
+    margin: auto;
+    padding: 8px;
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px #00000010;
+}
+
+#prompt {
+    flex: 1;
+    min-width: 0;
+    max-height: 130px;
+    resize: none;
+    padding: 10px 8px;
+    background: transparent;
+    color: var(--text);
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#prompt::placeholder {
+    color: var(--muted);
+}
+
+.send {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #8175ff, #5e8cff);
+    color: white;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.send:disabled {
+    opacity: .5;
+}
+
+.disclaimer {
+    text-align: center;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 10px;
+}
+
+@media (max-width: 450px) {
+    header { padding: 12px; }
+    .brand h1 { font-size: 17px; }
+    .welcome { margin-top: 28px; }
+    main { padding: 15px 12px; }
+    .suggestion { padding: 12px 9px; }
 }
 </style>
 </head>
 
 <body>
 
-<main class="calculator">
+<div class="app">
 
-    <div class="header">
-        <h2>🔬 SCI CALCULATOR</h2>
-        <button class="mode" id="mode" onclick="toggleMode()">
-            DEG
-        </button>
+<header>
+    <div class="brand">
+        <div class="logo">✦</div>
+        <div>
+            <h1>Nova AI</h1>
+            <p>✦ Your intelligent assistant</p>
+        </div>
     </div>
 
-    <div class="display">
-        <div id="history">Scientific calculator</div>
-        <input id="expression"
-               type="text"
-               placeholder="Enter expression"
-               autocomplete="off"
-               spellcheck="false"
-               aria-label="Calculator expression">
-        <div id="result">0</div>
+    <div class="header-actions">
+        <button class="icon-btn" id="themeBtn"
+                title="Change theme" aria-label="Change theme">☀</button>
+        <button class="icon-btn" id="clearBtn"
+                title="New chat" aria-label="New chat">＋</button>
     </div>
+</header>
 
-    <div class="section-label">SCIENTIFIC FUNCTIONS</div>
+<main id="chat">
+    <section class="welcome" id="welcome">
+        <div class="welcome-icon">✦</div>
+        <h2>What can I help <span class="gradient">you with?</span></h2>
+        <p>
+            Ask questions, learn something new, brainstorm ideas,
+            or get help with your next project.
+        </p>
 
-    <div class="buttons">
-        <button class="key function" onclick="insert('sin(')">sin</button>
-        <button class="key function" onclick="insert('cos(')">cos</button>
-        <button class="key function" onclick="insert('tan(')">tan</button>
-        <button class="key function" onclick="insert('log(')">log</button>
-        <button class="key function" onclick="insert('ln(')">ln</button>
+        <div class="suggestions">
+            <button class="suggestion" data-prompt="Explain artificial intelligence in simple words">
+                <strong>🧠 Learn something</strong>
+                Explain a difficult topic
+            </button>
 
-        <button class="key function" onclick="insert('asin(')">sin⁻¹</button>
-        <button class="key function" onclick="insert('acos(')">cos⁻¹</button>
-        <button class="key function" onclick="insert('atan(')">tan⁻¹</button>
-        <button class="key function" onclick="insert('sqrt(')">√x</button>
-        <button class="key function" onclick="insert('cbrt(')">∛x</button>
+            <button class="suggestion" data-prompt="Give me a creative website project idea">
+                <strong>💡 Get ideas</strong>
+                Discover a new project
+            </button>
 
-        <button class="key function" onclick="insert('^2')">x²</button>
-        <button class="key function" onclick="insert('^3')">x³</button>
-        <button class="key function" onclick="insert('^')">xʸ</button>
-        <button class="key function" onclick="insert('!')">x!</button>
-        <button class="key function" onclick="insert('abs(')">|x|</button>
+            <button class="suggestion" data-prompt="Write a simple JavaScript program for beginners">
+                <strong>💻 Write code</strong>
+                Create a program
+            </button>
 
-        <button class="key constant" onclick="insert('pi')">π</button>
-        <button class="key constant" onclick="insert('e')">e</button>
-        <button class="key function" onclick="insert('(')">(</button>
-        <button class="key function" onclick="insert(')')">)</button>
-        <button class="key function" onclick="insert('/100')">÷100</button>
-    </div>
+            <button class="suggestion" data-prompt="Help me make a daily study timetable">
+                <strong>📚 Study smarter</strong>
+                Make a study timetable
+            </button>
+        </div>
+    </section>
 
-    <div class="section-label">BASIC OPERATIONS</div>
-
-    <div class="buttons">
-        <button class="key danger" onclick="clearAll()">AC</button>
-        <button class="key danger" onclick="backspace()">DEL</button>
-        <button class="key operator" onclick="insert('%')">%</button>
-        <button class="key operator" onclick="insert('/')">÷</button>
-        <button class="key operator" onclick="insert('*')">×</button>
-
-        <button class="key" onclick="insert('7')">7</button>
-        <button class="key" onclick="insert('8')">8</button>
-        <button class="key" onclick="insert('9')">9</button>
-        <button class="key operator" onclick="insert('-')">−</button>
-        <button class="key function" onclick="insert('^(-1)')">1/x</button>
-
-        <button class="key" onclick="insert('4')">4</button>
-        <button class="key" onclick="insert('5')">5</button>
-        <button class="key" onclick="insert('6')">6</button>
-        <button class="key operator" onclick="insert('+')">+</button>
-        <button class="key function" onclick="insert('10^(')">10ˣ</button>
-
-        <button class="key" onclick="insert('1')">1</button>
-        <button class="key" onclick="insert('2')">2</button>
-        <button class="key" onclick="insert('3')">3</button>
-        <button class="key" onclick="insert('0')">0</button>
-        <button class="key" onclick="insert('.')">.</button>
-
-        <button class="key constant" onclick="insert('Ans')">Ans</button>
-        <button class="key function" onclick="insert('exp(')">eˣ</button>
-        <button class="key function" onclick="insert('floor(')">floor</button>
-        <button class="key function" onclick="insert('ceil(')">ceil</button>
-        <button class="key equal" onclick="calculate()">=</button>
-    </div>
-
-    <div id="message"></div>
-
-    <div class="footer">
-        DEG/RAD • Scientific calculations • Keyboard support
-    </div>
-
+    <div id="messages"></div>
 </main>
 
+<footer>
+    <form class="composer" id="chatForm">
+        <textarea id="prompt" rows="1"
+            placeholder="Message Nova AI..."
+            aria-label="Message Nova AI"></textarea>
+        <button class="send" id="sendBtn" type="submit"
+            aria-label="Send message">↑</button>
+    </form>
+    <div class="disclaimer">
+        Demo mode: responses are generated locally, not by a real AI model.
+    </div>
+</footer>
+
+</div>
+
 <script>
-const input = document.getElementById("expression");
-const result = document.getElementById("result");
-const history = document.getElementById("history");
-const message = document.getElementById("message");
-const modeButton = document.getElementById("mode");
+const chat = document.getElementById("chat");
+const welcome = document.getElementById("welcome");
+const messages = document.getElementById("messages");
+const promptBox = document.getElementById("prompt");
+const chatForm = document.getElementById("chatForm");
+const sendBtn = document.getElementById("sendBtn");
 
-let angleMode = "DEG";
-let lastAnswer = 0;
+let previousAnswer = "";
+let busy = false;
 
-function toggleMode() {
-    angleMode = angleMode === "DEG" ? "RAD" : "DEG";
-    modeButton.textContent = angleMode;
-    message.textContent = "Angle mode: " + angleMode;
+function scrollDown() {
+    chat.scrollTop = chat.scrollHeight;
 }
 
-function insert(value) {
-    const start = input.selectionStart ?? input.value.length;
-    const end = input.selectionEnd ?? input.value.length;
+function addMessage(role, text, showCopy = false) {
+    welcome.style.display = "none";
 
-    input.value =
-        input.value.slice(0, start) +
-        value +
-        input.value.slice(end);
+    const wrapper = document.createElement("div");
+    wrapper.className = "message " + role;
 
-    input.focus();
+    const avatar = document.createElement("div");
+    avatar.className = "avatar";
+    avatar.textContent = role === "user" ? "👤" : "✦";
 
-    const cursor = start + value.length;
-    input.setSelectionRange(cursor, cursor);
+    const content = document.createElement("div");
+    content.className = "content";
 
-    message.textContent = "";
-}
+    const name = document.createElement("div");
+    name.className = "name";
+    name.textContent = role === "user" ? "You" : "Nova AI";
 
-function clearAll() {
-    input.value = "";
-    result.textContent = "0";
-    history.textContent = "Scientific calculator";
-    message.textContent = "";
-    input.focus();
-}
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = text;
 
-function backspace() {
-    const start = input.selectionStart ?? input.value.length;
-    const end = input.selectionEnd ?? input.value.length;
+    content.append(name, bubble);
 
-    if (start !== end) {
-        input.value =
-            input.value.slice(0, start) +
-            input.value.slice(end);
-        input.setSelectionRange(start, start);
-    } else if (start > 0) {
-        input.value =
-            input.value.slice(0, start - 1) +
-            input.value.slice(start);
-        input.setSelectionRange(start - 1, start - 1);
-    }
+    if (showCopy) {
+        const actions = document.createElement("div");
+        actions.className = "message-actions";
 
-    input.focus();
-}
+        const copyBtn = document.createElement("button");
+        copyBtn.textContent = "▢ Copy";
 
-function factorial(n) {
-    if (!Number.isInteger(n) || n < 0 || n > 170) {
-        throw new Error("Factorial needs an integer from 0 to 170");
-    }
-
-    let answer = 1;
-    for (let i = 2; i <= n; i++) {
-        answer *= i;
-    }
-    return answer;
-}
-
-// Safe expression parser: no eval() or Function().
-function evaluate(source) {
-    const tokens = [];
-    const pattern =
-        /\s*(?:(\d+(?:\.\d*)?|\.\d+)(?:[eE]([+-]?\d+))?|([A-Za-z]+)|(.))/gy;
-
-    let position = 0;
-
-    while (position < source.length) {
-        pattern.lastIndex = position;
-        const match = pattern.exec(source);
-
-        if (!match) {
-            if (/^\s*$/.test(source.slice(position))) break;
-            throw new Error("Invalid expression");
-        }
-
-        position = pattern.lastIndex;
-
-        if (match[1] !== undefined) {
-            tokens.push({
-                type: "number",
-                value: Number(match[1] +
-                    (match[2] !== undefined ? "e" + match[2] : ""))
-            });
-        } else if (match[3] !== undefined) {
-            tokens.push({
-                type: "name",
-                value: match[3].toLowerCase()
-            });
-        } else if ("+-*/^()%!,".includes(match[4])) {
-            tokens.push({
-                type: match[4],
-                value: match[4]
-            });
-        } else {
-            throw new Error("Invalid character: " + match[4]);
-        }
-    }
-
-    tokens.push({ type: "end", value: "" });
-
-    let index = 0;
-
-    function peek() {
-        return tokens[index];
-    }
-
-    function take(type) {
-        if (peek().type !== type) {
-            throw new Error("Expected " + type);
-        }
-        return tokens[index++];
-    }
-
-    function angleIn(x) {
-        return angleMode === "DEG" ? x * Math.PI / 180 : x;
-    }
-
-    function angleOut(x) {
-        return angleMode === "DEG" ? x * 180 / Math.PI : x;
-    }
-
-    const functions = {
-        sin: x => Math.sin(angleIn(x)),
-        cos: x => Math.cos(angleIn(x)),
-        tan: x => {
-            const a = angleIn(x);
-            if (Math.abs(Math.cos(a)) < 1e-14) {
-                throw new Error("Tangent is undefined here");
+        copyBtn.onclick = async () => {
+            try {
+                await navigator.clipboard.writeText(text);
+                copyBtn.textContent = "✓ Copied";
+            } catch {
+                const area = document.createElement("textarea");
+                area.value = text;
+                document.body.appendChild(area);
+                area.select();
+                document.execCommand("copy");
+                area.remove();
+                copyBtn.textContent = "✓ Copied";
             }
-            return Math.tan(a);
-        },
-        asin: x => {
-            if (x < -1 || x > 1) throw new Error("asin input must be -1 to 1");
-            return angleOut(Math.asin(x));
-        },
-        acos: x => {
-            if (x < -1 || x > 1) throw new Error("acos input must be -1 to 1");
-            return angleOut(Math.acos(x));
-        },
-        atan: x => angleOut(Math.atan(x)),
-        sqrt: x => {
-            if (x < 0) throw new Error("Square root of a negative number");
-            return Math.sqrt(x);
-        },
-        cbrt: x => Math.cbrt(x),
-        log: x => {
-            if (x <= 0) throw new Error("log input must be positive");
-            return Math.log10(x);
-        },
-        ln: x => {
-            if (x <= 0) throw new Error("ln input must be positive");
-            return Math.log(x);
-        },
-        abs: x => Math.abs(x),
-        exp: x => Math.exp(x),
-        floor: x => Math.floor(x),
-        ceil: x => Math.ceil(x),
-        round: x => Math.round(x)
-    };
+        };
 
-    function primary() {
-        const token = peek();
-
-        if (token.type === "number") {
-            index++;
-            return token.value;
-        }
-
-        if (token.type === "(") {
-            index++;
-            const value = expression();
-            take(")");
-            return value;
-        }
-
-        if (token.type === "name") {
-            index++;
-            const name = token.value;
-
-            if (name === "pi") return Math.PI;
-            if (name === "e") return Math.E;
-            if (name === "ans") return lastAnswer;
-
-            if (!(name in functions)) {
-                throw new Error("Unknown function: " + name);
-            }
-
-            take("(");
-            const argument = expression();
-            take(")");
-
-            return functions[name](argument);
-        }
-
-        throw new Error("Expected a number or function");
+        actions.appendChild(copyBtn);
+        content.appendChild(actions);
     }
 
-    function postfix() {
-        let value = primary();
+    wrapper.append(avatar, content);
+    messages.appendChild(wrapper);
+    scrollDown();
 
-        while (peek().type === "!" || peek().type === "%") {
-            const op = tokens[index++].type;
-
-            if (op === "!") {
-                value = factorial(value);
-            } else {
-                value /= 100;
-            }
-        }
-
-        return value;
-    }
-
-    function power() {
-        let value = postfix();
-
-        if (peek().type === "^") {
-            index++;
-            value = Math.pow(value, unary());
-        }
-
-        return value;
-    }
-
-    function unary() {
-        if (peek().type === "+") {
-            index++;
-            return unary();
-        }
-
-        if (peek().type === "-") {
-            index++;
-            return -unary();
-        }
-
-        return power();
-    }
-
-    function term() {
-        let value = unary();
-
-        while (peek().type === "*" || peek().type === "/") {
-            const op = tokens[index++].type;
-            const right = unary();
-
-            if (op === "/" && right === 0) {
-                throw new Error("Cannot divide by zero");
-            }
-
-            value = op === "*" ? value * right : value / right;
-        }
-
-        return value;
-    }
-
-    function expression() {
-        let value = term();
-
-        while (peek().type === "+" || peek().type === "-") {
-            const op = tokens[index++].type;
-            const right = term();
-            value = op === "+" ? value + right : value - right;
-        }
-
-        return value;
-    }
-
-    if (peek().type === "end") {
-        throw new Error("Enter an expression");
-    }
-
-    const answer = expression();
-
-    if (peek().type !== "end") {
-        throw new Error("Check your expression and parentheses");
-    }
-
-    if (!Number.isFinite(answer)) {
-        throw new Error("Result is outside the supported range");
-    }
-
-    return answer;
+    return wrapper;
 }
 
-function calculate() {
-    try {
-        const source = input.value.trim();
-        if (!source) {
-            message.textContent = "Enter a calculation first";
-            return;
-        }
+function showTyping() {
+    const row = addMessage("assistant", "");
+    const bubble = row.querySelector(".bubble");
+    bubble.className = "bubble typing";
+    bubble.textContent = "Thinking ";
 
-        const answer = evaluate(source);
-        lastAnswer = answer;
+    const dots = document.createElement("span");
+    dots.textContent = "● ● ●";
+    bubble.appendChild(dots);
 
-        const rounded = Number(answer.toPrecision(12));
-
-        history.textContent = source + " =";
-        result.textContent = String(rounded);
-        message.textContent = "";
-    } catch (error) {
-        message.textContent = error.message || "Invalid expression";
-    }
+    return row;
 }
 
-input.addEventListener("keydown", event => {
-    if (event.key === "Enter" || event.key === "=") {
+// This is demo logic, not a genuine AI model.
+function demoReply(question) {
+    const q = question.toLowerCase().trim();
+
+    if (/^(hi|hello|hey|namaste|ನಮಸ್ಕಾರ)\b/.test(q)) {
+        return "Hello! 👋 Welcome to Nova AI. What would you like to explore today?";
+    }
+
+    if (q.includes("your name") || q.includes("who are you")) {
+        return "I'm Nova AI, a chatbot website demo. I can show you how a chat assistant works. Connect an AI API to enable genuine AI-generated answers.";
+    }
+
+    if (q.includes("artificial intelligence") || q.includes("what is ai")) {
+        return "Artificial intelligence (AI) is technology that allows computers to perform tasks such as understanding language, recognizing patterns, and generating text. Modern AI chatbots use trained models to respond to questions.";
+    }
+
+    if (q.includes("website") || q.includes("web development")) {
+        return "Here are some website project ideas:\n\n1. AI chatbot\n2. Personal portfolio\n3. Online calculator\n4. Study planner\n5. Weather dashboard\n6. Quiz game\n\nYou can build the interface using HTML, CSS, and JavaScript.";
+    }
+
+    if (q.includes("javascript") || q.includes("programming") || q.includes("code")) {
+        return "To learn programming, start with these steps:\n\n1. Learn HTML to structure a page.\n2. Learn CSS to style it.\n3. Learn JavaScript to add interactivity.\n4. Build small projects.\n5. Practice debugging and reading errors.\n\nTell me which project you want to build!";
+    }
+
+    if (q.includes("study") || q.includes("timetable")) {
+        return "Here is a simple study routine:\n\n• 25 minutes: Study one topic.\n• 5 minutes: Take a break.\n• 25 minutes: Practice questions.\n• 10 minutes: Review what you learned.\n\nAdjust the routine to fit your subjects and schedule.";
+    }
+
+    if (q.includes("joke")) {
+        return "Why do programmers prefer dark mode? Because light attracts bugs! 😄";
+    }
+
+    if (q.includes("thank")) {
+        return "You're welcome! 😊 Feel free to ask me something else.";
+    }
+
+    if (q.includes("time")) {
+        return "Your device's current time is " +
+            new Date().toLocaleTimeString() +
+            ". For other questions, remember that this is demo mode.";
+    }
+
+    return "Thanks for your message! 😊\n\nI'm currently running in demo mode, so I can't intelligently answer every question yet.\n\nTo make me a real AI chatbot, connect this website to an AI model through a secure backend API. Then I can generate answers to a much wider range of questions.";
+}
+
+async function sendMessage(text) {
+    text = text.trim();
+
+    if (!text || busy) return;
+
+    busy = true;
+    sendBtn.disabled = true;
+    promptBox.value = "";
+    promptBox.style.height = "auto";
+
+    addMessage("user", text);
+
+    const typing = showTyping();
+
+    // Simulate a short response delay.
+    await new Promise(resolve => setTimeout(resolve, 650));
+
+    const answer = demoReply(text);
+    typing.remove();
+
+    addMessage("assistant", answer, true);
+    previousAnswer = answer;
+
+    busy = false;
+    sendBtn.disabled = false;
+    promptBox.focus();
+}
+
+chatForm.addEventListener("submit", event => {
+    event.preventDefault();
+    sendMessage(promptBox.value);
+});
+
+promptBox.addEventListener("input", () => {
+    promptBox.style.height = "auto";
+    promptBox.style.height =
+        Math.min(promptBox.scrollHeight, 130) + "px";
+});
+
+promptBox.addEventListener("keydown", event => {
+    if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault();
-        calculate();
+        chatForm.requestSubmit();
     }
+});
 
-    if (event.key === "Escape") {
-        clearAll();
-    }
+document.querySelectorAll(".suggestion").forEach(button => {
+    button.addEventListener("click", () => {
+        sendMessage(button.dataset.prompt);
+    });
+});
+
+document.getElementById("clearBtn").addEventListener("click", () => {
+    messages.replaceChildren();
+    welcome.style.display = "";
+    promptBox.value = "";
+    previousAnswer = "";
+    chat.scrollTop = 0;
+});
+
+document.getElementById("themeBtn").addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    document.getElementById("themeBtn").textContent =
+        document.body.classList.contains("light") ? "☾" : "☀";
 });
 </script>
 
