@@ -4,96 +4,582 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f4f7ff">
-<title>QuizQuest - Quiz Challenge</title>
+<title>QuizQuest - Test Your Knowledge</title>
+
 <style>
-*{box-sizing:border-box}
-:root{--primary:#5b5ce2;--background:#f4f7ff;--text:#20243a;--muted:#777d91;--card:#fff}
-body{margin:0;min-height:100vh;padding:20px 14px;font-family:Arial,sans-serif;background:var(--background);color:var(--text);display:flex;justify-content:center;align-items:center}
-.container{width:100%;max-width:520px}
-.header{text-align:center;margin-bottom:22px}
-.logo{font-size:40px}
-.header h1{margin:8px 0;font-size:30px}
-.header h1 span{color:var(--primary)}
-.header p{color:var(--muted);margin:0;line-height:1.5}
-.card{background:var(--card);border-radius:22px;padding:23px;box-shadow:0 10px 35px #25356b12}
-.stats{display:flex;justify-content:space-between;gap:10px;margin-bottom:22px}
-.stat{background:#f4f5ff;padding:11px;border-radius:12px;flex:1;text-align:center}
-.stat small{display:block;color:var(--muted);margin-bottom:5px}
-.stat strong{font-size:18px}
-.progress-info{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);margin-bottom:8px}
-.progress-bar{height:8px;background:#e9eafa;border-radius:10px;overflow:hidden;margin-bottom:24px}
-.progress{height:100%;width:0%;background:var(--primary);transition:width .3s}
-.category{display:inline-block;color:var(--primary);background:#efefff;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:bold;margin-bottom:12px}
-#question{font-size:22px;line-height:1.4;margin:0 0 20px}
-.answers{display:grid;gap:11px}
-.answer{width:100%;padding:15px;border:2px solid #e7e9f2;border-radius:13px;background:#fff;text-align:left;font-size:15px;color:var(--text);cursor:pointer;transition:.2s}
-.answer:active{transform:scale(.98)}
-.answer:hover:not(:disabled){border-color:var(--primary);background:#f8f8ff}
-.answer.correct{background:#e7f9ee;border-color:#28a960;color:#16723c}
-.answer.wrong{background:#fff0ef;border-color:#ed6868;color:#b72d2d}
-.answer:disabled{cursor:default}
-.feedback{min-height:25px;margin:15px 0 5px;font-size:14px;font-weight:bold}
-.actions{display:flex;gap:10px;margin-top:14px}
-.btn{border:none;padding:14px 18px;border-radius:12px;font-size:15px;font-weight:bold;cursor:pointer}
-.primary{background:var(--primary);color:#fff;flex:1}
-.primary:hover{background:#4849c5}
-.secondary{background:#eeeefe;color:var(--primary)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.hidden{display:none!important}
-.result{text-align:center;padding:15px 0 5px}
-.result-emoji{font-size:65px}
-.result h2{font-size:28px;margin:12px 0}
-.result p{color:var(--muted);line-height:1.6}
-.final-score{font-size:46px;color:var(--primary);font-weight:bold;margin:20px 0 5px}
-.result-details{display:flex;justify-content:center;gap:12px;margin:20px 0}
-.result-box{flex:1;padding:15px 5px;background:#f4f5ff;border-radius:12px}
-.result-box strong{display:block;font-size:22px;margin-bottom:5px}
-.result-box small{color:var(--muted)}
-.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:20px}
-@media(max-width:380px){.card{padding:17px}#question{font-size:19px}.header h1{font-size:26px}}
+:root {
+  --bg: #f4f7ff;
+  --card: #ffffff;
+  --text: #202747;
+  --muted: #737b98;
+  --primary: #6558e8;
+  --primary-light: #eeecff;
+  --border: #e4e8f5;
+  --green: #16804a;
+  --red: #d13f3f;
+  --shadow: 0 12px 40px rgba(50, 60, 120, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 14px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #f4f7ff, #eeecff);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 3px solid #a9a0ff;
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 4px 0 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: -0.7px;
+}
+
+.logo-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  background: var(--primary);
+  color: white;
+  border-radius: 13px;
+  font-size: 23px;
+}
+
+.tagline {
+  color: var(--muted);
+  font-size: 12px;
+  text-align: right;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid rgba(220, 225, 245, 0.9);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+.hero {
+  text-align: center;
+  padding: 28px 0 22px;
+}
+
+.hero-icon {
+  font-size: 56px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 6vw, 40px);
+  letter-spacing: -1.4px;
+}
+
+.subtitle {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 440px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.feature {
+  padding: 15px 7px;
+  background: #f8f8ff;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 23px;
+  margin-bottom: 6px;
+}
+
+.feature strong {
+  display: block;
+  font-size: 14px;
+}
+
+.feature span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.primary-btn,
+.secondary-btn,
+.quit-btn {
+  min-height: 48px;
+  border: none;
+  border-radius: 13px;
+  padding: 12px 18px;
+  font-weight: 750;
+  transition: transform 0.15s, opacity 0.15s;
+}
+
+.primary-btn {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 7px 18px rgba(101, 88, 232, 0.22);
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+}
+
+.primary-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.secondary-btn {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.quit-btn {
+  min-height: 38px;
+  padding: 8px 12px;
+  color: var(--red);
+  background: #fff0f0;
+  font-size: 12px;
+}
+
+.full {
+  width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.game-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.question-count {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.progress-track {
+  height: 8px;
+  border-radius: 99px;
+  overflow: hidden;
+  background: #ecebfa;
+  margin: 12px 0 7px;
+}
+
+.progress-fill {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #6558e8, #a59cff);
+  border-radius: inherit;
+  transition: width 0.3s;
+}
+
+.progress-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.stat {
+  background: #f8f8ff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 850;
+}
+
+.timer {
+  color: var(--text);
+}
+
+.category {
+  display: inline-block;
+  padding: 6px 11px;
+  border-radius: 8px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  margin-bottom: 14px;
+}
+
+.question {
+  font-size: clamp(20px, 4vw, 27px);
+  line-height: 1.4;
+  letter-spacing: -0.5px;
+  margin: 0 0 23px;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.answer {
+  text-align: left;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 15px 13px;
+  min-height: 60px;
+  color: var(--text);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.answer:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: #f8f7ff;
+}
+
+.answer:disabled {
+  cursor: default;
+}
+
+.answer.correct {
+  border-color: #35a86b;
+  background: #e9f9ef;
+  color: #12673b;
+}
+
+.answer.wrong {
+  border-color: #e34d4d;
+  background: #fff0f0;
+  color: #b52b2b;
+}
+
+.feedback {
+  min-height: 26px;
+  margin: 18px 0 12px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.game-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.game-actions button {
+  flex: 1;
+}
+
+.result {
+  text-align: center;
+}
+
+.result-emoji {
+  font-size: 72px;
+  margin: 8px 0 12px;
+}
+
+.result-message {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 10px auto 22px;
+  max-width: 420px;
+}
+
+.final-score {
+  font-size: clamp(40px, 10vw, 64px);
+  color: var(--primary);
+  font-weight: 900;
+  letter-spacing: -2px;
+  margin: 10px 0;
+}
+
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.result-stat {
+  padding: 15px 5px;
+  background: #f8f8ff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.result-stat strong {
+  display: block;
+  font-size: 23px;
+}
+
+.result-stat span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.result-actions {
+  display: grid;
+  gap: 10px;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 22px 5px 5px;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 12px 10px;
+  }
+
+  .card {
+    padding: 19px 15px;
+    border-radius: 19px;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+
+  .logo-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .features {
+    gap: 7px;
+  }
+
+  .feature {
+    padding: 12px 4px;
+  }
+
+  .answers {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .answer {
+    min-height: 53px;
+    padding: 13px;
+  }
+
+  .stats {
+    gap: 7px;
+  }
+
+  .stat {
+    padding: 10px 4px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+}
 </style>
 </head>
+
 <body>
 <div class="container">
-  <header class="header">
-    <div class="logo">🧠</div>
-    <h1>Quiz<span>Quest</span></h1>
-    <p>Challenge your mind. Beat your best score!</p>
-  </header>
-  <main class="card">
-    <section id="gameScreen">
-      <div class="stats">
-        <div class="stat"><small>🏆 Score</small><strong id="score">0</strong></div>
-        <div class="stat"><small>⏱ Time</small><strong id="timer">15s</strong></div>
-        <div class="stat"><small>🔥 Streak</small><strong id="streak">0</strong></div>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">🧠</div>
+    <span>QuizQuest</span>
+  </div>
+  <div class="tagline">
+    Challenge your mind<br>One question at a time
+  </div>
+</header>
+
+<main>
+  <section id="homeScreen" class="card">
+    <div class="hero">
+      <div class="hero-icon">🎯</div>
+      <h1>Ready for the challenge?</h1>
+      <p class="subtitle">
+        Test your knowledge across science, maths, geography,
+        technology, sports and more!
+      </p>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">❓</div>
+        <strong>10 Questions</strong>
+        <span>Random each round</span>
       </div>
-      <div class="progress-info"><span id="questionCount">Question 1 of 10</span><span id="percent">0% completed</span></div>
-      <div class="progress-bar"><div class="progress" id="progress"></div></div>
-      <div class="category" id="category">GENERAL KNOWLEDGE</div>
-      <h2 id="question">Loading question...</h2>
-      <div class="answers" id="answers"></div>
-      <p class="feedback" id="feedback" aria-live="polite"></p>
-      <div class="actions">
-        <button class="btn secondary" id="quitBtn">Quit</button>
-        <button class="btn primary" id="nextBtn" disabled>Next Question →</button>
+      <div class="feature">
+        <div class="feature-icon">⏱️</div>
+        <strong>15 Seconds</strong>
+        <span>Per question</span>
       </div>
-    </section>
-    <section id="resultScreen" class="result hidden">
-      <div class="result-emoji" id="resultEmoji">🏆</div>
-      <h2 id="resultTitle">Amazing job!</h2>
-      <p id="resultMessage">You completed the challenge.</p>
-      <div class="final-score" id="finalScore">0/10</div>
-      <p>Your final score</p>
-      <div class="result-details">
-        <div class="result-box"><strong id="correctCount">0</strong><small>Correct</small></div>
-        <div class="result-box"><strong id="wrongCount">0</strong><small>Incorrect</small></div>
-        <div class="result-box"><strong id="accuracy">0%</strong><small>Accuracy</small></div>
+      <div class="feature">
+        <div class="feature-icon">🏆</div>
+        <strong>Beat Your Best</strong>
+        <span>Earn points</span>
       </div>
-      <button class="btn primary" id="restartBtn" style="width:100%">🔄 Play Again</button>
-    </section>
-  </main>
-  <footer class="footer">Made with ❤️ for curious minds</footer>
+    </div>
+
+    <button id="startBtn" class="primary-btn full">
+      Start Quiz 🚀
+    </button>
+  </section>
+
+  <section id="gameScreen" class="card hidden">
+    <div class="game-top">
+      <span id="questionCount" class="question-count">
+        Question 1 of 10
+      </span>
+      <button id="quitBtn" class="quit-btn">✕ Quit</button>
+    </div>
+
+    <div class="progress-track">
+      <div id="progress" class="progress-fill"></div>
+    </div>
+    <div id="percent" class="progress-label">0% completed</div>
+
+    <div class="stats" style="margin-top:20px">
+      <div class="stat">
+        <div class="stat-label">⭐ SCORE</div>
+        <div id="score" class="stat-value">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">🔥 STREAK</div>
+        <div id="streak" class="stat-value">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">⏱️ TIME LEFT</div>
+        <div id="timer" class="stat-value timer">15s</div>
+      </div>
+    </div>
+
+    <div id="category" class="category">SCIENCE</div>
+    <h2 id="question" class="question">Loading question...</h2>
+
+    <div id="answers" class="answers"></div>
+    <div id="feedback" class="feedback" aria-live="polite"></div>
+
+    <div class="game-actions">
+      <button id="nextBtn" class="primary-btn full" disabled>
+        Next Question →
+      </button>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="card result hidden">
+    <div id="resultEmoji" class="result-emoji">🏆</div>
+    <h1 id="resultTitle">Quiz Completed!</h1>
+    <div id="finalScore" class="final-score">0/10</div>
+    <p class="subtitle">Questions answered correctly</p>
+
+    <p id="resultMessage" class="result-message"></p>
+
+    <div class="result-stats">
+      <div class="result-stat">
+        <strong id="correctCount">0</strong>
+        <span>Correct</span>
+      </div>
+      <div class="result-stat">
+        <strong id="wrongCount">0</strong>
+        <span>Incorrect / Timed out</span>
+      </div>
+      <div class="result-stat">
+        <strong id="accuracy">0%</strong>
+        <span>Accuracy</span>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button id="restartBtn" class="primary-btn full">
+        🔄 Play Again
+      </button>
+      <button id="homeBtn" class="secondary-btn full">
+        🏠 Home
+      </button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Made for curious minds 💜 · QuizQuest
+</footer>
+
 </div>
+
 <script>
 "use strict";
 
@@ -108,6 +594,7 @@ const questionBank = [
 ["SPACE","What is at the center of our solar system?",["Earth","The Sun","The Moon","Mars"],1],
 ["MATHS","What is the square root of 144?",["10","11","12","14"],2],
 ["GENERAL","How many colors are traditionally in a rainbow?",["Five","Six","Seven","Eight"],2],
+
 ["SCIENCE","What is the chemical formula for water?",["CO2","H2O","O2","NaCl"],1],
 ["SCIENCE","Which organ pumps blood around the body?",["Lungs","Brain","Heart","Kidney"],2],
 ["SCIENCE","How many bones does an adult human usually have?",["106","206","306","406"],1],
@@ -118,6 +605,7 @@ const questionBank = [
 ["SCIENCE","Which gas do humans need to breathe?",["Helium","Carbon dioxide","Oxygen","Methane"],2],
 ["SCIENCE","What is the hardest naturally occurring substance?",["Gold","Iron","Quartz","Diamond"],3],
 ["SCIENCE","What is the center of an atom called?",["Nucleus","Cell","Core","Electron"],0],
+
 ["MATHS","What is 15 + 27?",["32","42","52","40"],1],
 ["MATHS","What is 9 × 9?",["72","81","89","99"],1],
 ["MATHS","What is half of 250?",["100","115","125","150"],2],
@@ -128,6 +616,7 @@ const questionBank = [
 ["MATHS","What is 3/4 as a percentage?",["25%","50%","75%","80%"],2],
 ["MATHS","What is 144 divided by 12?",["10","11","12","14"],2],
 ["MATHS","What is 25 × 4?",["50","75","100","125"],2],
+
 ["GEOGRAPHY","Which is the largest ocean?",["Atlantic","Indian","Arctic","Pacific"],3],
 ["GEOGRAPHY","Which country is famous for the pyramids of Giza?",["India","Egypt","Greece","Mexico"],1],
 ["GEOGRAPHY","What is the capital of France?",["Rome","Madrid","Paris","Lisbon"],2],
@@ -138,6 +627,7 @@ const questionBank = [
 ["GEOGRAPHY","Which is the largest continent?",["Africa","Asia","Europe","South America"],1],
 ["GEOGRAPHY","Which river flows through London?",["Nile","Amazon","Thames","Danube"],2],
 ["GEOGRAPHY","What is the capital of Karnataka?",["Mysuru","Hubballi","Mangaluru","Bengaluru"],3],
+
 ["TECHNOLOGY","What does CPU stand for?",["Central Processing Unit","Computer Power Utility","Central Program User","Control Processing Upload"],0],
 ["TECHNOLOGY","Which company develops Android?",["Apple","Google","Microsoft","Sony"],1],
 ["TECHNOLOGY","Which of these is a web browser?",["Excel","Photoshop","Firefox","Notepad"],2],
@@ -148,6 +638,7 @@ const questionBank = [
 ["TECHNOLOGY","What is the binary digit system based on?",["2 digits","4 digits","8 digits","10 digits"],0],
 ["TECHNOLOGY","Which is an example of an operating system?",["Google Maps","Android","YouTube","Bluetooth"],1],
 ["TECHNOLOGY","What does AI stand for?",["Automatic Internet","Advanced Input","Artificial Intelligence","Applied Interface"],2],
+
 ["ANIMALS","Which animal is often called the king of the jungle?",["Tiger","Lion","Elephant","Wolf"],1],
 ["ANIMALS","Which mammal can fly?",["Bat","Penguin","Ostrich","Chicken"],0],
 ["ANIMALS","What is a baby frog called?",["Cub","Calf","Tadpole","Chick"],2],
@@ -158,6 +649,7 @@ const questionBank = [
 ["ANIMALS","What do bees collect from flowers?",["Sand","Nectar","Leaves","Bark"],1],
 ["ANIMALS","Which bird is famous for mimicking speech?",["Eagle","Sparrow","Flamingo","Parrot"],3],
 ["ANIMALS","Which animal carries its baby in a pouch?",["Kangaroo","Horse","Deer","Tiger"],0],
+
 ["SPACE","Which planet is famous for its rings?",["Mars","Saturn","Venus","Mercury"],1],
 ["SPACE","Which is Earth's natural satellite?",["Sun","Mars","Moon","Venus"],2],
 ["SPACE","What is the name of our galaxy?",["Andromeda","Whirlpool","Sombrero","Milky Way"],3],
@@ -168,6 +660,7 @@ const questionBank = [
 ["SPACE","What is a shooting star usually called scientifically?",["Planet","Comet","Meteor","Satellite"],2],
 ["SPACE","Which planet is known for its Great Red Spot?",["Venus","Jupiter","Mars","Uranus"],1],
 ["SPACE","What do we call a person who travels into space?",["Pilot","Sailor","Scientist only","Astronaut"],3],
+
 ["SPORTS","How many players are on a football team on the field?",["9","10","11","12"],2],
 ["SPORTS","Which sport uses a shuttlecock?",["Tennis","Badminton","Hockey","Cricket"],1],
 ["SPORTS","How many rings are on the Olympic symbol?",["Four","Five","Six","Seven"],1],
@@ -178,6 +671,7 @@ const questionBank = [
 ["SPORTS","How many players from one team are on a basketball court?",["Five","Six","Seven","Eleven"],0],
 ["SPORTS","Which sport is played at the Tour de France?",["Running","Cycling","Swimming","Skiing"],1],
 ["SPORTS","What is a score of zero called in tennis?",["Nil","Duck","Love","Blank"],2],
+
 ["GENERAL","How many hours are in one day?",["12","18","20","24"],3],
 ["GENERAL","How many months are in a year?",["10","11","12","13"],2],
 ["GENERAL","Which language is primarily spoken in Brazil?",["Spanish","Portuguese","French","Italian"],1],
@@ -188,6 +682,7 @@ const questionBank = [
 ["GENERAL","What is frozen water called?",["Steam","Ice","Mist","Rain"],1],
 ["GENERAL","Which direction does the Sun rise from?",["North","South","East","West"],2],
 ["GENERAL","Which shape has three sides?",["Square","Triangle","Pentagon","Circle"],1],
+
 ["INDIA","What is the capital of India?",["Mumbai","New Delhi","Chennai","Kolkata"],1],
 ["INDIA","What is the national animal of India?",["Lion","Elephant","Bengal tiger","Leopard"],2],
 ["INDIA","What is the national bird of India?",["Peacock","Parrot","Eagle","Swan"],0],
@@ -197,10 +692,13 @@ const questionBank = [
 ["INDIA","Which Indian state is famous for tea gardens?",["Assam","Punjab","Gujarat","Goa"],0],
 ["INDIA","Which is the national anthem of India?",["Vande Mataram","Jana Gana Mana","Saare Jahan Se Achha","Ae Mere Watan"],1],
 ["INDIA","Which city is famous for the Charminar?",["Bengaluru","Jaipur","Hyderabad","Pune"],2],
-["INDIA","Which festival is associated with the harvest in Karnataka?",["Bihu","Onam","Baisakhi","Makara Sankranti"],3]
-].map(([category, question, options, answer]) => ({category, question, options, answer}));
+["INDIA","Which festival celebrates the harvest in Karnataka and Tamil Nadu?",["Pongal","Onam","Baisakhi","Pongal and Sankranti"],3]
+].map(([category, question, options, answer]) => ({
+  category, question, options, answer
+}));
 
 const $ = id => document.getElementById(id);
+
 let quiz = [];
 let current = 0;
 let score = 0;
@@ -213,168 +711,4 @@ let answered = false;
 let bestScore = 0;
 
 try {
-  bestScore = Number(localStorage.getItem("quizQuestBest")) || 0;
-} catch (error) {
-  bestScore = 0;
-}
-
-function shuffle(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-function startGame() {
-  clearInterval(timerId);
-  current = 0;
-  score = 0;
-  streak = 0;
-  correct = 0;
-  wrong = 0;
-  quiz = shuffle([...questionBank]).slice(0, 10);
-
-  $("gameScreen").classList.remove("hidden");
-  $("resultScreen").classList.add("hidden");
-  $("score").textContent = score;
-  $("streak").textContent = streak;
-  showQuestion();
-}
-
-function showQuestion() {
-  clearInterval(timerId);
-  if (current >= quiz.length) {
-    endGame();
-    return;
-  }
-
-  answered = false;
-  timeLeft = 15;
-  const q = quiz[current];
-
-  $("questionCount").textContent = `Question ${current + 1} of ${quiz.length}`;
-  $("percent").textContent = `${Math.round(current / quiz.length * 100)}% completed`;
-  $("progress").style.width = `${current / quiz.length * 100}%`;
-  $("category").textContent = q.category;
-  $("question").textContent = q.question;
-  $("timer").textContent = `${timeLeft}s`;
-  $("timer").style.color = "var(--text)";
-  $("feedback").textContent = "";
-  $("nextBtn").disabled = true;
-  $("nextBtn").textContent = current === quiz.length - 1 ? "See Results 🏆" : "Next Question →";
-
-  const box = $("answers");
-  box.replaceChildren();
-
-  q.options.forEach((option, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "answer";
-    button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
-    button.addEventListener("click", () => selectAnswer(index));
-    box.appendChild(button);
-  });
-
-  timerId = setInterval(() => {
-    if (answered) return;
-    timeLeft--;
-    $("timer").textContent = `${timeLeft}s`;
-    if (timeLeft <= 5) $("timer").style.color = "#e34d4d";
-    if (timeLeft <= 0) selectAnswer(-1);
-  }, 1000);
-}
-
-function selectAnswer(selected) {
-  if (answered) return;
-  answered = true;
-  clearInterval(timerId);
-
-  const q = quiz[current];
-  const buttons = $("answers").querySelectorAll("button");
-  buttons.forEach((button, index) => {
-    button.disabled = true;
-    if (index === q.answer) button.classList.add("correct");
-  });
-
-  if (selected === q.answer) {
-    correct++;
-    streak++;
-    const points = 10 + timeLeft;
-    score += points;
-    $("feedback").textContent = `✅ Correct! +${points} points`;
-    $("feedback").style.color = "#16804a";
-  } else {
-    wrong++;
-    streak = 0;
-    if (selected === -1) {
-      $("feedback").textContent = "⏰ Time's up! The correct answer is highlighted.";
-    } else {
-      if (buttons[selected]) buttons[selected].classList.add("wrong");
-      $("feedback").textContent = "❌ Not quite! The correct answer is highlighted.";
-    }
-    $("feedback").style.color = "#d13f3f";
-  }
-
-  $("score").textContent = score;
-  $("streak").textContent = streak;
-  $("nextBtn").disabled = false;
-}
-
-function endGame() {
-  clearInterval(timerId);
-  $("gameScreen").classList.add("hidden");
-  $("resultScreen").classList.remove("hidden");
-  $("progress").style.width = "100%";
-  $("percent").textContent = "100% completed";
-  $("finalScore").textContent = `${correct}/${quiz.length}`;
-  $("correctCount").textContent = correct;
-  $("wrongCount").textContent = wrong;
-
-  const accuracy = Math.round(correct / quiz.length * 100);
-  $("accuracy").textContent = `${accuracy}%`;
-
-  if (accuracy === 100) {
-    $("resultEmoji").textContent = "🏆";
-    $("resultTitle").textContent = "Perfect Score!";
-    $("resultMessage").textContent = "Incredible! You answered every question correctly.";
-  } else if (accuracy >= 70) {
-    $("resultEmoji").textContent = "🎉";
-    $("resultTitle").textContent = "Great Job!";
-    $("resultMessage").textContent = "Excellent work! Keep challenging your mind.";
-  } else if (accuracy >= 40) {
-    $("resultEmoji").textContent = "👏";
-    $("resultTitle").textContent = "Good Effort!";
-    $("resultMessage").textContent = "You're learning! Try again to improve your score.";
-  } else {
-    $("resultEmoji").textContent = "💪";
-    $("resultTitle").textContent = "Keep Practicing!";
-    $("resultMessage").textContent = "Every attempt makes you better. Give it another try!";
-  }
-
-  if (score > bestScore) {
-    bestScore = score;
-    try {
-      localStorage.setItem("quizQuestBest", String(bestScore));
-    } catch (error) {}
-    $("resultMessage").textContent += " New personal best! 🥇";
-  }
-}
-
-$("nextBtn").addEventListener("click", () => {
-  if (answered) {
-    current++;
-    showQuestion();
-  }
-});
-
-$("restartBtn").addEventListener("click", startGame);
-
-$("quitBtn").addEventListener("click", () => {
-  if (confirm("Are you sure you want to quit this game?")) {
-    clearInterval(timerId);
-    endGame();
-  }
-});
-
-/* Start only after all questions and functions have been defined
+  bestSco
