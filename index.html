@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,36 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#f4f7ff">
 <title>QuizQuest - Quiz Challenge</title>
-
 <style>
 *{box-sizing:border-box}
-:root{
-  --primary:#5b5ce2;
-  --background:#f4f7ff;
-  --text:#20243a;
-  --muted:#777d91;
-  --card:#fff;
-}
-body{
-  margin:0;min-height:100vh;padding:20px 14px;
-  font-family:Arial,sans-serif;background:var(--background);
-  color:var(--text);display:flex;justify-content:center;align-items:center
-}
+:root{--primary:#5b5ce2;--background:#f4f7ff;--text:#20243a;--muted:#777d91;--card:#fff}
+body{margin:0;min-height:100vh;padding:20px 14px;font-family:Arial,sans-serif;background:var(--background);color:var(--text);display:flex;justify-content:center;align-items:center}
 .container{width:100%;max-width:520px}
 .header{text-align:center;margin-bottom:22px}
 .logo{font-size:40px}
 .header h1{margin:8px 0;font-size:30px}
 .header h1 span{color:var(--primary)}
 .header p{color:var(--muted);margin:0;line-height:1.5}
-.card{
-  background:var(--card);border-radius:22px;padding:23px;
-  box-shadow:0 10px 35px #25356b12
-}
+.card{background:var(--card);border-radius:22px;padding:23px;box-shadow:0 10px 35px #25356b12}
 .stats{display:flex;justify-content:space-between;gap:10px;margin-bottom:22px}
 .stat{background:#f4f5ff;padding:11px;border-radius:12px;flex:1;text-align:center}
 .stat small{display:block;color:var(--muted);margin-bottom:5px}
 .stat strong{font-size:18px}
-.progress-info{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px}
+.progress-info{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);margin-bottom:8px}
 .progress-bar{height:8px;background:#e9eafa;border-radius:10px;overflow:hidden;margin-bottom:24px}
 .progress{height:100%;width:0%;background:var(--primary);transition:width .3s}
 .category{display:inline-block;color:var(--primary);background:#efefff;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:bold;margin-bottom:12px}
@@ -65,73 +50,53 @@ body{
 .result-box strong{display:block;font-size:22px;margin-bottom:5px}
 .result-box small{color:var(--muted)}
 .footer{text-align:center;color:var(--muted);font-size:12px;margin-top:20px}
-@media(max-width:380px){
-  .card{padding:17px}
-  #question{font-size:19px}
-  .header h1{font-size:26px}
-}
+@media(max-width:380px){.card{padding:17px}#question{font-size:19px}.header h1{font-size:26px}}
 </style>
 </head>
-
 <body>
 <div class="container">
-
   <header class="header">
     <div class="logo">🧠</div>
     <h1>Quiz<span>Quest</span></h1>
     <p>Challenge your mind. Beat your best score!</p>
   </header>
-
   <main class="card">
-
     <section id="gameScreen">
       <div class="stats">
         <div class="stat"><small>🏆 Score</small><strong id="score">0</strong></div>
         <div class="stat"><small>⏱ Time</small><strong id="timer">15s</strong></div>
         <div class="stat"><small>🔥 Streak</small><strong id="streak">0</strong></div>
       </div>
-
-      <div class="progress-info">
-        <span id="questionCount">Question 1 of 10</span>
-        <span id="percent">0% completed</span>
-      </div>
+      <div class="progress-info"><span id="questionCount">Question 1 of 10</span><span id="percent">0% completed</span></div>
       <div class="progress-bar"><div class="progress" id="progress"></div></div>
-
       <div class="category" id="category">GENERAL KNOWLEDGE</div>
       <h2 id="question">Loading question...</h2>
       <div class="answers" id="answers"></div>
       <p class="feedback" id="feedback" aria-live="polite"></p>
-
       <div class="actions">
         <button class="btn secondary" id="quitBtn">Quit</button>
         <button class="btn primary" id="nextBtn" disabled>Next Question →</button>
       </div>
     </section>
-
     <section id="resultScreen" class="result hidden">
       <div class="result-emoji" id="resultEmoji">🏆</div>
       <h2 id="resultTitle">Amazing job!</h2>
       <p id="resultMessage">You completed the challenge.</p>
       <div class="final-score" id="finalScore">0/10</div>
       <p>Your final score</p>
-
       <div class="result-details">
         <div class="result-box"><strong id="correctCount">0</strong><small>Correct</small></div>
         <div class="result-box"><strong id="wrongCount">0</strong><small>Incorrect</small></div>
         <div class="result-box"><strong id="accuracy">0%</strong><small>Accuracy</small></div>
       </div>
-
-      <button class="btn primary" id="restartBtn" style="width:100%">
-        🔄 Play Again
-      </button>
+      <button class="btn primary" id="restartBtn" style="width:100%">🔄 Play Again</button>
     </section>
-
   </main>
-
   <footer class="footer">Made with ❤️ for curious minds</footer>
 </div>
-
 <script>
+"use strict";
+
 const questionBank = [
 ["SCIENCE","Which planet is known as the Red Planet?",["Venus","Mars","Jupiter","Mercury"],1],
 ["MATHS","What is 12 × 8?",["84","92","96","108"],2],
@@ -143,7 +108,6 @@ const questionBank = [
 ["SPACE","What is at the center of our solar system?",["Earth","The Sun","The Moon","Mars"],1],
 ["MATHS","What is the square root of 144?",["10","11","12","14"],2],
 ["GENERAL","How many colors are traditionally in a rainbow?",["Five","Six","Seven","Eight"],2],
-
 ["SCIENCE","What is the chemical formula for water?",["CO2","H2O","O2","NaCl"],1],
 ["SCIENCE","Which organ pumps blood around the body?",["Lungs","Brain","Heart","Kidney"],2],
 ["SCIENCE","How many bones does an adult human usually have?",["106","206","306","406"],1],
@@ -154,7 +118,6 @@ const questionBank = [
 ["SCIENCE","Which gas do humans need to breathe?",["Helium","Carbon dioxide","Oxygen","Methane"],2],
 ["SCIENCE","What is the hardest naturally occurring substance?",["Gold","Iron","Quartz","Diamond"],3],
 ["SCIENCE","What is the center of an atom called?",["Nucleus","Cell","Core","Electron"],0],
-
 ["MATHS","What is 15 + 27?",["32","42","52","40"],1],
 ["MATHS","What is 9 × 9?",["72","81","89","99"],1],
 ["MATHS","What is half of 250?",["100","115","125","150"],2],
@@ -165,7 +128,6 @@ const questionBank = [
 ["MATHS","What is 3/4 as a percentage?",["25%","50%","75%","80%"],2],
 ["MATHS","What is 144 divided by 12?",["10","11","12","14"],2],
 ["MATHS","What is 25 × 4?",["50","75","100","125"],2],
-
 ["GEOGRAPHY","Which is the largest ocean?",["Atlantic","Indian","Arctic","Pacific"],3],
 ["GEOGRAPHY","Which country is famous for the pyramids of Giza?",["India","Egypt","Greece","Mexico"],1],
 ["GEOGRAPHY","What is the capital of France?",["Rome","Madrid","Paris","Lisbon"],2],
@@ -176,7 +138,6 @@ const questionBank = [
 ["GEOGRAPHY","Which is the largest continent?",["Africa","Asia","Europe","South America"],1],
 ["GEOGRAPHY","Which river flows through London?",["Nile","Amazon","Thames","Danube"],2],
 ["GEOGRAPHY","What is the capital of Karnataka?",["Mysuru","Hubballi","Mangaluru","Bengaluru"],3],
-
 ["TECHNOLOGY","What does CPU stand for?",["Central Processing Unit","Computer Power Utility","Central Program User","Control Processing Upload"],0],
 ["TECHNOLOGY","Which company develops Android?",["Apple","Google","Microsoft","Sony"],1],
 ["TECHNOLOGY","Which of these is a web browser?",["Excel","Photoshop","Firefox","Notepad"],2],
@@ -187,7 +148,6 @@ const questionBank = [
 ["TECHNOLOGY","What is the binary digit system based on?",["2 digits","4 digits","8 digits","10 digits"],0],
 ["TECHNOLOGY","Which is an example of an operating system?",["Google Maps","Android","YouTube","Bluetooth"],1],
 ["TECHNOLOGY","What does AI stand for?",["Automatic Internet","Advanced Input","Artificial Intelligence","Applied Interface"],2],
-
 ["ANIMALS","Which animal is often called the king of the jungle?",["Tiger","Lion","Elephant","Wolf"],1],
 ["ANIMALS","Which mammal can fly?",["Bat","Penguin","Ostrich","Chicken"],0],
 ["ANIMALS","What is a baby frog called?",["Cub","Calf","Tadpole","Chick"],2],
@@ -198,7 +158,6 @@ const questionBank = [
 ["ANIMALS","What do bees collect from flowers?",["Sand","Nectar","Leaves","Bark"],1],
 ["ANIMALS","Which bird is famous for mimicking speech?",["Eagle","Sparrow","Flamingo","Parrot"],3],
 ["ANIMALS","Which animal carries its baby in a pouch?",["Kangaroo","Horse","Deer","Tiger"],0],
-
 ["SPACE","Which planet is famous for its rings?",["Mars","Saturn","Venus","Mercury"],1],
 ["SPACE","Which is Earth's natural satellite?",["Sun","Mars","Moon","Venus"],2],
 ["SPACE","What is the name of our galaxy?",["Andromeda","Whirlpool","Sombrero","Milky Way"],3],
@@ -209,7 +168,6 @@ const questionBank = [
 ["SPACE","What is a shooting star usually called scientifically?",["Planet","Comet","Meteor","Satellite"],2],
 ["SPACE","Which planet is known for its Great Red Spot?",["Venus","Jupiter","Mars","Uranus"],1],
 ["SPACE","What do we call a person who travels into space?",["Pilot","Sailor","Scientist only","Astronaut"],3],
-
 ["SPORTS","How many players are on a football team on the field?",["9","10","11","12"],2],
 ["SPORTS","Which sport uses a shuttlecock?",["Tennis","Badminton","Hockey","Cricket"],1],
 ["SPORTS","How many rings are on the Olympic symbol?",["Four","Five","Six","Seven"],1],
@@ -220,7 +178,6 @@ const questionBank = [
 ["SPORTS","How many players from one team are on a basketball court?",["Five","Six","Seven","Eleven"],0],
 ["SPORTS","Which sport is played at the Tour de France?",["Running","Cycling","Swimming","Skiing"],1],
 ["SPORTS","What is a score of zero called in tennis?",["Nil","Duck","Love","Blank"],2],
-
 ["GENERAL","How many hours are in one day?",["12","18","20","24"],3],
 ["GENERAL","How many months are in a year?",["10","11","12","13"],2],
 ["GENERAL","Which language is primarily spoken in Brazil?",["Spanish","Portuguese","French","Italian"],1],
@@ -231,23 +188,19 @@ const questionBank = [
 ["GENERAL","What is frozen water called?",["Steam","Ice","Mist","Rain"],1],
 ["GENERAL","Which direction does the Sun rise from?",["North","South","East","West"],2],
 ["GENERAL","Which shape has three sides?",["Square","Triangle","Pentagon","Circle"],1],
-
 ["INDIA","What is the capital of India?",["Mumbai","New Delhi","Chennai","Kolkata"],1],
 ["INDIA","What is the national animal of India?",["Lion","Elephant","Bengal tiger","Leopard"],2],
 ["INDIA","What is the national bird of India?",["Peacock","Parrot","Eagle","Swan"],0],
 ["INDIA","Which is India's national flower?",["Rose","Lotus","Sunflower","Jasmine"],1],
 ["INDIA","Which monument is located in Agra?",["India Gate","Charminar","Gateway of India","Taj Mahal"],3],
 ["INDIA","Which ocean lies south of India?",["Pacific Ocean","Atlantic Ocean","Indian Ocean","Arctic Ocean"],2],
-["INDIA","Which Indian state is famous for tea gardens in Assam?",["Assam","Punjab","Gujarat","Goa"],0],
+["INDIA","Which Indian state is famous for tea gardens?",["Assam","Punjab","Gujarat","Goa"],0],
 ["INDIA","Which is the national anthem of India?",["Vande Mataram","Jana Gana Mana","Saare Jahan Se Achha","Ae Mere Watan"],1],
 ["INDIA","Which city is famous for the Charminar?",["Bengaluru","Jaipur","Hyderabad","Pune"],2],
 ["INDIA","Which festival is associated with the harvest in Karnataka?",["Bihu","Onam","Baisakhi","Makara Sankranti"],3]
-].map(([category, question, options, answer]) => ({
-  category, question, options, answer
-}));
+].map(([category, question, options, answer]) => ({category, question, options, answer}));
 
 const $ = id => document.getElementById(id);
-
 let quiz = [];
 let current = 0;
 let score = 0;
@@ -261,7 +214,9 @@ let bestScore = 0;
 
 try {
   bestScore = Number(localStorage.getItem("quizQuestBest")) || 0;
-} catch(e) {}
+} catch (error) {
+  bestScore = 0;
+}
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -273,27 +228,22 @@ function shuffle(array) {
 
 function startGame() {
   clearInterval(timerId);
-
   current = 0;
   score = 0;
   streak = 0;
   correct = 0;
   wrong = 0;
-
-  // New random set of 10 questions on every replay.
   quiz = shuffle([...questionBank]).slice(0, 10);
 
   $("gameScreen").classList.remove("hidden");
   $("resultScreen").classList.add("hidden");
   $("score").textContent = score;
   $("streak").textContent = streak;
-
   showQuestion();
 }
 
 function showQuestion() {
   clearInterval(timerId);
-
   if (current >= quiz.length) {
     endGame();
     return;
@@ -301,58 +251,47 @@ function showQuestion() {
 
   answered = false;
   timeLeft = 15;
-
   const q = quiz[current];
 
-  $("questionCount").textContent =
-    `Question ${current + 1} of ${quiz.length}`;
-  $("percent").textContent =
-    Math.round(current / quiz.length * 100) + "% completed";
-  $("progress").style.width =
-    current / quiz.length * 100 + "%";
-
+  $("questionCount").textContent = `Question ${current + 1} of ${quiz.length}`;
+  $("percent").textContent = `${Math.round(current / quiz.length * 100)}% completed`;
+  $("progress").style.width = `${current / quiz.length * 100}%`;
   $("category").textContent = q.category;
   $("question").textContent = q.question;
-  $("timer").textContent = timeLeft + "s";
+  $("timer").textContent = `${timeLeft}s`;
   $("timer").style.color = "var(--text)";
   $("feedback").textContent = "";
   $("nextBtn").disabled = true;
-  $("nextBtn").textContent =
-    current === quiz.length - 1 ? "See Results 🏆" : "Next Question →";
+  $("nextBtn").textContent = current === quiz.length - 1 ? "See Results 🏆" : "Next Question →";
 
   const box = $("answers");
   box.replaceChildren();
 
   q.options.forEach((option, index) => {
     const button = document.createElement("button");
+    button.type = "button";
     button.className = "answer";
-    button.textContent = String.fromCharCode(65 + index) + ". " + option;
+    button.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
     button.addEventListener("click", () => selectAnswer(index));
     box.appendChild(button);
   });
 
   timerId = setInterval(() => {
+    if (answered) return;
     timeLeft--;
-    $("timer").textContent = timeLeft + "s";
-
+    $("timer").textContent = `${timeLeft}s`;
     if (timeLeft <= 5) $("timer").style.color = "#e34d4d";
-
-    if (timeLeft <= 0) {
-      clearInterval(timerId);
-      selectAnswer(-1);
-    }
+    if (timeLeft <= 0) selectAnswer(-1);
   }, 1000);
 }
 
 function selectAnswer(selected) {
   if (answered) return;
-
   answered = true;
   clearInterval(timerId);
 
   const q = quiz[current];
   const buttons = $("answers").querySelectorAll("button");
-
   buttons.forEach((button, index) => {
     button.disabled = true;
     if (index === q.answer) button.classList.add("correct");
@@ -368,16 +307,12 @@ function selectAnswer(selected) {
   } else {
     wrong++;
     streak = 0;
-
     if (selected === -1) {
-      $("feedback").textContent =
-        "⏰ Time's up! The correct answer is highlighted.";
+      $("feedback").textContent = "⏰ Time's up! The correct answer is highlighted.";
     } else {
-      buttons[selected].classList.add("wrong");
-      $("feedback").textContent =
-        "❌ Not quite! The correct answer is highlighted.";
+      if (buttons[selected]) buttons[selected].classList.add("wrong");
+      $("feedback").textContent = "❌ Not quite! The correct answer is highlighted.";
     }
-
     $("feedback").style.color = "#d13f3f";
   }
 
@@ -388,45 +323,40 @@ function selectAnswer(selected) {
 
 function endGame() {
   clearInterval(timerId);
-
   $("gameScreen").classList.add("hidden");
   $("resultScreen").classList.remove("hidden");
   $("progress").style.width = "100%";
-
+  $("percent").textContent = "100% completed";
   $("finalScore").textContent = `${correct}/${quiz.length}`;
   $("correctCount").textContent = correct;
   $("wrongCount").textContent = wrong;
 
   const accuracy = Math.round(correct / quiz.length * 100);
-  $("accuracy").textContent = accuracy + "%";
+  $("accuracy").textContent = `${accuracy}%`;
 
   if (accuracy === 100) {
     $("resultEmoji").textContent = "🏆";
     $("resultTitle").textContent = "Perfect Score!";
-    $("resultMessage").textContent =
-      "Incredible! You answered every question correctly.";
+    $("resultMessage").textContent = "Incredible! You answered every question correctly.";
   } else if (accuracy >= 70) {
     $("resultEmoji").textContent = "🎉";
     $("resultTitle").textContent = "Great Job!";
-    $("resultMessage").textContent =
-      "Excellent work! Keep challenging your mind.";
+    $("resultMessage").textContent = "Excellent work! Keep challenging your mind.";
   } else if (accuracy >= 40) {
     $("resultEmoji").textContent = "👏";
     $("resultTitle").textContent = "Good Effort!";
-    $("resultMessage").textContent =
-      "You're learning! Try again to improve your score.";
+    $("resultMessage").textContent = "You're learning! Try again to improve your score.";
   } else {
     $("resultEmoji").textContent = "💪";
     $("resultTitle").textContent = "Keep Practicing!";
-    $("resultMessage").textContent =
-      "Every attempt makes you better. Give it another try!";
+    $("resultMessage").textContent = "Every attempt makes you better. Give it another try!";
   }
 
   if (score > bestScore) {
     bestScore = score;
     try {
-      localStorage.setItem("quizQuestBest", bestScore);
-    } catch(e) {}
+      localStorage.setItem("quizQuestBest", String(bestScore));
+    } catch (error) {}
     $("resultMessage").textContent += " New personal best! 🥇";
   }
 }
@@ -442,4 +372,9 @@ $("restartBtn").addEventListener("click", startGame);
 
 $("quitBtn").addEventListener("click", () => {
   if (confirm("Are you sure you want to quit this game?")) {
-    clearI
+    clearInterval(timerId);
+    endGame();
+  }
+});
+
+/* Start only after all questions and functions have been defined
