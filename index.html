@@ -1,471 +1,118 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f4f7ff">
-<title>QuizQuest - Quiz Challenge</title>
-
-<style>
-* {
-  box-sizing: border-box;
-}
-
-:root {
-  --primary: #5b5ce2;
-  --background: #f4f7ff;
-  --text: #20243a;
-  --muted: #777d91;
-  --card: #ffffff;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  padding: 20px 14px;
-  font-family: Arial, sans-serif;
-  background: var(--background);
-  color: var(--text);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  width: 100%;
-  max-width: 520px;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 22px;
-}
-
-.logo {
-  font-size: 40px;
-}
-
-.header h1 {
-  margin: 8px 0;
-  font-size: 30px;
-}
-
-.header h1 span {
-  color: var(--primary);
-}
-
-.header p {
-  color: var(--muted);
-  margin: 0;
-  line-height: 1.5;
-}
-
-.card {
-  background: var(--card);
-  border-radius: 22px;
-  padding: 23px;
-  box-shadow: 0 10px 35px #25356b12;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.stat {
-  background: #f4f5ff;
-  padding: 11px;
-  border-radius: 12px;
-  flex: 1;
-  text-align: center;
-}
-
-.stat small {
-  display: block;
-  color: var(--muted);
-  margin-bottom: 5px;
-}
-
-.stat strong {
-  font-size: 18px;
-}
-
-.progress-info {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-.progress-bar {
-  height: 8px;
-  background: #e9eafa;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 24px;
-}
-
-.progress {
-  height: 100%;
-  width: 0%;
-  background: var(--primary);
-  transition: width 0.3s;
-}
-
-.category {
-  display: inline-block;
-  color: var(--primary);
-  background: #efefff;
-  padding: 7px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-#question {
-  font-size: 22px;
-  line-height: 1.4;
-  margin: 0 0 20px;
-}
-
-.answers {
-  display: grid;
-  gap: 11px;
-}
-
-.answer {
-  width: 100%;
-  padding: 15px;
-  border: 2px solid #e7e9f2;
-  border-radius: 13px;
-  background: white;
-  text-align: left;
-  font-size: 15px;
-  color: var(--text);
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.answer:active {
-  transform: scale(0.98);
-}
-
-.answer:hover:not(:disabled) {
-  border-color: var(--primary);
-  background: #f8f8ff;
-}
-
-.answer.correct {
-  background: #e7f9ee;
-  border-color: #28a960;
-  color: #16723c;
-}
-
-.answer.wrong {
-  background: #fff0ef;
-  border-color: #ed6868;
-  color: #b72d2d;
-}
-
-.answer:disabled {
-  cursor: default;
-}
-
-.feedback {
-  min-height: 25px;
-  margin: 15px 0 5px;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 14px;
-}
-
-.btn {
-  border: none;
-  padding: 14px 18px;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.primary {
-  background: var(--primary);
-  color: white;
-  flex: 1;
-}
-
-.primary:hover {
-  background: #4849c5;
-}
-
-.secondary {
-  background: #eeeefe;
-  color: var(--primary);
-}
-
-button:focus-visible {
-  outline: 3px solid #a6a6ff;
-  outline-offset: 3px;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.result {
-  text-align: center;
-  padding: 15px 0 5px;
-}
-
-.result-emoji {
-  font-size: 65px;
-}
-
-.result h2 {
-  font-size: 28px;
-  margin: 12px 0;
-}
-
-.result p {
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.final-score {
-  font-size: 46px;
-  color: var(--primary);
-  font-weight: bold;
-  margin: 20px 0 5px;
-}
-
-.result-details {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin: 20px 0;
-}
-
-.result-box {
-  flex: 1;
-  padding: 15px 5px;
-  background: #f4f5ff;
-  border-radius: 12px;
-}
-
-.result-box strong {
-  display: block;
-  font-size: 22px;
-  margin-bottom: 5px;
-}
-
-.result-box small {
-  color: var(--muted);
-}
-
-.footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  margin-top: 20px;
-}
-
-@media (max-width: 380px) {
-  .card {
-    padding: 17px;
-  }
-
-  #question {
-    font-size: 19px;
-  }
-
-  .header h1 {
-    font-size: 26px;
-  }
-}
-</style>
-</head>
-
-<body>
-<div class="container">
-
-  <header class="header">
-    <div class="logo">🧠</div>
-    <h1>Quiz<span>Quest</span></h1>
-    <p>Challenge your mind. Beat your best score!</p>
-  </header>
-
-  <main class="card">
-
-    <section id="gameScreen">
-
-      <div class="stats">
-        <div class="stat">
-          <small>🏆 Score</small>
-          <strong id="score">0</strong>
-        </div>
-        <div class="stat">
-          <small>⏱ Time</small>
-          <strong id="timer">15s</strong>
-        </div>
-        <div class="stat">
-          <small>🔥 Streak</small>
-          <strong id="streak">0</strong>
-        </div>
-      </div>
-
-      <div class="progress-info">
-        <span id="questionCount">Question 1 of 10</span>
-        <span id="percent">0% completed</span>
-      </div>
-
-      <div class="progress-bar">
-        <div class="progress" id="progress"></div>
-      </div>
-
-      <div class="category" id="category">GENERAL KNOWLEDGE</div>
-
-      <h2 id="question">Loading question...</h2>
-
-      <div class="answers" id="answers"></div>
-
-      <p class="feedback" id="feedback" aria-live="polite"></p>
-
-      <div class="actions">
-        <button class="btn secondary" id="quitBtn">
-          Quit
-        </button>
-        <button class="btn primary" id="nextBtn" disabled>
-          Next Question →
-        </button>
-      </div>
-
-    </section>
-
-    <section id="resultScreen" class="result hidden">
-      <div class="result-emoji" id="resultEmoji">🏆</div>
-      <h2 id="resultTitle">Amazing job!</h2>
-      <p id="resultMessage">You completed the challenge.</p>
-
-      <div class="final-score" id="finalScore">0/10</div>
-      <p>Your final score</p>
-
-      <div class="result-details">
-        <div class="result-box">
-          <strong id="correctCount">0</strong>
-          <small>Correct</small>
-        </div>
-        <div class="result-box">
-          <strong id="wrongCount">0</strong>
-          <small>Incorrect</small>
-        </div>
-        <div class="result-box">
-          <strong id="accuracy">0%</strong>
-          <small>Accuracy</small>
-        </div>
-      </div>
-
-      <button class="btn primary" id="restartBtn"
-              style="width:100%">
-        🔄 Play Again
-      </button>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    Made with ❤️ for curious minds
-  </footer>
-
-</div>
-
 <script>
-const questions = [
-  {
-    category: "SCIENCE",
-    question: "Which planet is known as the Red Planet?",
-    options: ["Venus", "Mars", "Jupiter", "Mercury"],
-    answer: 1
-  },
-  {
-    category: "MATHEMATICS",
-    question: "What is 12 × 8?",
-    options: ["84", "92", "96", "108"],
-    answer: 2
-  },
-  {
-    category: "GEOGRAPHY",
-    question: "What is the capital of Japan?",
-    options: ["Seoul", "Beijing", "Bangkok", "Tokyo"],
-    answer: 3
-  },
-  {
-    category: "SCIENCE",
-    question: "Which gas do plants absorb from the air?",
-    options: [
-      "Oxygen",
-      "Carbon dioxide",
-      "Nitrogen",
-      "Hydrogen"
-    ],
-    answer: 1
-  },
-  {
-    category: "GENERAL KNOWLEDGE",
-    question: "How many days are there in a leap year?",
-    options: ["364", "365", "366", "367"],
-    answer: 2
-  },
-  {
-    category: "TECHNOLOGY",
-    question: "What does HTML stand for?",
-    options: [
-      "HyperText Markup Language",
-      "HighText Machine Language",
-      "Hyper Transfer Main Link",
-      "Home Tool Markup Language"
-    ],
-    answer: 0
-  },
-  {
-    category: "ANIMALS",
-    question: "Which is the largest land animal?",
-    options: [
-      "Giraffe",
-      "Hippopotamus",
-      "Rhinoceros",
-      "African elephant"
-    ],
-    answer: 3
-  },
-  {
-    category: "SPACE",
-    question: "What is at the center of our solar system?",
-    options: ["Earth", "The Sun", "The Moon", "Mars"],
-    answer: 1
-  },
-  {
-    category: "MATHEMATICS",
-    question: "What is the square root of 144?",
-    options: ["10", "11", "12", "14"],
-    answer: 2
-  },
-  {
-    category: "GENERAL KNOWLEDGE",
-    question: "How many colors are traditionally in a rainbow?",
-    options: ["Five", "Six", "Seven", "Eight"],
-    answer: 2
-  }
-];
+const questionBank = [
+["SCIENCE","Which planet is known as the Red Planet?",["Venus","Mars","Jupiter","Mercury"],1],
+["MATHS","What is 12 × 8?",["84","92","96","108"],2],
+["GEOGRAPHY","What is the capital of Japan?",["Seoul","Beijing","Bangkok","Tokyo"],3],
+["SCIENCE","Which gas do plants absorb?",["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],1],
+["GENERAL","How many days are in a leap year?",["364","365","366","367"],2],
+["TECHNOLOGY","What does HTML stand for?",["HyperText Markup Language","HighText Machine Language","Hyper Transfer Main Link","Home Tool Markup Language"],0],
+["ANIMALS","Which is the largest land animal?",["Giraffe","Hippo","Rhino","African elephant"],3],
+["SPACE","What is at the center of our solar system?",["Earth","The Sun","The Moon","Mars"],1],
+["MATHS","What is the square root of 144?",["10","11","12","14"],2],
+["GENERAL","How many colors are traditionally in a rainbow?",["Five","Six","Seven","Eight"],2],
+
+["SCIENCE","What is the chemical formula for water?",["CO2","H2O","O2","NaCl"],1],
+["SCIENCE","Which organ pumps blood around the body?",["Lungs","Brain","Heart","Kidney"],2],
+["SCIENCE","How many bones does an adult human usually have?",["106","206","306","406"],1],
+["SCIENCE","What force pulls objects toward Earth?",["Magnetism","Friction","Gravity","Electricity"],2],
+["SCIENCE","Which vitamin can the body make using sunlight?",["Vitamin A","Vitamin B12","Vitamin C","Vitamin D"],3],
+["SCIENCE","At what temperature does water freeze in Celsius?",["0°C","10°C","50°C","100°C"],0],
+["SCIENCE","Which part of a plant absorbs water?",["Flower","Root","Fruit","Leaf"],1],
+["SCIENCE","Which gas do humans need to breathe?",["Helium","Carbon dioxide","Oxygen","Methane"],2],
+["SCIENCE","What is the hardest naturally occurring substance?",["Gold","Iron","Quartz","Diamond"],3],
+["SCIENCE","What is the center of an atom called?",["Nucleus","Cell","Core","Electron"],0],
+
+["MATHS","What is 15 + 27?",["32","42","52","40"],1],
+["MATHS","What is 9 × 9?",["72","81","89","99"],1],
+["MATHS","What is half of 250?",["100","115","125","150"],2],
+["MATHS","How many sides does a hexagon have?",["Five","Six","Seven","Eight"],1],
+["MATHS","What is 100 divided by 4?",["20","25","40","50"],1],
+["MATHS","What is 7 squared?",["14","42","49","56"],2],
+["MATHS","How many degrees are in a right angle?",["45","90","180","360"],1],
+["MATHS","What is 3/4 as a percentage?",["25%","50%","75%","80%"],2],
+["MATHS","What is 144 divided by 12?",["10","11","12","14"],2],
+["MATHS","What is 25 × 4?",["50","75","100","125"],2],
+
+["GEOGRAPHY","Which is the largest ocean?",["Atlantic","Indian","Arctic","Pacific"],3],
+["GEOGRAPHY","Which country is famous for the pyramids of Giza?",["India","Egypt","Greece","Mexico"],1],
+["GEOGRAPHY","What is the capital of France?",["Rome","Madrid","Paris","Lisbon"],2],
+["GEOGRAPHY","Which continent is India in?",["Europe","Asia","Africa","Australia"],1],
+["GEOGRAPHY","Which is the world's highest mountain above sea level?",["K2","Kilimanjaro","Everest","Denali"],2],
+["GEOGRAPHY","What is the capital of Australia?",["Sydney","Melbourne","Perth","Canberra"],3],
+["GEOGRAPHY","Which country is shaped like a boot?",["Italy","Spain","Norway","Thailand"],0],
+["GEOGRAPHY","Which is the largest continent?",["Africa","Asia","Europe","South America"],1],
+["GEOGRAPHY","Which river flows through London?",["Nile","Amazon","Thames","Danube"],2],
+["GEOGRAPHY","What is the capital of Karnataka?",["Mysuru","Hubballi","Mangaluru","Bengaluru"],3],
+
+["TECHNOLOGY","What does CPU stand for?",["Central Processing Unit","Computer Power Utility","Central Program User","Control Processing Upload"],0],
+["TECHNOLOGY","Which company develops Android?",["Apple","Google","Microsoft","Sony"],1],
+["TECHNOLOGY","Which of these is a web browser?",["Excel","Photoshop","Firefox","Notepad"],2],
+["TECHNOLOGY","What does URL identify?",["A web address","A keyboard","A processor","A battery"],0],
+["TECHNOLOGY","Which language adds interactivity to webpages?",["HTML only","CSS only","JavaScript","XML only"],2],
+["TECHNOLOGY","What does Wi-Fi help devices do?",["Print without ink","Connect wirelessly to a network","Charge instantly","Increase screen size"],1],
+["TECHNOLOGY","Which device is used to move a cursor?",["Scanner","Speaker","Microphone","Mouse"],3],
+["TECHNOLOGY","What is the binary digit system based on?",["2 digits","4 digits","8 digits","10 digits"],0],
+["TECHNOLOGY","Which is an example of an operating system?",["Google Maps","Android","YouTube","Bluetooth"],1],
+["TECHNOLOGY","What does AI stand for?",["Automatic Internet","Advanced Input","Artificial Intelligence","Applied Interface"],2],
+
+["ANIMALS","Which animal is often called the king of the jungle?",["Tiger","Lion","Elephant","Wolf"],1],
+["ANIMALS","Which mammal can fly?",["Bat","Penguin","Ostrich","Chicken"],0],
+["ANIMALS","What is a baby frog called?",["Cub","Calf","Tadpole","Chick"],2],
+["ANIMALS","Which animal has a very long neck?",["Zebra","Giraffe","Panda","Fox"],1],
+["ANIMALS","Which is the largest animal on Earth?",["Elephant","Whale shark","Blue whale","Giraffe"],2],
+["ANIMALS","How many legs does a spider have?",["Six","Eight","Ten","Twelve"],1],
+["ANIMALS","Which animal is known for changing its colors?",["Camel","Dolphin","Chameleon","Rabbit"],2],
+["ANIMALS","What do bees collect from flowers?",["Sand","Nectar","Leaves","Bark"],1],
+["ANIMALS","Which bird is famous for mimicking speech?",["Eagle","Sparrow","Flamingo","Parrot"],3],
+["ANIMALS","Which animal carries its baby in a pouch?",["Kangaroo","Horse","Deer","Tiger"],0],
+
+["SPACE","Which planet is famous for its rings?",["Mars","Saturn","Venus","Mercury"],1],
+["SPACE","Which is Earth's natural satellite?",["Sun","Mars","Moon","Venus"],2],
+["SPACE","What is the name of our galaxy?",["Andromeda","Whirlpool","Sombrero","Milky Way"],3],
+["SPACE","Which planet is closest to the Sun?",["Mercury","Earth","Mars","Neptune"],0],
+["SPACE","What do astronauts travel into space in?",["Submarine","Spacecraft","Train","Glider"],1],
+["SPACE","Which planet is the largest in our solar system?",["Earth","Saturn","Jupiter","Neptune"],2],
+["SPACE","What causes day and night on Earth?",["Earth's rotation","The Moon's rotation","Ocean tides","Cloud movement"],0],
+["SPACE","What is a shooting star usually called scientifically?",["Planet","Comet","Meteor","Satellite"],2],
+["SPACE","Which planet is known for its Great Red Spot?",["Venus","Jupiter","Mars","Uranus"],1],
+["SPACE","What do we call a person who travels into space?",["Pilot","Sailor","Scientist only","Astronaut"],3],
+
+["SPORTS","How many players are on a football team on the field?",["9","10","11","12"],2],
+["SPORTS","Which sport uses a shuttlecock?",["Tennis","Badminton","Hockey","Cricket"],1],
+["SPORTS","How many rings are on the Olympic symbol?",["Four","Five","Six","Seven"],1],
+["SPORTS","Which sport uses a bat and wickets?",["Cricket","Basketball","Swimming","Volleyball"],0],
+["SPORTS","In which sport do players score a slam dunk?",["Tennis","Golf","Basketball","Rugby"],2],
+["SPORTS","Wimbledon is associated with which sport?",["Cricket","Tennis","Football","Boxing"],1],
+["SPORTS","Which country hosted the ancient Olympic Games?",["Italy","Egypt","Greece","India"],2],
+["SPORTS","How many players from one team are on a basketball court?",["Five","Six","Seven","Eleven"],0],
+["SPORTS","Which sport is played at the Tour de France?",["Running","Cycling","Swimming","Skiing"],1],
+["SPORTS","What is a score of zero called in tennis?",["Nil","Duck","Love","Blank"],2],
+
+["GENERAL","How many hours are in one day?",["12","18","20","24"],3],
+["GENERAL","How many months are in a year?",["10","11","12","13"],2],
+["GENERAL","Which language is primarily spoken in Brazil?",["Spanish","Portuguese","French","Italian"],1],
+["GENERAL","What is the currency of Japan?",["Yuan","Won","Yen","Rupee"],2],
+["GENERAL","Which festival is known as the festival of lights in India?",["Holi","Pongal","Eid","Diwali"],3],
+["GENERAL","How many letters are in the English alphabet?",["24","25","26","27"],2],
+["GENERAL","Which instrument has black and white keys?",["Piano","Flute","Drum","Trumpet"],0],
+["GENERAL","What is frozen water called?",["Steam","Ice","Mist","Rain"],1],
+["GENERAL","Which direction does the Sun rise from?",["North","South","East","West"],2],
+["GENERAL","Which shape has three sides?",["Square","Triangle","Pentagon","Circle"],1],
+
+["INDIA","What is the capital of India?",["Mumbai","New Delhi","Chennai","Kolkata"],1],
+["INDIA","What is the national animal of India?",["Lion","Elephant","Bengal tiger","Leopard"],2],
+["INDIA","What is the national bird of India?",["Peacock","Parrot","Eagle","Swan"],0],
+["INDIA","Which is India's national flower?",["Rose","Lotus","Sunflower","Jasmine"],1],
+["INDIA","Which monument is located in Agra?",["India Gate","Charminar","Gateway of India","Taj Mahal"],3],
+["INDIA","Which ocean lies south of India?",["Pacific Ocean","Atlantic Ocean","Indian Ocean","Arctic Ocean"],2],
+["INDIA","Which Indian state is famous for tea gardens in Assam?",["Assam","Punjab","Gujarat","Goa"],0],
+["INDIA","Which is the national anthem of India?",["Vande Mataram","Jana Gana Mana","Saare Jahan Se Achha","Ae Mere Watan"],1],
+["INDIA","Which city is famous for the Charminar?",["Bengaluru","Jaipur","Hyderabad","Pune"],2],
+["INDIA","Which festival celebrates the harvest in Karnataka and Tamil Nadu?",["Pongal","Onam","Baisakhi","Pongal and Sankranti"],3]
+].map(([category, question, options, answer]) => ({
+  category, question, options, answer
+}));
 
 const $ = id => document.getElementById(id);
 
@@ -484,13 +131,12 @@ try {
   bestScore = Number(localStorage.getItem("quizQuestBest")) || 0;
 } catch (e) {}
 
-function shuffleQuestions() {
-  quiz = [...questions];
-
-  for (let i = quiz.length - 1; i > 0; i--) {
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [quiz[i], quiz[j]] = [quiz[j], quiz[i]];
+    [array[i], array[j]] = [array[j], array[i]];
   }
+  return array;
 }
 
 function startGame() {
@@ -502,13 +148,13 @@ function startGame() {
   correct = 0;
   wrong = 0;
 
-  shuffleQuestions();
+  // Pick 10 different random questions for every new round.
+  quiz = shuffle([...questionBank]).slice(0, 10);
 
   $("gameScreen").classList.remove("hidden");
   $("resultScreen").classList.add("hidden");
-
-  $("score").textContent = score;
-  $("streak").textContent = streak;
+  $("score").textContent = "0";
+  $("streak").textContent = "0";
 
   showQuestion();
 }
@@ -528,45 +174,37 @@ function showQuestion() {
 
   $("questionCount").textContent =
     `Question ${current + 1} of ${quiz.length}`;
-
   $("percent").textContent =
-    Math.round((current / quiz.length) * 100) + "% completed";
-
+    Math.round(current / quiz.length * 100) + "% completed";
   $("progress").style.width =
-    (current / quiz.length * 100) + "%";
+    current / quiz.length * 100 + "%";
 
   $("category").textContent = q.category;
   $("question").textContent = q.question;
   $("timer").textContent = timeLeft + "s";
+  $("timer").style.color = "var(--text)";
   $("feedback").textContent = "";
   $("nextBtn").disabled = true;
+  $("nextBtn").textContent =
+    current === quiz.length - 1 ? "See Results 🏆" : "Next Question →";
 
-  const answersBox = $("answers");
-  answersBox.replaceChildren();
+  const box = $("answers");
+  box.replaceChildren();
 
   q.options.forEach((option, index) => {
     const button = document.createElement("button");
-
     button.className = "answer";
     button.textContent =
       String.fromCharCode(65 + index) + ". " + option;
-
-    button.addEventListener("click", () => {
-      selectAnswer(index);
-    });
-
-    answersBox.appendChild(button);
+    button.addEventListener("click", () => selectAnswer(index));
+    box.appendChild(button);
   });
 
   timerId = setInterval(() => {
     timeLeft--;
     $("timer").textContent = timeLeft + "s";
 
-    if (timeLeft <= 5) {
-      $("timer").style.color = "#e34d4d";
-    } else {
-      $("timer").style.color = "var(--text)";
-    }
+    if (timeLeft <= 5) $("timer").style.color = "#e34d4d";
 
     if (timeLeft <= 0) {
       clearInterval(timerId);
@@ -586,22 +224,15 @@ function selectAnswer(selected) {
 
   buttons.forEach((button, index) => {
     button.disabled = true;
-
-    if (index === q.answer) {
-      button.classList.add("correct");
-    }
+    if (index === q.answer) button.classList.add("correct");
   });
 
   if (selected === q.answer) {
     correct++;
     streak++;
-
     const points = 10 + timeLeft;
     score += points;
-
-    $("feedback").textContent =
-      `✅ Correct! +${points} points`;
-
+    $("feedback").textContent = `✅ Correct! +${points} points`;
     $("feedback").style.color = "#16804a";
   } else {
     wrong++;
@@ -622,11 +253,6 @@ function selectAnswer(selected) {
   $("score").textContent = score;
   $("streak").textContent = streak;
   $("nextBtn").disabled = false;
-
-  $("nextBtn").textContent =
-    current === quiz.length - 1
-      ? "See Results 🏆"
-      : "Next Question →";
 }
 
 function endGame() {
@@ -634,13 +260,13 @@ function endGame() {
 
   $("gameScreen").classList.add("hidden");
   $("resultScreen").classList.remove("hidden");
-
   $("progress").style.width = "100%";
+
   $("finalScore").textContent = `${correct}/${quiz.length}`;
   $("correctCount").textContent = correct;
   $("wrongCount").textContent = wrong;
 
-  const accuracy = Math.round((correct / quiz.length) * 100);
+  const accuracy = Math.round(correct / quiz.length * 100);
   $("accuracy").textContent = accuracy + "%";
 
   if (accuracy === 100) {
@@ -667,45 +293,29 @@ function endGame() {
 
   if (score > bestScore) {
     bestScore = score;
-
     try {
       localStorage.setItem("quizQuestBest", bestScore);
     } catch (e) {}
-
-    $("resultMessage").textContent +=
-      " New personal best! 🥇";
+    $("resultMessage").textContent += " New personal best! 🥇";
   }
 }
 
 $("nextBtn").addEventListener("click", () => {
-  if (!answered) return;
-
-  current++;
-  showQuestion();
+  if (answered) {
+    current++;
+    showQuestion();
+  }
 });
 
 $("restartBtn").addEventListener("click", startGame);
 
 $("quitBtn").addEventListener("click", () => {
-  clearInterval(timerId);
-
   if (confirm("Are you sure you want to quit this game?")) {
+    clearInterval(timerId);
     endGame();
-  } else if (!answered) {
-    timerId = setInterval(() => {
-      timeLeft--;
-      $("timer").textContent = timeLeft + "s";
-
-      if (timeLeft <= 0) {
-        clearInterval(timerId);
-        selectAnswer(-1);
-      }
-    }, 1000);
   }
 });
 
 startGame();
 </script>
-</body>
-</html>
 
