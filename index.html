@@ -1,449 +1,605 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ff8db7">
-<title>Tharun ❤️ Shravya</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101426">
+<title>Scientific Calculator</title>
 
 <style>
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  color: #71365e;
-  text-align: center;
-  background: linear-gradient(
-    160deg, #ffd8e8, #f0d9ff, #ffe9d7
-  );
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0b1020, #202b50);
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
 }
 
-main {
-  width: min(100%, 520px);
-  margin: auto;
-  padding: 24px 17px 40px;
+.calculator {
+    width: 100%;
+    max-width: 440px;
+    padding: 20px;
+    background: #151c30;
+    border: 1px solid #303b5d;
+    border-radius: 25px;
+    box-shadow: 0 20px 60px #0007;
 }
 
-.hero {
-  padding: 30px 12px;
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
 }
 
-.big-heart {
-  font-size: 70px;
-  animation: beat 1.5s infinite;
+.header h2 {
+    font-size: 20px;
+    letter-spacing: 1px;
 }
 
-h1 {
-  font-size: 36px;
-  color: #a23d78;
+.mode {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    background: #35446b;
+    color: #a9c0ff;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-h2 {
-  color: #a23d78;
+.display {
+    background: #090e1c;
+    border-radius: 17px;
+    padding: 18px 14px;
+    min-height: 115px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
 }
 
-p {
-  line-height: 1.7;
+#history {
+    color: #8794b9;
+    text-align: right;
+    font-size: 13px;
+    min-height: 20px;
+    overflow-wrap: anywhere;
 }
 
-.card {
-  background: #ffffffd9;
-  border: 1px solid white;
-  border-radius: 25px;
-  padding: 23px 18px;
-  margin: 18px 0;
-  box-shadow: 0 12px 35px #b35a8830;
+#expression {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #a8b8e8;
+    font-size: 19px;
+    text-align: right;
+    padding: 8px 0;
 }
 
-button {
-  border: none;
-  border-radius: 25px;
-  padding: 14px 18px;
-  margin: 6px;
-  font-size: 15px;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(135deg, #ff78a7, #d56ed1);
-  cursor: pointer;
+#result {
+    text-align: right;
+    font-size: clamp(25px, 7vw, 35px);
+    font-weight: bold;
+    overflow-wrap: anywhere;
+    color: #ffffff;
 }
 
-button:active {
-  transform: scale(.96);
+.section-label {
+    font-size: 11px;
+    color: #8996b8;
+    letter-spacing: 2px;
+    margin: 17px 0 9px;
 }
 
-.secondary {
-  background: #fff0f7;
-  color: #a23d78;
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
 }
 
-.hidden {
-  display: none !important;
+button.key {
+    border: none;
+    border-radius: 12px;
+    height: 49px;
+    background: #27314c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform .1s, filter .1s;
+    touch-action: manipulation;
 }
 
-.message {
-  font-size: 17px;
-  white-space: pre-line;
-  line-height: 1.8;
+button.key:active {
+    transform: scale(.94);
+    filter: brightness(1.3);
 }
 
-.choices {
-  display: grid;
-  gap: 9px;
-  margin-top: 15px;
+button.function {
+    background: #263b58;
+    color: #8fcaff;
+    font-size: 14px;
 }
 
-.choices button {
-  background: #fff0f7;
-  color: #8e3d73;
-  border: 1px solid #ffd1e4;
-  border-radius: 15px;
+button.operator {
+    background: #39446b;
+    color: #b5c6ff;
+    font-size: 20px;
 }
 
-.feedback {
-  color: #a23d78;
-  font-weight: bold;
-  margin-top: 15px;
+button.danger {
+    background: #a83450;
+    color: white;
 }
 
-.progress {
-  height: 7px;
-  background: #f7d7e8;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 18px 0;
+button.equal {
+    background: linear-gradient(135deg, #597bff, #8058ed);
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
 }
 
-.progress span {
-  display: block;
-  height: 100%;
-  width: 0;
-  background: #ff77a5;
-  transition: width .3s;
+button.constant {
+    color: #e0b5ff;
+    background: #3b2c55;
 }
 
-footer {
-  font-size: 12px;
-  margin-top: 25px;
+.footer {
+    color: #7d8aaa;
+    font-size: 11px;
+    text-align: center;
+    margin-top: 18px;
 }
 
-@keyframes beat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
+#message {
+    min-height: 16px;
+    color: #ff9eac;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 8px;
+}
+
+@media (max-width: 360px) {
+    .calculator { padding: 13px; }
+    .buttons { gap: 6px; }
+    button.key { height: 44px; font-size: 14px; }
+    button.function { font-size: 12px; }
 }
 </style>
 </head>
 
 <body>
-<main>
 
-<section class="hero" id="welcome">
-  <div class="big-heart">💗</div>
+<main class="calculator">
 
-  <h1>Tharun ❤️ Shravya</h1>
-
-  <p>
-    Hey Shravya, my favourite person! 🥹💕<br>
-    I made this little world just for you.
-    Every click has a little love from me.
-  </p>
-
-  <button onclick="openGame()">
-    Open Your Surprise ✨
-  </button>
-</section>
-
-<section id="game" class="hidden">
-
-  <div class="card" id="intro">
-    <div class="big-heart">🌷</div>
-
-    <h2>Welcome, Shravya!</h2>
-
-    <p class="message">
-      If I could give you one thing today,
-      it would be the chance to see yourself
-      through my eyes.
-
-      You would understand why you make my
-      ordinary days feel special.
-
-      This little game is made with love,
-      just for you.
-
-      From your Tharun ❤️
-    </p>
-
-    <button onclick="showSection('quiz')">
-      Start Our Love Quest 💕
-    </button>
-  </div>
-
-  <div class="card hidden" id="quiz">
-    <h2>A Little Love Quiz 💞</h2>
-
-    <p id="question" class="message"></p>
-
-    <div id="choices" class="choices"></div>
-
-    <div id="feedback" class="feedback"></div>
-
-    <div class="progress">
-      <span id="bar"></span>
+    <div class="header">
+        <h2>🔬 SCI CALCULATOR</h2>
+        <button class="mode" id="mode" onclick="toggleMode()">
+            DEG
+        </button>
     </div>
 
-    <p id="qCount"></p>
+    <div class="display">
+        <div id="history">Scientific calculator</div>
+        <input id="expression"
+               type="text"
+               placeholder="Enter expression"
+               autocomplete="off"
+               spellcheck="false"
+               aria-label="Calculator expression">
+        <div id="result">0</div>
+    </div>
 
-    <button id="nextBtn" class="hidden"
-      onclick="nextQuestion()">
-      Next 💗
-    </button>
-  </div>
+    <div class="section-label">SCIENTIFIC FUNCTIONS</div>
 
-  <div class="card hidden" id="letter">
-    <div class="big-heart">💌</div>
+    <div class="buttons">
+        <button class="key function" onclick="insert('sin(')">sin</button>
+        <button class="key function" onclick="insert('cos(')">cos</button>
+        <button class="key function" onclick="insert('tan(')">tan</button>
+        <button class="key function" onclick="insert('log(')">log</button>
+        <button class="key function" onclick="insert('ln(')">ln</button>
 
-    <h2>A Letter From Tharun</h2>
+        <button class="key function" onclick="insert('asin(')">sin⁻¹</button>
+        <button class="key function" onclick="insert('acos(')">cos⁻¹</button>
+        <button class="key function" onclick="insert('atan(')">tan⁻¹</button>
+        <button class="key function" onclick="insert('sqrt(')">√x</button>
+        <button class="key function" onclick="insert('cbrt(')">∛x</button>
 
-    <p class="message">Dear Shravya ❤️,
+        <button class="key function" onclick="insert('^2')">x²</button>
+        <button class="key function" onclick="insert('^3')">x³</button>
+        <button class="key function" onclick="insert('^')">xʸ</button>
+        <button class="key function" onclick="insert('!')">x!</button>
+        <button class="key function" onclick="insert('abs(')">|x|</button>
 
-I just wanted to remind you that you mean so much to me.
+        <button class="key constant" onclick="insert('pi')">π</button>
+        <button class="key constant" onclick="insert('e')">e</button>
+        <button class="key function" onclick="insert('(')">(</button>
+        <button class="key function" onclick="insert(')')">)</button>
+        <button class="key function" onclick="insert('/100')">÷100</button>
+    </div>
 
-I hope you always find reasons to smile,
-keep believing in yourself, and remember
-that someone is cheering for you.
+    <div class="section-label">BASIC OPERATIONS</div>
 
-Thank you for being yourself.
-You make little moments feel special,
-and your happiness means a lot to me.
+    <div class="buttons">
+        <button class="key danger" onclick="clearAll()">AC</button>
+        <button class="key danger" onclick="backspace()">DEL</button>
+        <button class="key operator" onclick="insert('%')">%</button>
+        <button class="key operator" onclick="insert('/')">÷</button>
+        <button class="key operator" onclick="insert('*')">×</button>
 
-Even this little game cannot hold all
-the things I want to tell you.
+        <button class="key" onclick="insert('7')">7</button>
+        <button class="key" onclick="insert('8')">8</button>
+        <button class="key" onclick="insert('9')">9</button>
+        <button class="key operator" onclick="insert('-')">−</button>
+        <button class="key function" onclick="insert('^(-1)')">1/x</button>
 
-But I hope it makes you smile today.
+        <button class="key" onclick="insert('4')">4</button>
+        <button class="key" onclick="insert('5')">5</button>
+        <button class="key" onclick="insert('6')">6</button>
+        <button class="key operator" onclick="insert('+')">+</button>
+        <button class="key function" onclick="insert('10^(')">10ˣ</button>
 
-Whenever you feel sad, remember that
-you are precious and deserve so much love.
+        <button class="key" onclick="insert('1')">1</button>
+        <button class="key" onclick="insert('2')">2</button>
+        <button class="key" onclick="insert('3')">3</button>
+        <button class="key" onclick="insert('0')">0</button>
+        <button class="key" onclick="insert('.')">.</button>
 
-Sending you the biggest virtual hug! 🫂
+        <button class="key constant" onclick="insert('Ans')">Ans</button>
+        <button class="key function" onclick="insert('exp(')">eˣ</button>
+        <button class="key function" onclick="insert('floor(')">floor</button>
+        <button class="key function" onclick="insert('ceil(')">ceil</button>
+        <button class="key equal" onclick="calculate()">=</button>
+    </div>
 
-Always yours,
-Tharun ❤️</p>
+    <div id="message"></div>
 
-    <button onclick="showSection('final')">
-      One Last Surprise 🎁
-    </button>
-  </div>
-
-  <div class="card hidden" id="final">
-    <div class="big-heart">💝</div>
-
-    <h2>Shravya, One Last Thing...</h2>
-
-    <p class="message">
-      No game score could ever measure
-      how special you are to me.
-
-      You are one of my favourite reasons
-      to smile.
-
-      If this little surprise made you smile,
-      then my mission is complete! 🥹
-
-      Sending all my love to you.
-
-      Forever cheering for you,
-      Tharun ❤️
-    </p>
-
-    <button onclick="burstHearts()">
-      Send Me a Sky Full of Hearts 💖
-    </button>
-
-    <p id="heartRain" class="message"></p>
-
-    <button class="secondary" onclick="restart()">
-      Play Again ↻
-    </button>
-  </div>
-
-</section>
-
-<footer>
-  Made with love by Tharun, just for Shravya 💗
-</footer>
+    <div class="footer">
+        DEG/RAD • Scientific calculations • Keyboard support
+    </div>
 
 </main>
 
 <script>
-const questions = [
-  {
-    q: "What makes a relationship feel special?",
-    a: [
-      "Love, trust and understanding ❤️",
-      "Always winning arguments 😜",
-      "Never talking about feelings"
-    ],
-    reply:
-      "Yes! I hope we always understand and support each other. 💗"
-  },
-  {
-    q: "Choose our dream date!",
-    a: [
-      "A walk together and long talks 🌷",
-      "A competition to see who is cooler 😂",
-      "Eating snacks and watching a movie 🍿"
-    ],
-    reply:
-      "Any simple moment with you could become a beautiful memory. ❤️"
-  },
-  {
-    q: "When you have a difficult day, what do you deserve?",
-    a: [
-      "Patience, comfort and kindness 🫂",
-      "Someone making me feel worse",
-      "A little time and understanding"
-    ],
-    reply:
-      "Always kindness, Shravya. You deserve to feel cared for. 💕"
-  },
-  {
-    q: "Who made this little game for you?",
-    a: [
-      "Tharun ❤️",
-      "A secret admirer 👀",
-      "My favourite person!"
-    ],
-    reply:
-      "Correct answer: your Tharun! I made this little surprise for you. 🥹❤️"
-  },
-  {
-    q: "Final question: do you know you're special to me?",
-    a: [
-      "I hope so 🥹",
-      "Tell me one more time! 💗",
-      "Both answers!"
-    ],
-    reply:
-      "Let me tell you again, Shravya: you are special to me, exactly as you are. ❤️"
-  }
-];
+const input = document.getElementById("expression");
+const result = document.getElementById("result");
+const history = document.getElementById("history");
+const message = document.getElementById("message");
+const modeButton = document.getElementById("mode");
 
-let index = 0;
-let answered = false;
+let angleMode = "DEG";
+let lastAnswer = 0;
 
-function openGame() {
-  document.getElementById("welcome")
-    .classList.add("hidden");
-
-  document.getElementById("game")
-    .classList.remove("hidden");
-
-  showSection("intro");
+function toggleMode() {
+    angleMode = angleMode === "DEG" ? "RAD" : "DEG";
+    modeButton.textContent = angleMode;
+    message.textContent = "Angle mode: " + angleMode;
 }
 
-function showSection(id) {
-  ["intro", "quiz", "letter", "final"].forEach(
-    section => {
-      document.getElementById(section)
-        .classList.add("hidden");
+function insert(value) {
+    const start = input.selectionStart ?? input.value.length;
+    const end = input.selectionEnd ?? input.value.length;
+
+    input.value =
+        input.value.slice(0, start) +
+        value +
+        input.value.slice(end);
+
+    input.focus();
+
+    const cursor = start + value.length;
+    input.setSelectionRange(cursor, cursor);
+
+    message.textContent = "";
+}
+
+function clearAll() {
+    input.value = "";
+    result.textContent = "0";
+    history.textContent = "Scientific calculator";
+    message.textContent = "";
+    input.focus();
+}
+
+function backspace() {
+    const start = input.selectionStart ?? input.value.length;
+    const end = input.selectionEnd ?? input.value.length;
+
+    if (start !== end) {
+        input.value =
+            input.value.slice(0, start) +
+            input.value.slice(end);
+        input.setSelectionRange(start, start);
+    } else if (start > 0) {
+        input.value =
+            input.value.slice(0, start - 1) +
+            input.value.slice(start);
+        input.setSelectionRange(start - 1, start - 1);
     }
-  );
 
-  document.getElementById(id)
-    .classList.remove("hidden");
-
-  if (id === "quiz") {
-    renderQuestion();
-  }
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+    input.focus();
 }
 
-function renderQuestion() {
-  answered = false;
+function factorial(n) {
+    if (!Number.isInteger(n) || n < 0 || n > 170) {
+        throw new Error("Factorial needs an integer from 0 to 170");
+    }
 
-  const q = questions[index];
-
-  document.getElementById("question").textContent = q.q;
-  document.getElementById("feedback").textContent = "";
-  document.getElementById("nextBtn").classList.add("hidden");
-
-  document.getElementById("qCount").textContent =
-    "Question " + (index + 1) +
-    " of " + questions.length;
-
-  document.getElementById("bar").style.width =
-    (index / questions.length * 100) + "%";
-
-  const choices = document.getElementById("choices");
-  choices.innerHTML = "";
-
-  q.a.forEach(answerText => {
-    const button = document.createElement("button");
-
-    button.textContent = answerText;
-    button.onclick = () => answerQuestion();
-
-    choices.appendChild(button);
-  });
+    let answer = 1;
+    for (let i = 2; i <= n; i++) {
+        answer *= i;
+    }
+    return answer;
 }
 
-function answerQuestion() {
-  if (answered) return;
+// Safe expression parser: no eval() or Function().
+function evaluate(source) {
+    const tokens = [];
+    const pattern =
+        /\s*(?:(\d+(?:\.\d*)?|\.\d+)(?:[eE]([+-]?\d+))?|([A-Za-z]+)|(.))/gy;
 
-  answered = true;
+    let position = 0;
 
-  document.getElementById("feedback").textContent =
-    questions[index].reply;
+    while (position < source.length) {
+        pattern.lastIndex = position;
+        const match = pattern.exec(source);
 
-  document.querySelectorAll("#choices button")
-    .forEach(button => {
-      button.disabled = true;
-      button.style.opacity = "0.75";
-    });
+        if (!match) {
+            if (/^\s*$/.test(source.slice(position))) break;
+            throw new Error("Invalid expression");
+        }
 
-  document.getElementById("bar").style.width =
-    ((index + 1) / questions.length * 100) + "%";
+        position = pattern.lastIndex;
 
-  const next = document.getElementById("nextBtn");
+        if (match[1] !== undefined) {
+            tokens.push({
+                type: "number",
+                value: Number(match[1] +
+                    (match[2] !== undefined ? "e" + match[2] : ""))
+            });
+        } else if (match[3] !== undefined) {
+            tokens.push({
+                type: "name",
+                value: match[3].toLowerCase()
+            });
+        } else if ("+-*/^()%!,".includes(match[4])) {
+            tokens.push({
+                type: match[4],
+                value: match[4]
+            });
+        } else {
+            throw new Error("Invalid character: " + match[4]);
+        }
+    }
 
-  next.textContent =
-    index === questions.length - 1
-      ? "Open Your Love Letter 💌"
-      : "Next Question 💗";
+    tokens.push({ type: "end", value: "" });
 
-  next.classList.remove("hidden");
+    let index = 0;
+
+    function peek() {
+        return tokens[index];
+    }
+
+    function take(type) {
+        if (peek().type !== type) {
+            throw new Error("Expected " + type);
+        }
+        return tokens[index++];
+    }
+
+    function angleIn(x) {
+        return angleMode === "DEG" ? x * Math.PI / 180 : x;
+    }
+
+    function angleOut(x) {
+        return angleMode === "DEG" ? x * 180 / Math.PI : x;
+    }
+
+    const functions = {
+        sin: x => Math.sin(angleIn(x)),
+        cos: x => Math.cos(angleIn(x)),
+        tan: x => {
+            const a = angleIn(x);
+            if (Math.abs(Math.cos(a)) < 1e-14) {
+                throw new Error("Tangent is undefined here");
+            }
+            return Math.tan(a);
+        },
+        asin: x => {
+            if (x < -1 || x > 1) throw new Error("asin input must be -1 to 1");
+            return angleOut(Math.asin(x));
+        },
+        acos: x => {
+            if (x < -1 || x > 1) throw new Error("acos input must be -1 to 1");
+            return angleOut(Math.acos(x));
+        },
+        atan: x => angleOut(Math.atan(x)),
+        sqrt: x => {
+            if (x < 0) throw new Error("Square root of a negative number");
+            return Math.sqrt(x);
+        },
+        cbrt: x => Math.cbrt(x),
+        log: x => {
+            if (x <= 0) throw new Error("log input must be positive");
+            return Math.log10(x);
+        },
+        ln: x => {
+            if (x <= 0) throw new Error("ln input must be positive");
+            return Math.log(x);
+        },
+        abs: x => Math.abs(x),
+        exp: x => Math.exp(x),
+        floor: x => Math.floor(x),
+        ceil: x => Math.ceil(x),
+        round: x => Math.round(x)
+    };
+
+    function primary() {
+        const token = peek();
+
+        if (token.type === "number") {
+            index++;
+            return token.value;
+        }
+
+        if (token.type === "(") {
+            index++;
+            const value = expression();
+            take(")");
+            return value;
+        }
+
+        if (token.type === "name") {
+            index++;
+            const name = token.value;
+
+            if (name === "pi") return Math.PI;
+            if (name === "e") return Math.E;
+            if (name === "ans") return lastAnswer;
+
+            if (!(name in functions)) {
+                throw new Error("Unknown function: " + name);
+            }
+
+            take("(");
+            const argument = expression();
+            take(")");
+
+            return functions[name](argument);
+        }
+
+        throw new Error("Expected a number or function");
+    }
+
+    function postfix() {
+        let value = primary();
+
+        while (peek().type === "!" || peek().type === "%") {
+            const op = tokens[index++].type;
+
+            if (op === "!") {
+                value = factorial(value);
+            } else {
+                value /= 100;
+            }
+        }
+
+        return value;
+    }
+
+    function power() {
+        let value = postfix();
+
+        if (peek().type === "^") {
+            index++;
+            value = Math.pow(value, unary());
+        }
+
+        return value;
+    }
+
+    function unary() {
+        if (peek().type === "+") {
+            index++;
+            return unary();
+        }
+
+        if (peek().type === "-") {
+            index++;
+            return -unary();
+        }
+
+        return power();
+    }
+
+    function term() {
+        let value = unary();
+
+        while (peek().type === "*" || peek().type === "/") {
+            const op = tokens[index++].type;
+            const right = unary();
+
+            if (op === "/" && right === 0) {
+                throw new Error("Cannot divide by zero");
+            }
+
+            value = op === "*" ? value * right : value / right;
+        }
+
+        return value;
+    }
+
+    function expression() {
+        let value = term();
+
+        while (peek().type === "+" || peek().type === "-") {
+            const op = tokens[index++].type;
+            const right = term();
+            value = op === "+" ? value + right : value - right;
+        }
+
+        return value;
+    }
+
+    if (peek().type === "end") {
+        throw new Error("Enter an expression");
+    }
+
+    const answer = expression();
+
+    if (peek().type !== "end") {
+        throw new Error("Check your expression and parentheses");
+    }
+
+    if (!Number.isFinite(answer)) {
+        throw new Error("Result is outside the supported range");
+    }
+
+    return answer;
 }
 
-function nextQuestion() {
-  if (index < questions.length - 1) {
-    index++;
-    renderQuestion();
-  } else {
-    showSection("letter");
-  }
+function calculate() {
+    try {
+        const source = input.value.trim();
+        if (!source) {
+            message.textContent = "Enter a calculation first";
+            return;
+        }
+
+        const answer = evaluate(source);
+        lastAnswer = answer;
+
+        const rounded = Number(answer.toPrecision(12));
+
+        history.textContent = source + " =";
+        result.textContent = String(rounded);
+        message.textContent = "";
+    } catch (error) {
+        message.textContent = error.message || "Invalid expression";
+    }
 }
 
-function burstHearts() {
-  document.getElementById("heartRain").textContent =
-    "💗 💖 💕 💘 💝 💓 💞 💗\n" +
-    "A sky full of hearts, sent with love from Tharun! 🫂";
-}
+input.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === "=") {
+        event.preventDefault();
+        calculate();
+    }
 
-function restart() {
-  index = 0;
-  showSection("intro");
-}
+    if (event.key === "Escape") {
+        clearAll();
+    }
+});
 </script>
 
 </body>
 </html>
-
