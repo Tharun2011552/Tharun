@@ -1,466 +1,604 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ಶ್ರಾವ್ಯ ❤️ ಥರುಣ್ | ನಮ್ಮ ಪ್ರೇಮಕಥೆ</title>
+<meta name="theme-color" content="#101426">
+<title>Scientific Calculator</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap');
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Noto Sans Kannada', sans-serif;
-    background: linear-gradient(135deg, #210b2c, #5c164e, #a83279);
-    color: white;
     min-height: 100vh;
-    overflow-x: hidden;
-    text-align: center;
-}
-
-.container {
-    width: 92%;
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 30px 0 50px;
-    position: relative;
-    z-index: 2;
-}
-
-.hero {
-    padding: 35px 15px;
-}
-
-.heart {
-    font-size: 65px;
-    animation: heartbeat 1.2s infinite;
-    display: inline-block;
-}
-
-h1 {
-    font-size: clamp(27px, 7vw, 42px);
-    margin: 15px 0;
-    color: #ffd4eb;
-    text-shadow: 0 0 18px #ff4fa3;
-}
-
-.subtitle {
-    font-size: 17px;
-    line-height: 1.9;
-    color: #ffe7f3;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.10);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 22px;
-    padding: 24px 18px;
-    margin: 22px 0;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
-    backdrop-filter: blur(8px);
-}
-
-h2 {
-    color: #ffc5e2;
-    font-size: 23px;
-    margin-bottom: 15px;
-}
-
-p {
-    line-height: 1.9;
-    font-size: 16px;
-}
-
-button {
-    font-family: inherit;
-    background: linear-gradient(135deg, #ff4f9a, #ff78bd);
+    background: linear-gradient(135deg, #0b1020, #202b50);
+    font-family: Arial, sans-serif;
     color: white;
-    border: none;
-    border-radius: 30px;
-    padding: 12px 20px;
-    margin: 8px 5px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(255, 79, 154, 0.25);
-    transition: transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
 }
 
-button:active {
-    transform: scale(0.95);
-}
-
-input[type="date"] {
+.calculator {
     width: 100%;
-    max-width: 280px;
-    padding: 12px;
-    margin: 15px 0;
+    max-width: 440px;
+    padding: 20px;
+    background: #151c30;
+    border: 1px solid #303b5d;
+    border-radius: 25px;
+    box-shadow: 0 20px 60px #0007;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.header h2 {
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.mode {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 14px;
+    background: #35446b;
+    color: #a9c0ff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.display {
+    background: #090e1c;
+    border-radius: 17px;
+    padding: 18px 14px;
+    min-height: 115px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+#history {
+    color: #8794b9;
+    text-align: right;
+    font-size: 13px;
+    min-height: 20px;
+    overflow-wrap: anywhere;
+}
+
+#expression {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #a8b8e8;
+    font-size: 19px;
+    text-align: right;
+    padding: 8px 0;
+}
+
+#result {
+    text-align: right;
+    font-size: clamp(25px, 7vw, 35px);
+    font-weight: bold;
+    overflow-wrap: anywhere;
+    color: #ffffff;
+}
+
+.section-label {
+    font-size: 11px;
+    color: #8996b8;
+    letter-spacing: 2px;
+    margin: 17px 0 9px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+}
+
+button.key {
     border: none;
     border-radius: 12px;
-    font-family: inherit;
-    font-size: 15px;
-    color: #5c164e;
-    background: #fff0f7;
+    height: 49px;
+    background: #27314c;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform .1s, filter .1s;
+    touch-action: manipulation;
 }
 
-.counter {
-    font-size: 31px;
-    font-weight: bold;
-    color: #ffd1e8;
-    margin: 15px 0;
+button.key:active {
+    transform: scale(.94);
+    filter: brightness(1.3);
 }
 
-.small {
-    font-size: 13px;
-    color: #f9d6e9;
-    margin-top: 10px;
-}
-
-.hidden {
-    display: none;
-}
-
-.letter {
-    background: rgba(255, 220, 238, 0.12);
-    padding: 18px;
-    border-radius: 15px;
-    margin-top: 18px;
-    text-align: left;
-    line-height: 2;
-    white-space: pre-line;
-    border-left: 3px solid #ff8bc5;
-}
-
-.answer {
-    color: #ffe0f0;
-    font-size: 17px;
-    margin-top: 15px;
-    min-height: 35px;
-    line-height: 1.9;
-}
-
-footer {
-    padding: 25px 10px;
-    color: #ffd1e8;
+button.function {
+    background: #263b58;
+    color: #8fcaff;
     font-size: 14px;
-    line-height: 2;
 }
 
-/* ತೇಲುವ ಹೃದಯಗಳು */
-
-.floating-heart {
-    position: fixed;
-    bottom: -40px;
-    color: rgba(255, 190, 225, 0.7);
-    pointer-events: none;
-    animation: floatUp linear forwards;
-    z-index: 1;
+button.operator {
+    background: #39446b;
+    color: #b5c6ff;
+    font-size: 20px;
 }
 
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.18); }
+button.danger {
+    background: #a83450;
+    color: white;
 }
 
-@keyframes floatUp {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-    15% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-    }
+button.equal {
+    background: linear-gradient(135deg, #597bff, #8058ed);
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+button.constant {
+    color: #e0b5ff;
+    background: #3b2c55;
+}
+
+.footer {
+    color: #7d8aaa;
+    font-size: 11px;
+    text-align: center;
+    margin-top: 18px;
+}
+
+#message {
+    min-height: 16px;
+    color: #ff9eac;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 8px;
+}
+
+@media (max-width: 360px) {
+    .calculator { padding: 13px; }
+    .buttons { gap: 6px; }
+    button.key { height: 44px; font-size: 14px; }
+    button.function { font-size: 12px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<main class="calculator">
 
-    <!-- ಆರಂಭದ ಭಾಗ -->
-
-    <section class="hero">
-        <div class="heart">❤️</div>
-
-        <h1>ಶ್ರಾವ್ಯ ❤️ ಥರುಣ್</h1>
-
-        <p class="subtitle">
-            ನನ್ನ ಪ್ರೀತಿಯ ಶ್ರಾವ್ಯಗೆ... 💖<br>
-            ಈ ಪುಟ್ಟ ವೆಬ್‌ಸೈಟ್ ನಿನಗಾಗಿ ಮಾತ್ರ!<br>
-            ನನ್ನ ಮನಸ್ಸಿನಲ್ಲಿರುವ ಪ್ರೀತಿಯನ್ನು ನಿನಗೆ ಹೇಳಲು...
-        </p>
-    </section>
-
-
-    <!-- ಪ್ರೀತಿಯ ಸಂದೇಶ -->
-
-    <section class="card">
-        <h2>💗 ನನ್ನ ಹೃದಯದ ಮಾತು</h2>
-
-        <p>
-            ಶ್ರಾವ್ಯ, ನೀನು ನನ್ನ ಜೀವನದಲ್ಲಿ ಬಂದ ಮೇಲೆ
-            ಎಲ್ಲವೂ ಇನ್ನಷ್ಟು ಸುಂದರವಾಗಿದೆ. 🥰<br><br>
-
-            ನಿನ್ನ ನಗು ನನ್ನ ಸಂತೋಷ,
-            ನಿನ್ನ ಮಾತು ನನ್ನ ನೆಮ್ಮದಿ,
-            ನಿನ್ನ ನೆನಪು ನನ್ನ ದಿನದ ಸಿಹಿಯಾದ ಕ್ಷಣ. 💕<br><br>
-
-            ಪ್ರತಿದಿನವೂ ನಿನ್ನನ್ನು ಇನ್ನಷ್ಟು ಪ್ರೀತಿಸಬೇಕು,
-            ನಿನ್ನ ಮುಖದಲ್ಲಿ ನಗು ಮೂಡಿಸಬೇಕು,
-            ನಿನ್ನ ಜೊತೆ ಸುಂದರವಾದ ನೆನಪುಗಳನ್ನು
-            ಸೃಷ್ಟಿಸಬೇಕು ಅನ್ನೋದೇ ನನ್ನ ಆಸೆ. 🌹<br><br>
-
-            <strong>ನೀನು ನನಗೆ ತುಂಬಾ ವಿಶೇಷ, ಶ್ರಾವ್ಯ! ❤️</strong>
-        </p>
-    </section>
-
-
-    <!-- ಪ್ರೀತಿಯ ದಿನಗಳ ಕೌಂಟರ್ -->
-
-    <section class="card">
-        <h2>📅 ನಮ್ಮ ನೆನಪುಗಳ ದಿನಗಳು</h2>
-
-        <p>
-            ನಮ್ಮ ವಿಶೇಷ ದಿನವನ್ನು ಆಯ್ಕೆ ಮಾಡು.
-            ಅಂದಿನಿಂದ ಇಂದಿನವರೆಗೆ ಎಷ್ಟು ದಿನಗಳಾಗಿವೆ ಎಂದು ನೋಡೋಣ. 💞
-        </p>
-
-        <input type="date" id="specialDate">
-
-        <br>
-
-        <button onclick="calculateDays()">
-            ದಿನಗಳನ್ನು ನೋಡೋಣ ❤️
+    <div class="header">
+        <h2>🔬 SCI CALCULATOR</h2>
+        <button class="mode" id="mode" onclick="toggleMode()">
+            DEG
         </button>
+    </div>
 
-        <div class="counter" id="dayCount">💖</div>
+    <div class="display">
+        <div id="history">Scientific calculator</div>
+        <input id="expression"
+               type="text"
+               placeholder="Enter expression"
+               autocomplete="off"
+               spellcheck="false"
+               aria-label="Calculator expression">
+        <div id="result">0</div>
+    </div>
 
-        <p id="dayMessage">
-            ನಮ್ಮ ವಿಶೇಷ ದಿನ ಇಲ್ಲಿಂದ ಆರಂಭವಾಗಲಿ...
-        </p>
+    <div class="section-label">SCIENTIFIC FUNCTIONS</div>
 
-        <p class="small">
-            ನಿಜವಾದ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡಿದರೆ ಲೆಕ್ಕ ಸರಿಯಾಗಿ ಬರುತ್ತದೆ.
-        </p>
-    </section>
+    <div class="buttons">
+        <button class="key function" onclick="insert('sin(')">sin</button>
+        <button class="key function" onclick="insert('cos(')">cos</button>
+        <button class="key function" onclick="insert('tan(')">tan</button>
+        <button class="key function" onclick="insert('log(')">log</button>
+        <button class="key function" onclick="insert('ln(')">ln</button>
 
+        <button class="key function" onclick="insert('asin(')">sin⁻¹</button>
+        <button class="key function" onclick="insert('acos(')">cos⁻¹</button>
+        <button class="key function" onclick="insert('atan(')">tan⁻¹</button>
+        <button class="key function" onclick="insert('sqrt(')">√x</button>
+        <button class="key function" onclick="insert('cbrt(')">∛x</button>
 
-    <!-- ರಹಸ್ಯ ಪ್ರೇಮಪತ್ರ -->
+        <button class="key function" onclick="insert('^2')">x²</button>
+        <button class="key function" onclick="insert('^3')">x³</button>
+        <button class="key function" onclick="insert('^')">xʸ</button>
+        <button class="key function" onclick="insert('!')">x!</button>
+        <button class="key function" onclick="insert('abs(')">|x|</button>
 
-    <section class="card">
-        <h2>💌 ಶ್ರಾವ್ಯಗಾಗಿ ಒಂದು ರಹಸ್ಯ ಪತ್ರ</h2>
+        <button class="key constant" onclick="insert('pi')">π</button>
+        <button class="key constant" onclick="insert('e')">e</button>
+        <button class="key function" onclick="insert('(')">(</button>
+        <button class="key function" onclick="insert(')')">)</button>
+        <button class="key function" onclick="insert('/100')">÷100</button>
+    </div>
 
-        <p>
-            ಈ ಪತ್ರದಲ್ಲಿ ನಿನಗಾಗಿ ಒಂದು ಪುಟ್ಟ ಪ್ರೀತಿಯ ಸಂದೇಶವಿದೆ. 🥹
-        </p>
+    <div class="section-label">BASIC OPERATIONS</div>
 
-        <button onclick="openLetter()">
-            ನನ್ನ ಪತ್ರವನ್ನು ತೆರೆ 💌
-        </button>
+    <div class="buttons">
+        <button class="key danger" onclick="clearAll()">AC</button>
+        <button class="key danger" onclick="backspace()">DEL</button>
+        <button class="key operator" onclick="insert('%')">%</button>
+        <button class="key operator" onclick="insert('/')">÷</button>
+        <button class="key operator" onclick="insert('*')">×</button>
 
-        <div id="loveLetter" class="letter hidden">
-ನನ್ನ ಪ್ರೀತಿಯ ಶ್ರಾವ್ಯ ❤️,
+        <button class="key" onclick="insert('7')">7</button>
+        <button class="key" onclick="insert('8')">8</button>
+        <button class="key" onclick="insert('9')">9</button>
+        <button class="key operator" onclick="insert('-')">−</button>
+        <button class="key function" onclick="insert('^(-1)')">1/x</button>
 
-ಕೆಲವು ಭಾವನೆಗಳನ್ನು ಪದಗಳಲ್ಲಿ ಹೇಳುವುದು ಕಷ್ಟ.
-ನಿನ್ನ ಬಗ್ಗೆ ನನಗಿರುವ ಪ್ರೀತಿಯೂ ಹಾಗೆಯೇ.
+        <button class="key" onclick="insert('4')">4</button>
+        <button class="key" onclick="insert('5')">5</button>
+        <button class="key" onclick="insert('6')">6</button>
+        <button class="key operator" onclick="insert('+')">+</button>
+        <button class="key function" onclick="insert('10^(')">10ˣ</button>
 
-ನಿನ್ನ ನಗು ನನ್ನ ದಿನವನ್ನು ಸುಂದರವಾಗಿಸುತ್ತದೆ.
-ನಿನ್ನ ಮಾತು ನನ್ನ ಮನಸ್ಸಿಗೆ ಸಂತೋಷ ಕೊಡುತ್ತದೆ.
-ನಿನ್ನ ನೆನಪು ಬಂದಾಗ ನನ್ನ ಮುಖದಲ್ಲಿ
-ತಿಳಿಯದೆಯೇ ಒಂದು ನಗು ಮೂಡುತ್ತದೆ. 🥰
+        <button class="key" onclick="insert('1')">1</button>
+        <button class="key" onclick="insert('2')">2</button>
+        <button class="key" onclick="insert('3')">3</button>
+        <button class="key" onclick="insert('0')">0</button>
+        <button class="key" onclick="insert('.')">.</button>
 
-ನಮ್ಮ ನಡುವೆ ಯಾವ ಪರಿಸ್ಥಿತಿ ಬಂದರೂ,
-ನಿನ್ನನ್ನು ಗೌರವಿಸಿ, ಅರ್ಥಮಾಡಿಕೊಂಡು,
-ನಿನ್ನ ಸಂತೋಷಕ್ಕೆ ಬೆಲೆ ಕೊಡುವ ವ್ಯಕ್ತಿಯಾಗಿರಬೇಕು
-ಎಂಬುದು ನನ್ನ ಆಸೆ.
+        <button class="key constant" onclick="insert('Ans')">Ans</button>
+        <button class="key function" onclick="insert('exp(')">eˣ</button>
+        <button class="key function" onclick="insert('floor(')">floor</button>
+        <button class="key function" onclick="insert('ceil(')">ceil</button>
+        <button class="key equal" onclick="calculate()">=</button>
+    </div>
 
-ನನ್ನ ಜೀವನದ ಸುಂದರವಾದ ನೆನಪುಗಳಲ್ಲಿ
-ನೀನು ಯಾವಾಗಲೂ ವಿಶೇಷವಾಗಿರುತ್ತೀಯ.
+    <div id="message"></div>
 
-ಪ್ರೀತಿಯಿಂದ,
-ನಿನ್ನ ಥರುಣ್ ❤️
-        </div>
-    </section>
+    <div class="footer">
+        DEG/RAD • Scientific calculations • Keyboard support
+    </div>
 
-
-    <!-- ಪ್ರೀತಿಯ ಪ್ರಶ್ನೆಗಳು -->
-
-    <section class="card">
-        <h2>🥰 ಶ್ರಾವ್ಯ, ನಿನಗಾಗಿ ಕೆಲವು ಪ್ರಶ್ನೆಗಳು</h2>
-
-        <p>
-            ಈ ವೆಬ್‌ಸೈಟ್ ನಿನಗೆ ಇಷ್ಟವಾಯಿತಾ? 💖
-        </p>
-
-        <button onclick="chooseAnswer('ತುಂಬಾ ಇಷ್ಟವಾಯಿತು ❤️')">
-            ತುಂಬಾ ಇಷ್ಟವಾಯಿತು ❤️
-        </button>
-
-        <button onclick="chooseAnswer('ನಿನ್ನ ಪ್ರಯತ್ನ ನನಗೆ ಸಂತೋಷ ಕೊಟ್ಟಿತು 🥹')">
-            ತುಂಬಾ ಮುದ್ದಾಗಿದೆ 🥹
-        </button>
-
-        <button onclick="chooseAnswer('ನಿನ್ನ ನಗು ಯಾವಾಗಲೂ ಹೀಗೆಯೇ ಇರಲಿ 💕')">
-            ಮತ್ತೆ ಮಾಡು 💕
-        </button>
-
-        <div class="answer" id="answer"></div>
-
-        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.2); margin: 25px 0;">
-
-        <p>
-            ಥರುಣ್ ನಿನ್ನನ್ನು ಎಷ್ಟು ಪ್ರೀತಿಸುತ್ತಾನೆ ಗೊತ್ತಾ? 😘
-        </p>
-
-        <button onclick="showLove()">
-            ಹೇಳು ನೋಡೋಣ ❤️
-        </button>
-
-        <div class="answer" id="loveAnswer"></div>
-    </section>
-
-
-    <!-- ಕೊನೆಯ ಸಂದೇಶ -->
-
-    <section class="card">
-        <div style="font-size: 45px;">💖🌹💖</div>
-
-        <h2>ನಿನಗಾಗಿ ಸದಾ ಪ್ರೀತಿ</h2>
-
-        <p>
-            ಶ್ರಾವ್ಯ, ನಿನ್ನ ಮುಖದ ನಗು ಎಂದಿಗೂ ಮಾಸದಿರಲಿ.
-            ನಿನ್ನ ಕನಸುಗಳು ನನಸಾಗಲಿ.
-            ನಿನ್ನ ಜೀವನ ಸಂತೋಷದಿಂದ ತುಂಬಿರಲಿ. 💗<br><br>
-
-            <strong>
-                ಇಂತಿ ನಿನ್ನನ್ನು ಪ್ರೀತಿಸುವ<br>
-                ಥರುಣ್ ❤️
-            </strong>
-        </p>
-    </section>
-
-
-    <footer>
-        ❤️ ಶ್ರಾವ್ಯ ಮತ್ತು ಥರುಣ್ ❤️<br>
-        ಪ್ರೀತಿಯಿಂದ ನಿರ್ಮಿಸಿದ ಒಂದು ಪುಟ್ಟ ಜಗತ್ತು 💕
-    </footer>
-
-</div>
-
+</main>
 
 <script>
+const input = document.getElementById("expression");
+const result = document.getElementById("result");
+const history = document.getElementById("history");
+const message = document.getElementById("message");
+const modeButton = document.getElementById("mode");
 
-// ಆಯ್ದ ದಿನಾಂಕದಿಂದ ದಿನಗಳನ್ನು ಲೆಕ್ಕ ಹಾಕುವುದು
+let angleMode = "DEG";
+let lastAnswer = 0;
 
-function calculateDays() {
-    const dateInput = document.getElementById("specialDate");
-    const dayCount = document.getElementById("dayCount");
-    const dayMessage = document.getElementById("dayMessage");
+function toggleMode() {
+    angleMode = angleMode === "DEG" ? "RAD" : "DEG";
+    modeButton.textContent = angleMode;
+    message.textContent = "Angle mode: " + angleMode;
+}
 
-    if (!dateInput.value) {
-        dayCount.textContent = "❤️";
-        dayMessage.textContent = "ಮೊದಲು ಒಂದು ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡು! 💕";
-        return;
+function insert(value) {
+    const start = input.selectionStart ?? input.value.length;
+    const end = input.selectionEnd ?? input.value.length;
+
+    input.value =
+        input.value.slice(0, start) +
+        value +
+        input.value.slice(end);
+
+    input.focus();
+
+    const cursor = start + value.length;
+    input.setSelectionRange(cursor, cursor);
+
+    message.textContent = "";
+}
+
+function clearAll() {
+    input.value = "";
+    result.textContent = "0";
+    history.textContent = "Scientific calculator";
+    message.textContent = "";
+    input.focus();
+}
+
+function backspace() {
+    const start = input.selectionStart ?? input.value.length;
+    const end = input.selectionEnd ?? input.value.length;
+
+    if (start !== end) {
+        input.value =
+            input.value.slice(0, start) +
+            input.value.slice(end);
+        input.setSelectionRange(start, start);
+    } else if (start > 0) {
+        input.value =
+            input.value.slice(0, start - 1) +
+            input.value.slice(start);
+        input.setSelectionRange(start - 1, start - 1);
     }
 
-    const selectedDate = new Date(dateInput.value + "T00:00:00");
-    const today = new Date();
+    input.focus();
+}
 
-    today.setHours(0, 0, 0, 0);
-
-    if (selectedDate > today) {
-        dayCount.textContent = "💗";
-        dayMessage.textContent =
-            "இந்த தேதி ಇನ್ನೂ ಬಂದಿಲ್ಲ! ಹಿಂದಿನ ದಿನಾಂಕವನ್ನು ಆಯ್ಕೆ ಮಾಡು. ❤️";
-        return;
+function factorial(n) {
+    if (!Number.isInteger(n) || n < 0 || n > 170) {
+        throw new Error("Factorial needs an integer from 0 to 170");
     }
 
-    const difference = today.getTime() - selectedDate.getTime();
-    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    let answer = 1;
+    for (let i = 2; i <= n; i++) {
+        answer *= i;
+    }
+    return answer;
+}
 
-    dayCount.textContent = days + " ದಿನಗಳು ❤️";
+// Safe expression parser: no eval() or Function().
+function evaluate(source) {
+    const tokens = [];
+    const pattern =
+        /\s*(?:(\d+(?:\.\d*)?|\.\d+)(?:[eE]([+-]?\d+))?|([A-Za-z]+)|(.))/gy;
 
-    if (days === 0) {
-        dayMessage.textContent =
-            "ಇಂದೇ ನಮ್ಮ ವಿಶೇಷ ದಿನವಾಗಿರಲಿ! 💖";
-    } else {
-        dayMessage.textContent =
-            "ಈ ದಿನಗಳಿಂದ ಎಷ್ಟೇ ಸಮಯ ಕಳೆದರೂ, ಪ್ರತಿಯೊಂದು ನೆನಪೂ ವಿಶೇಷ! 🥰";
+    let position = 0;
+
+    while (position < source.length) {
+        pattern.lastIndex = position;
+        const match = pattern.exec(source);
+
+        if (!match) {
+            if (/^\s*$/.test(source.slice(position))) break;
+            throw new Error("Invalid expression");
+        }
+
+        position = pattern.lastIndex;
+
+        if (match[1] !== undefined) {
+            tokens.push({
+                type: "number",
+                value: Number(match[1] +
+                    (match[2] !== undefined ? "e" + match[2] : ""))
+            });
+        } else if (match[3] !== undefined) {
+            tokens.push({
+                type: "name",
+                value: match[3].toLowerCase()
+            });
+        } else if ("+-*/^()%!,".includes(match[4])) {
+            tokens.push({
+                type: match[4],
+                value: match[4]
+            });
+        } else {
+            throw new Error("Invalid character: " + match[4]);
+        }
+    }
+
+    tokens.push({ type: "end", value: "" });
+
+    let index = 0;
+
+    function peek() {
+        return tokens[index];
+    }
+
+    function take(type) {
+        if (peek().type !== type) {
+            throw new Error("Expected " + type);
+        }
+        return tokens[index++];
+    }
+
+    function angleIn(x) {
+        return angleMode === "DEG" ? x * Math.PI / 180 : x;
+    }
+
+    function angleOut(x) {
+        return angleMode === "DEG" ? x * 180 / Math.PI : x;
+    }
+
+    const functions = {
+        sin: x => Math.sin(angleIn(x)),
+        cos: x => Math.cos(angleIn(x)),
+        tan: x => {
+            const a = angleIn(x);
+            if (Math.abs(Math.cos(a)) < 1e-14) {
+                throw new Error("Tangent is undefined here");
+            }
+            return Math.tan(a);
+        },
+        asin: x => {
+            if (x < -1 || x > 1) throw new Error("asin input must be -1 to 1");
+            return angleOut(Math.asin(x));
+        },
+        acos: x => {
+            if (x < -1 || x > 1) throw new Error("acos input must be -1 to 1");
+            return angleOut(Math.acos(x));
+        },
+        atan: x => angleOut(Math.atan(x)),
+        sqrt: x => {
+            if (x < 0) throw new Error("Square root of a negative number");
+            return Math.sqrt(x);
+        },
+        cbrt: x => Math.cbrt(x),
+        log: x => {
+            if (x <= 0) throw new Error("log input must be positive");
+            return Math.log10(x);
+        },
+        ln: x => {
+            if (x <= 0) throw new Error("ln input must be positive");
+            return Math.log(x);
+        },
+        abs: x => Math.abs(x),
+        exp: x => Math.exp(x),
+        floor: x => Math.floor(x),
+        ceil: x => Math.ceil(x),
+        round: x => Math.round(x)
+    };
+
+    function primary() {
+        const token = peek();
+
+        if (token.type === "number") {
+            index++;
+            return token.value;
+        }
+
+        if (token.type === "(") {
+            index++;
+            const value = expression();
+            take(")");
+            return value;
+        }
+
+        if (token.type === "name") {
+            index++;
+            const name = token.value;
+
+            if (name === "pi") return Math.PI;
+            if (name === "e") return Math.E;
+            if (name === "ans") return lastAnswer;
+
+            if (!(name in functions)) {
+                throw new Error("Unknown function: " + name);
+            }
+
+            take("(");
+            const argument = expression();
+            take(")");
+
+            return functions[name](argument);
+        }
+
+        throw new Error("Expected a number or function");
+    }
+
+    function postfix() {
+        let value = primary();
+
+        while (peek().type === "!" || peek().type === "%") {
+            const op = tokens[index++].type;
+
+            if (op === "!") {
+                value = factorial(value);
+            } else {
+                value /= 100;
+            }
+        }
+
+        return value;
+    }
+
+    function power() {
+        let value = postfix();
+
+        if (peek().type === "^") {
+            index++;
+            value = Math.pow(value, unary());
+        }
+
+        return value;
+    }
+
+    function unary() {
+        if (peek().type === "+") {
+            index++;
+            return unary();
+        }
+
+        if (peek().type === "-") {
+            index++;
+            return -unary();
+        }
+
+        return power();
+    }
+
+    function term() {
+        let value = unary();
+
+        while (peek().type === "*" || peek().type === "/") {
+            const op = tokens[index++].type;
+            const right = unary();
+
+            if (op === "/" && right === 0) {
+                throw new Error("Cannot divide by zero");
+            }
+
+            value = op === "*" ? value * right : value / right;
+        }
+
+        return value;
+    }
+
+    function expression() {
+        let value = term();
+
+        while (peek().type === "+" || peek().type === "-") {
+            const op = tokens[index++].type;
+            const right = term();
+            value = op === "+" ? value + right : value - right;
+        }
+
+        return value;
+    }
+
+    if (peek().type === "end") {
+        throw new Error("Enter an expression");
+    }
+
+    const answer = expression();
+
+    if (peek().type !== "end") {
+        throw new Error("Check your expression and parentheses");
+    }
+
+    if (!Number.isFinite(answer)) {
+        throw new Error("Result is outside the supported range");
+    }
+
+    return answer;
+}
+
+function calculate() {
+    try {
+        const source = input.value.trim();
+        if (!source) {
+            message.textContent = "Enter a calculation first";
+            return;
+        }
+
+        const answer = evaluate(source);
+        lastAnswer = answer;
+
+        const rounded = Number(answer.toPrecision(12));
+
+        history.textContent = source + " =";
+        result.textContent = String(rounded);
+        message.textContent = "";
+    } catch (error) {
+        message.textContent = error.message || "Invalid expression";
     }
 }
 
-
-// ರಹಸ್ಯ ಪತ್ರ ತೆಗೆಯುವುದು
-
-function openLetter() {
-    const letter = document.getElementById("loveLetter");
-
-    letter.classList.toggle("hidden");
-
-    if (!letter.classList.contains("hidden")) {
-        letter.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-        });
+input.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === "=") {
+        event.preventDefault();
+        calculate();
     }
-}
 
-
-// ಪ್ರಶ್ನೆಗೆ ಉತ್ತರ
-
-function chooseAnswer(answer) {
-    document.getElementById("answer").textContent =
-        answer + " 😊❤️";
-}
-
-
-// ಪ್ರೀತಿಯ ಸಂದೇಶ
-
-function showLove() {
-    document.getElementById("loveAnswer").textContent =
-        "ಅದನ್ನು ಅಳೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ ಶ್ರಾವ್ಯ! ❤️ " +
-        "ನಿನ್ನ ನಗು ಮತ್ತು ಸಂತೋಷ ನನಗೆ ತುಂಬಾ ಮುಖ್ಯ. " +
-        "ನೀನು ಯಾವಾಗಲೂ ಸಂತೋಷವಾಗಿರಲಿ! 💖";
-}
-
-
-// ತೇಲುವ ಹೃದಯಗಳ ಅನಿಮೇಷನ್
-
-function createHeart() {
-    const heart = document.createElement("div");
-
-    heart.className = "floating-heart";
-    heart.textContent = ["❤️", "💕", "💗", "💖", "💘"][
-        Math.floor(Math.random() * 5)
-    ];
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (15 + Math.random() * 22) + "px";
-
-    const duration = 5 + Math.random() * 5;
-
-    heart.style.animationDuration = duration + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(function() {
-        heart.remove();
-    }, duration * 1000);
-}
-
-setInterval(createHeart, 600);
-
+    if (event.key === "Escape") {
+        clearAll();
+    }
+});
 </script>
 
 </body>
